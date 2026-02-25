@@ -1,0 +1,278 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{titlesec}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{multirow}
+\usepackage{amsthm}
+
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Prb}{\mathbb{P}}
+\newcommand{\Rp}{\R^{+}}
+\newcommand{\Rb}{\overline{\R}}
+\newcommand{\Rm}{\R^{-}}
+\newcommand{\subelement}[1]{\setminus\{#1\}}
+\newcommand{\subzero}{\subelement{0}}
+\newcommand{\quantifyspace}{\hspace{2px} \big | \hspace{5px}}
+\newcommand{\cheekynewline}{$\text{ }$\\}
+\newcommand{\Tau}{\mathcal{T}}
+\newcommand{\dstar}{\ding{65}}
+\newcommand{\Pow}{\mathcal{P}}
+\newcommand{\vp}{\varphi}
+\newcommand{\oR}{\overline{\R}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\df}[1]{\hspace{2 px} d #1 \hspace{2 px}}
+\newcommand{\gral}[3]{\int_{#1} #2 \hspace{2 px} d #3 \hspace{2px}}
+\newcommand{\lo}{\Bigg (}
+\newcommand{\lc}{\Bigg )}
+\newcommand{\dbl}{\Bigg | \Bigg |}
+\newcommand{\PS}{(\Omega, \cF, \Prb)}
+\newcommand{\FPS}{(\Omega, \cF, \{ \cF_n\}_{n \geq 0}, \Prb)}
+\newcommand{\cFPS}{(\Omega, \cF, \{ \cF_t\}_{t \geq 0}, \Prb)}
+\newcommand{\Fi}{\{\cF_n\}_{n \geq 0}}
+\newcommand{\cFi}{\{\cF_t\}_{t \geq 0}}
+\newcommand{\spc}{\hspace{7 px}}
+\newcommand{\sspc}{\hspace{3 px}}
+\newcommand{\vspc}{\vspace{7px}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ind}[1]{1_{\{#1\}}}
+\newcommand{\norm}[2]{||#1||_{#2}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\ale}{\text{a.e.}}
+\newcommand{\als}{\text{a.s.}}
+\newcommand{\indep}{\perp\!\!\!\!\perp} 
+\newcommand{\spdot}{\text{ } \cdot \text{ }}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{cor}{Corollary}
+
+\graphicspath{ {./media/} }
+
+\title{Optimal Stopping of Ornstein-Uhlenbeck Processes}
+
+\author{Max David Feldman, B.S. \\ Supervisor:  Dr. Mihai Sîrbu}
+
+\date{The University of Texas at Austin, 2026}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\maketitle
+
+\titleformat*{\section}{\bfseries}
+
+% Abstract 
+In this expository thesis we will start Part I by introducing some foundational concepts of measure-theoretic probability and the theory of continuous time martingales.
+We will then make use of some analysis tools to define a concept essential to the general theory of optimal stopping, namely the essential supremum.
+Part I will then finish with motivation and definition of the markov property.
+In Part II we formulate and attack the general problem of optimal stopping and find its solution in terms of the Snell Envelope.
+We finish Part II with motivation for what we hope the markov property will give us.
+In Part III we look at a specific problem, namely that of valuing the perpetual American put option, and get a sense of what stands to be gained
+from the markov property and additional structure in an application specific question of optimal stopping.
+In Part IV we finally use the machinery and intuition we have built up to address the Ornstein-Uhlenbeck problem.
+
+\section*{Part I: Preliminaries}
+\subsection*{\quad I.I martingale theory}
+
+\begin{defn} Given a continuous time filtered probability space $\cFPS$ and a $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$ 
+We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if, \\
+\[
+    \forall t < s \spc \spc X_t \leq \E[ X_s \quantifyspace \cF_t] \spc  \als
+\]
+If the reverse inequality holds we say that $(X_t)_{t \geq 0}$ is a \textbf{supermartingale} with respect to $\cFi$. \\
+If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t){t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$ \\
+\end{defn}
+
+\begin{lemma} Upcrossing inequality \\
+ - prove this one \\
+\end{lemma}
+
+(MAYBE) include submartingale convergence  \\
+\begin{defn}
+    Stopping Times
+\end{defn}
+
+DEF Uniform Integrability \\
+\\
+(MAYBE) introduce local martingales, semi-martingales \\
+\\
+THM Optional Sampling \\
+ - prove this one \\
+\\
+THM Doob's Maximal Inequality \\
+ - prove this one \\
+\\
+THM Existence of RCLL modification for any submart \\
+\\
+DEF Usual Conds \\
+\\
+(MAYBE) Introduce QV \\
+\\
+DEF Brownian Motion \\
+\\
+LEMMA Wiener construction shows existence of BM \\
+\\
+DEF Introduce Stochastic Integral \\
+\\
+THM Ito's lemma \\
+\\
+THM Ito for C1 \\
+\\
+(MAYBE) reflection principle
+
+\subsection*{\quad I.II essential supremum}
+
+\begin{defn}
+Consider a probability space $\PS$ and $\mathcal{Q}$ a nonempty collection of non-negative random variables defined on $\PS$.
+The \textbf{essential supremum} of $\mathcal{Q}$ (denoted ess sup $\mathcal{Q}$) is a random variable $X^*$ with the following two properties 
+
+\begin{enumerate}
+    \item $\forall X \in \mathcal{Q}, \spc X \leq X^* \spc \als$
+    \item $(X \leq Y \sspc \als \sspc \forall X \in \mathcal{Q}) \Rightarrow (X^* \leq Y \sspc \als)$
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+    Let $A \in \cF$ and say $k \in \N$ where $A_1, A_2, .., A_k \in \cF$ comprise a partition of $A$. And say $X_1, X_2, .., X_k \in \mathcal{Q}$
+    We then say that $\pi = (k, A_1, A_2, .., A_k, X_1, X_2, .., X_k)$ is a \textbf{$\mathcal{Q}$-partition of $A$}. \\
+    We then let $P_A$ denote the set of all $\mathcal{Q}$-partitions of $A$. \\
+\end{defn}
+
+Now we construct $\mu_\pi^\infty: \cF \to \R_+$ as follows,
+\[
+    A \xmapsto{\mu_\pi^\infty} \E \bigg [ \sum_{j=1}^k X_j 1_{A_j} \bigg ]
+\]
+We then define $\mu^\infty: \cF \to \R_+$ as,
+\[
+    A \xmapsto{\mu^\infty} \sup_{\pi \in P_A} \mu_\pi^\infty(A)
+\]
+
+\begin{lemma}
+    $\mu^\infty: \cF \to \R_+$ is a measure on $\Omega$ and $\mu^\infty$ is absolutely continuous with respect to $\Prb$.
+\end{lemma}
+
+\vspc
+
+\begin{thm}
+    Consider $\mathcal{Q}$ a collection of random variables defined on the probability space $\PS$.
+    Then ess sup $\mathcal{Q}$ exists and is unique up to $\Prb$-a.s. equivalence.
+
+    \proof \cheekynewline
+    \\
+    First we show that if the essential supremum of $\mathcal{Q}$ exists then it is unique up to $\Prb$-a.s. equivalence \\
+    This follows trivially from the second property of the essential supremum. \\
+    Say that $A$ and $B$ both satisfy the definition of essential supremum of $\mathcal{Q}$ \\
+    Since $X \leq A$ a.s. and $X \leq B$ a.s. for all $X \in \mathcal{Q}$ we then have that $B \leq A$ a.s. and $A \leq B$ a.s. thus $A = B$ a.s. \\
+    \\
+    Now we show existence ... \\
+    Recall that $\mu^\infty << \Prb$ and now define $X^* := \frac{\df{\mu^\infty}}{\df{\Prb}}$ i.e. $X^*$ is the Radon-Nikodym derivative of $\mu^\infty$ w.r.t. $\Prb$ \\
+    We claim that $X^*$ satisfies the criterion of essential supremum of $\mathcal{Q}$ \\
+    \\
+    Fix some $X \in \mathcal{Q}$ \\
+    Now fix a test event $A \in \cF$ and consider the $\mathcal{Q}$-partition of $A$, $\pi^* := (1, A, X)$ and observe,
+    \[
+        \E \big [X 1_A \big ] = \mu_{\pi^*}^\infty(A) \leq \sup_{\pi} \mu_\pi^\infty(A) = \mu^\infty(A) = \E \Big [\frac{\df{\mu^\infty}}{\df{\Prb}} 1_A \Big ] = \E \big [X^* 1_A \big ]
+    \]
+    Since this holds for all $A \in \cF$ we have that $X \leq X^*$ a.s and we have shown the first property. \\
+    \\
+    Now we fix some random variable $Y$ s.t. $X \leq Y$ a.s. for all $X \in \mathcal{Q}$ \\
+    Observe,
+    \[
+        \E \big [X^* A \big ] =
+        \sup_{\pi = (k, A_1 .. A_k , X_1 .. X_k) \in P_A } \mu_\pi^\infty (A) =
+        \sup_{\pi \in P_A} \E \bigg [\sum_{j=1}^k X_j 1_{A_j} \bigg ]  \leq
+        \sup_{\pi \in P_A} \E \bigg [ Y \sum_{j=1}^k 1_{A_j} \bigg ] = \E \big [ Y 1_{A} \big ] 
+    \]
+    This shows the second condition. \\
+    QED
+\end{thm}
+
+\begin{lemma}
+    Consider $\mathcal{Q}$ a collection of random variables defined on the probability space $\PS$ s.t. $\mathcal{Q}$ is closed under pairwise maximum i.e.
+    $A,B \in \mathcal{Q}$ implies $A \vee B \in \mathcal{Q}$, then there is a non-decreasing sequence $\{C_n\}_{n=1}^\infty \subset \mathcal{Q}$ s.t. $X^* = \lim_{n \to \infty} C_n$ a.s.
+\end{lemma}
+
+\subsection*{markov property and strong markov property \& Ornstein-Uhlenbeck processes *******}
+\cheekynewline
+We introduce the idea of the Markov Property which is motivated by the idea that for some processes the increments are dependent only on state at beginning of the start of the time interval of the increment and not on the entire trajectory. \\
+\begin{defn}
+    Given a state space $(E, \mathcal{E})$ a \textbf{transition function} is a function \\
+    $P: [0,\infty) \times E \times [0,\infty) \times \mathcal{E} \to [0,1]$ s.t.
+    For each $s,t \in [0,\infty), e \in E$ we have that $P(s, e; t, \cdot)$ is a probability measure and for every $0 \leq s < r < t$ and $e \in E$ we have,
+    \begin{equation}
+        P(s, e; t, A) = \int_E P(s,e;r, dy) P(r, y; t, A)
+        \tag{\textsc{Chapman-Kolmogorv equation}}
+    \end{equation}
+    If in addition for all $s,t \geq 0$ and $\alpha > 0$ we have \\
+    $$P(s, \spdot; s+\alpha, \spdot) = P(t, \spdot; t + \alpha, \spdot)$$ \\
+    then we say that $P$ is \textbf{time-homogenous} and define \\
+    $$P(\alpha, \spdot; \spdot) := P(s, \spdot; s+\alpha, \spdot) = P(t, \spdot; t+\alpha, \spdot)$$
+\end{defn}
+
+\begin{defn}
+    Given $(X_t)_{t \geq 0}$ as $(E, \mathcal{E})$-valued random elements on the filtered probability space $\cFPS$ s.t. $X_t \in \cF_t$ for all $t \geq 0$
+    and given a transition function $P$
+    we say that $X_t$ is a \textbf{Markov Process} with respect to $\cFi$ with transition function $P$ if for all $s < t$ and measurable functions $f: E \to \R_+$ we have 
+    \begin{equation*}
+        \E[f(X_t) \quantifyspace \cF_s] = \int_E P(s, X_s; t, dy) f(y) \spc \spc \Prb-\als
+    \end{equation*}
+    If in addition $P$ is time-homogeneous then we say that $X_t$ is a \textbf{time-homogeneous} Markov Process. \\
+\end{defn}
+\cheekynewline
+
+\begin{defn} ***
+    Given $(X_t)_{t \geq 0}$ a $(E, \mathcal{E})$-valued time-homogeneous Markov process with respect to $\cFi$ with transition function $P$
+    we say that $X_t$ satisfies the \textbf{Strong Markov Property} if for all measurable functions $f: E \to \R_+$ and all stopping times $\tau$ we have,
+    \[
+        \E[f(X_{\tau+\alpha}) \quantifyspace \cF_\tau] = \int_E P(\alpha, X_\tau; dy) f(y) \spc \spc \Prb-\als \text{ on } \{\tau < \infty\}
+    \]
+\end{defn}
+
+
+We now introduce a specific instance of a class of Markov Processes,
+\begin{defn}
+    Given $(X_t)_{t \geq 0}$ an adapted stochastic process on the filtered probability space $\cFPS$
+    we say that $X_t$ is an \textbf{Ornstein-Uhlenbeck process} if $X_t$ satisfies the following SDE.
+    \[
+        \df{x_t} = \theta (\mu - x_t) \df{t} + \sigma \df{W_t}
+    \]
+    Where $W_t$ is a Wiener process and $\theta, \sigma > 0$ and $\mu \in \R$ are constants \\
+\end{defn}
+
+\section*{Part II: Optimal Stopping}
+\subsection*{Formulation of general problem}
+\subsection*{Snell Envelope}
+\subsection*{What we hope markov property gives up}
+. \\
+\section*{Part III: American Put Option}
+. \\
+\section*{Part IV: Stopping magnitude of Ornstein-Uhlenbeck with linear time penalty}
+Example comes from Example 10.1 in Chapter 10.2 of Shiriaev and Peskir
+
+
+\subsection*{Alternate: 11.2 Space Change example is simple}
+
+\subsection*{Alternate: 12.2 Measure Change is between 11.2 and ex 10.1 in terms of detail}
+. \\
+
+
+\section*{References}
+
+\end{document}
