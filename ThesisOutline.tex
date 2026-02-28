@@ -100,11 +100,65 @@ If the reverse inequality holds we say that $(X_t)_{t \geq 0}$ is a \textbf{supe
 If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t){t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$ \\
 \end{defn}
 
+We now build some machinery that will be needed to prove the Upcrossing Inequality,
+\begin{defn}
+    Given $(X_t)_{t \geq 0}$ a stochastic process on $\PS$ and for a finite set of times $F \subset [s,t] \subset [0,\infty)$ and real valued constants $a < b$
+    We define $T_1 := \min \{u \in F \quantifyspace X_u < a \}$ and $T_2 := \min \{u \in F \quantifyspace u > T_1, X_u > b\}$ \\
+    Now we define inductively $T_{2k - 1} := \min \{u \in F \quantifyspace u > T_{2k - 2}, X_u < a\}$ and $T_{2k} := \min \{u \in F \quantifyspace  u > T_{2k-1}, X_u > b\}$ \\
+    We then define $U_F (X, [a,b]) := \max \{k \quantifyspace T_{2k} \leq t\}$ \\
+    And for any infinite set of times $I$ we define,
+    \[
+        U_I(X, [a,b]) := \sup_{F \subset I, F \text{ finite}} U_F(X, [a,b])
+    \]
+\end{defn}
+
 \begin{lemma} Upcrossing inequality \\
- - prove this one \\
+    Given $(X_t)_{t \geq 0}$ a RC-submartingale and times $s < t$ we have,
+    \[
+        \E[U_{[s,t]}(X, [a,b])] \leq \Big ( \E[X_t^+] + |a| \Big ) (b - a)^{-1}
+    \]
+    This implies that $\Prb [U_{[s,t]}(X, [a,b]) = \infty] = 0$ \\
+
+    \proof \cheekynewline
+        We first prove that the result holds for $(M_n)_{n \geq 0}$ a discrete time sub-martingale over a finite time steps \\
+        It will suffice to show that for fixed $N \in \N$ we have $\E [U_{\{0,1,..,N\}}(X, [a,b])] \leq \Big ( \E[M_N^+] + |a| \Big ) (b - a)^{-1}$ \\
+        Now take $H_n := \sum_{j=0}^\infty \ind{T_{2j + 1} \leq n \leq T_{2j + 2}}$ \\
+        And take $N_n := a \vee M_n = a + (M_n - a)^+$ since $a \vee \cdot$ is convex and non-decreasing we can apply conditional Jensen's and see that for $n \leq m$,
+        \[
+            N_n = a \vee M_n \leq a \vee \E[M_m \quantifyspace \cF_n] \leq \E[N_m \quantifyspace \cF_m]
+        \]
+        And so $N_n$ is a submartingale and since $1 - H_n \geq 0$ we have that $((1 - H) \cdot N)_n$ is a submartingale \\
+        Also by construction, $(H \cdot N)_n \geq (b - a) U_{\{0, 1, .., n\}}([a,b])$
+        % \textit{The above can be heuristically interpreted as a portfolio strategy of buying $N$ above $b$ and selling below $a$ is a submartingale, since for every passage from above $b$ to below $a$ we lose at least $b-a$ we can hope to bound the expected number of times this happens as each of them incurs loss} \\
+        We find that for fixed $n \in \N$,
+        \[
+            0 = ((1 - H) \cdot N)_0 \leq \E[(1 \cdot N)_n - (H \cdot N)_n] 
+        \]
+        And so,
+        \[
+            (b - a) \E[U_{\{0,1..,n\}}(X, [a,b])] \leq \E[(H \cdot N)_n] \leq \E[N_n - N_0] =
+        \]
+        \[
+            \E[(M_n - a)^+ - (M_0 - a)^+]
+            \leq \E[(M_n - a)^+] \leq \E[M_n^+] + |a|
+        \]
+        This proves the discrete case. \\
+        \\
+        By choosing $\{q_n\}_{n = 1}^\infty$ to enumerate $\{b\} \cup (\Q \cap [s, t])$ we can take $F_n := \{q_1, .., q_n\}$, and by right continuity of $X_t$ we will get,
+        \[
+            U_{[s,t]}(X, [a,b]) = \lim_{n \to \infty} U_{F_n}(X, [a,b])
+        \]
+        Further restricting to finite times we find that $\E[U_{F_n}(X, [a,b])] \leq \E[X_t^+] + |a|$ from the discrete case, and since this holds for all $F_n$ by Fatou's lemma we find,
+        \[
+            \E \big [U_{[s,t]}(X, [a,b]) \big ] = \E \Big [ \liminf_{n \to \infty } U_{F_n}(X, [a,b]) \Big ] \leq \liminf_{n \to \infty} \E \big [ U_{F_n}(X, [a,b]) \big ] \leq \frac{\E[X_t^+] + |a|}{(b-a)}
+        \]
+        QED
+        \\
+        
 \end{lemma}
 
 (MAYBE) include submartingale convergence  \\
+
 \begin{defn}
     Stopping Times
 \end{defn}
@@ -114,7 +168,8 @@ DEF Uniform Integrability \\
 (MAYBE) introduce local martingales, semi-martingales \\
 \\
 THM Optional Sampling \\
- - prove this one \\
+\\
+THM RCLL modification for marts \\
 \\
 THM Doob's Maximal Inequality \\
  - prove this one \\
@@ -134,6 +189,8 @@ DEF Introduce Stochastic Integral \\
 THM Ito's lemma \\
 \\
 THM Ito for C1 \\
+\\
+(MAYBE) Paul Levy Characterization \\
 \\
 (MAYBE) reflection principle
 
