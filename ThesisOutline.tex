@@ -14,6 +14,7 @@
 \newcommand{\cF}{\mathcal{F}}
 \newcommand{\cH}{\mathcal{H}}
 \newcommand{\cE}{\mathcal{E}}
+\newcommand{\cS}{\mathcal{S}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -56,11 +57,13 @@
 \newcommand{\als}{\text{a.s.}}
 \newcommand{\indep}{\perp\!\!\!\!\perp} 
 \newcommand{\spdot}{\text{ } \cdot \text{ }}
+\newcommand{\esssup}{\text{ess sup}}
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
 \newtheorem{thm}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{cor}{Corollary}
+\newtheorem{obj}{Objective}
 
 \graphicspath{ {./media/} }
 
@@ -160,39 +163,109 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 (MAYBE) include submartingale convergence  \\
 
 \begin{defn}
-    Stopping Times
+    We are given a filtered probability space $\cFPS$. 
+    An $\cF$-measurable random variable $T: \Omega \to [0,\infty]$ is called a random time. \\
+    A random time $T$ is said to be a \textbf{stopping time} if $\{T \leq t\} \in \cF_t$ for all $t \geq 0$ 
 \end{defn}
 
-DEF Uniform Integrability \\
-\\
-(MAYBE) introduce local martingales, semi-martingales \\
-\\
-THM Optional Sampling \\
-\\
-THM RCLL modification for marts \\
-\\
-THM Doob's Maximal Inequality \\
- - prove this one \\
-\\
-THM Existence of RCLL modification for any submart \\
-\\
-DEF Usual Conds \\
-\\
-(MAYBE) Introduce QV \\
-\\
-DEF Brownian Motion \\
-\\
-LEMMA Wiener construction shows existence of BM \\
-\\
-DEF Introduce Stochastic Integral \\
-\\
-THM Ito's lemma \\
-\\
-THM Ito for C1 \\
-\\
-(MAYBE) Paul Levy Characterization \\
-\\
-(MAYBE) reflection principle
+% (MAYBE) DEF Uniform Integrability \\
+\begin{defn}
+    A collection of random variables $(V_\alpha)_{\alpha \in A}$ we say that $(V_\alpha)$ is
+    \textbf{Uniformly Integrable (U.I.)} if,
+    \[
+        \lim_{K \to \infty} \sup_{\alpha \in A} \sspc \E [V_\alpha \ind{|V_\alpha| \geq K}] = 0
+    \]
+\end{defn}
+
+% THM Optional Sampling \\
+\begin{thm}
+    \textbf{Optional Stopping} \\
+    Let us say that $(M_t)_{t \geq 0}$ and is a right continuous submartingale on $\cFPS$ and we are given optional times $S, T$ s.t. $0 \leq S \leq T$. \\
+    If $(M_{t \wedge T}^+)_{t \geq 0}$ is U.I. then $M_S \leq \E[M_T \quantifyspace \cF_{S^+}]$
+\end{thm}
+
+\begin{thm}
+    All submartingales have an right continuous with left limit (RCLL) modification
+\end{thm}
+
+\begin{thm}
+    \textbf{Doob's Maximal Inequality} \\
+    Given $(M_t)_{t \geq 0}$ a submartingale we define $M_t^* := \sup_{0 \leq s \leq t} M_t^+$ and then for $p \in (1,\infty)$ we have,
+    \[
+        \E[(M_t^*)^p] \leq \Big ( \frac{p}{p-1} \Big )^p  \sspc \E[(M_t^+)^p]
+    \]
+\end{thm}
+
+\begin{defn}
+    We say that a filtration $\cFi$ for a probability space $\PS$ satisfies the \textbf{usual conditions} if $\mathcal{W} := \{A \in \cF \quantifyspace \Prb[A] = 0\}$ is contained in $\cF_0$
+    and $(\cF_t)_{t \geq 0}$ is right continuous, i.e.
+    \[
+        \forall t \geq 0 \spc \spc \cF_t = \cF_t^+ = \bigcap_{s > t} \cF_s
+    \]
+\end{defn}
+
+\begin{defn}
+    Given $(M_t)_{t \geq 0}$ RC and adapted on $\cFPS$ we say that $(M_t)_{t \geq 0}$ is a \textbf{local martingale} if there exist a sequence of stopping times $\{T_n\}_{n =1}^\infty$ s.t. $T_n \nearrow \infty$ a.s. and for all $n \in \N$ we have that $(M_{t \wedge T_n})_{t \geq 0}$ is a martingale. \\
+\end{defn}
+
+\begin{defn} (KS)
+    A stochastic process $(X_t)_{t \geq 0}$ is said to be a \textbf{semimartingale} if there exist a local martingale $(M_t)_{t \geq 0}$ starting at 0 and a finite variation adapted process $(A_t)_{t \geq 0}$ starting at 0 s.t.
+    \[
+        X_t = X_0 + M_t + A_t
+    \]
+\end{defn}
+
+\begin{thm}
+    Let $M,N$ be continuous path local martingales then there exists a unique process $\la M, N \ra_t$ that starts at 0 and s.t. $(M_t N_t - \la M, N \ra_t)_{t \geq 0}$ is a local martingale.
+    Also $\la M, N \ra$ is continuous and has bounded variation paths.
+    We refer to $\la M, N \ra$ as the \textbf{quadratic variation} of $M$ against $N$
+\end{thm}
+
+\begin{cor}
+    We note that for a local martingale $M$ we must have that $\la M, M \ra$ is non-decreasing
+\end{cor}
+
+\begin{defn}
+    A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional brownian motion (brownian motion)} if
+    \begin{enumerate}
+        \item{(i)} for all $s < t$ we have that $(B_t - B_s)$ has a normal distribution with mean $0$ and $\sigma^2 = t-s$ \\
+        \item{(ii)} for all finite collections of deterministic times $0 \leq t_0 < t_1 < t_2 < t_3 < .. < t_n$ we have that the collection of increments as random variables $\{B_{t_k} - B_{t_{k-1}}\}_{k=1}^n$ is independent
+    \end{enumerate}
+\end{defn}
+
+\begin{lemma}
+    There exists a probability space $\PS$ s.t. there exists a brownian motion on this space.
+\end{lemma}
+
+\begin{lemma}
+    \textbf{Itô's Lemma} \\
+    Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^2(\R)$ we have,
+    \[
+        \Prb \bigg [ f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc \forall t \in \R_+ \bigg ] = 1
+    \]
+\end{lemma}
+\cheekynewline
+Infact Itô's lemma extends to a broader class of $f$.
+
+\begin{thm}
+    (KS Ch 3.7 problem 7.3)
+    Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^1(\R)$ with $f'$ being absolutely continuous then $f''$ exists $\lambda$-a.e.
+    and we have,
+    \[
+        f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
+        \forall t \in \R_+ \spc \spc \Prb - \als
+    \]
+\end{thm}
+
+\begin{thm}
+    \textbf{Paul Levy Characterization of Brownian Motion} (A.S. Blog) \\
+    Given a local martingale $(X_t)_{t \geq 0}$ starting at 0 on the filtered probability space $\cFPS$ the following are equivalent:
+    \begin{enumerate}
+        \item[(i)] $X_t$ is a Brownian motion on specified filtered probability space
+        \item[(ii)] $X$ is continuous and $X_t^2 - t$ is a local martingale
+        \item[(iii)] $\la X, X \ra_t = t$ for $t \in \R_+$ 
+    \end{enumerate}
+\end{thm}
 
 \subsection*{\quad I.II essential supremum}
 
@@ -266,7 +339,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     $A,B \in \mathcal{Q}$ implies $A \vee B \in \mathcal{Q}$, then there is a non-decreasing sequence $\{C_n\}_{n=1}^\infty \subset \mathcal{Q}$ s.t. $X^* = \lim_{n \to \infty} C_n$ a.s.
 \end{lemma}
 
-\subsection*{markov property and strong markov property \& Ornstein-Uhlenbeck processes *******}
+\subsection*{ \quad I.III markov property and strong markov property \& Ornstein-Uhlenbeck processes}
 \cheekynewline
 We introduce the idea of the Markov Property which is motivated by the idea that for some processes the increments are dependent only on state at beginning of the start of the time interval of the increment and not on the entire trajectory. \\
 \begin{defn}
@@ -294,12 +367,13 @@ We introduce the idea of the Markov Property which is motivated by the idea that
 \end{defn}
 \cheekynewline
 
-\begin{defn} ***
+\begin{defn}
     Given $(X_t)_{t \geq 0}$ a $(E, \mathcal{E})$-valued time-homogeneous Markov process with respect to $\cFi$ with transition function $P$
     we say that $X_t$ satisfies the \textbf{Strong Markov Property} if for all measurable functions $f: E \to \R_+$ and all stopping times $\tau$ we have,
     \[
         \E[f(X_{\tau+\alpha}) \quantifyspace \cF_\tau] = \int_E P(\alpha, X_\tau; dy) f(y) \spc \spc \Prb-\als \text{ on } \{\tau < \infty\}
     \]
+    \small{ \spc we note that some authors relax away the requirement that $X$ must be time-homogenous in order to have the strong markov property}
 \end{defn}
 
 
@@ -315,8 +389,63 @@ We now introduce a specific instance of a class of Markov Processes,
 
 \section*{Part II: Optimal Stopping}
 \subsection*{Formulation of general problem}
+We are given a filtered probability space $\cFPS$ s.t. $\cF_0 \subset \mathcal{W}$ \\
+We are also given a time horizon $T \in (0, \infty]$ \\
+We are given $(Y_t)_{t \geq 0}$ a non-negative valued and right continuous stochastic process on our probability space. \\
+In the case that $T = \infty$ we consider $\cF_\infty := \sigma ( \cup_{t \geq 0} \cF_t)$ and $Y_\infty := \limsup_{t \to \infty} Y_t$ \\
+We now define $\mathcal{S}$ to be the set of all $\cFi$ stopping times. \\
+Now we take
+\[
+    \cS_\tau := \{\theta \in \cS \quantifyspace \theta \geq \tau \sspc \als \}
+\]
+\cheekynewline
+
+It is useful for intuition to conceive of $Y_t$ as representing the value that exercise of a particular derivatives contract (for now just a single exercise derivative) at time $t$ yields.
+
+\begin{obj}
+    We want to achieve the following
+    \begin{enumerate}
+        \item[(i)] Compute the maximal expected value of stopping $Y$
+            \[
+                Z_0 := \sup_{\tau \in \cS} \E[Y_\tau]
+            \]
+        \item[(ii)] Find conditions that yield existence of a stopping time $\tau_*$ that achieves the value in the prior sub-objective
+        \item[(iii)] Build understanding of $\tau_*$
+    \end{enumerate}
+\end{obj}
+
 \subsection*{Snell Envelope}
-\subsection*{What we hope markov property gives up}
+The essential (pun intended) piece of intuition we need to start to build the right machinery
+is that given two stopping times $\tau, \theta \in \cS$ we can construct another stopping time $\gamma$ which takes values of $\tau$ when preferable and values of $\theta$ when preferable. \\
+Specifically, we define $A := \{\E[Y_\tau - Y_\theta \quantifyspace \cF_{\tau \vee \theta}] \geq 0\}$ and then define $\gamma := \tau 1_A + \theta 1_{A^c}$ \\
+This observation tell us that
+given a fixed $\tau \in \cS$ we have that $\{\E[Y_\theta \quantifyspace \cF_\tau] \}_{\theta \in \cS_\tau}$ is closed under pairwise maximization. \\
+At a glance one might hope that this family would have a maximal element but we must recall that each of these elements are only defined up to a.s. equality so if we tried to make sense of such an $\omega$ by $\omega$ supremum we could get the random variable $\omega \mapsto \infty$. \\
+This should be enough to tell you that the essential supremum is the right tool, we can now get to the main definition \\
+\\
+\begin{defn}
+    We define the following,
+    \[
+        Z_v := \esssup_{\tau \in \cS_v} \E[Y_\tau \quantifyspace \cF_v]
+    \]
+    A modification of this will be the "Snell Envelope"
+\end{defn}
+\cheekynewline
+We also impose the condition that $\E[\sup_{t \in [0,T]} Y_t] < \infty$, using this condition we can achieve sub-objective (ii). \\
+
+\begin{lemma}
+    For all $v \in \cS$ and $\tau \in \cS_v$ the family $\{\E[Y_\rho \quantifyspace \cF_v]\}_{\rho \in \cS_v}$ is closed
+    under pairwise maximization. Furthermore, there is a sequence $\{\rho_n\}_{n=1}^\infty$ of stopping times in $\cS_\tau$ s.t.
+    the sequence $\{\E [Y_{\rho_n} \quantifyspace \cF_v] \}_{n=1}^\infty$ is non-decreasing and
+    \[
+        \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] = \lim_{n\to \infty} \E[Y_{\rho_n} \quantifyspace \cF_v]
+    \]
+    \proof
+    The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 5 of the Essential Supremum section. \\
+\end{lemma}
+
+
+\subsection*{The Markov Dream}
 . \\
 \section*{Part III: American Put Option}
 . \\
