@@ -65,6 +65,7 @@
 \newtheorem{cor}{Corollary}
 \newtheorem{claim}{Claim}
 \newtheorem{obj}{Objective}
+\newtheorem{assume}{Assumption}
 
 \graphicspath{ {./media/} }
 
@@ -403,7 +404,7 @@ We now introduce a specific instance of a class of Markov Processes,
 
 \section*{Part II: Optimal Stopping}
 \subsection*{\quad II.I Formulation of general problem}
-We are given a filtered probability space $\cFPS$ s.t. $\cF_0 \subset \mathcal{W}$ \\
+We are given a filtered probability space $\cFPS$ s.t. the filtration satisfies the usual conditions and we specifically impose $\cF_0 = \mathcal{W}$ \\
 We are also given a time horizon $T \in (0, \infty]$ \\
 We are given $(Y_t)_{t \geq 0}$ a non-negative valued and right continuous stochastic process on our probability space. \\
 In the case that $T = \infty$ we consider $\cF_\infty := \sigma ( \cup_{t \geq 0} \cF_t)$ and $Y_\infty := \limsup_{t \to \infty} Y_t$ \\
@@ -451,7 +452,14 @@ We only consider the non-trivial case where
 \]
 and so we will assume this going forward \\
 \cheekynewline
-We also impose the condition that $\E[\sup_{t \in [0,T]} Y_t] < \infty$, using this condition we can achieve sub-objective (ii). \\
+
+\begin{assume}
+    We now impose the condition that
+    \begin{equation}
+        \E[\sup_{t \in [0,T]} Y_t] < \infty
+    \end{equation}
+    using this condition we can achieve sub-objective (ii).
+\end{assume}
 
 \begin{lemma}
     For all $v \in \cS$ and $\tau \in \cS_v$ the family $\{\E[Y_\rho \quantifyspace \cF_v]\}_{\rho \in \cS_v}$ is closed
@@ -530,6 +538,26 @@ We now want to show right continuity of $Z^*$,
     \]
 \end{thm}
 
+\begin{defn}
+    We say that a stochastic process $(X_t)_{t \geq 0}$ is \textbf{class D} if it is U.I. \\
+    And we say that $(X_t)_{t \geq 0}$ is \textbf{class DL} if for any fixed $t$ we have that $\{X_\tau\}_{\tau \leq t, \tau \in \cS}$ is U.I. \\
+\end{defn}
+
+\begin{thm}
+    \textbf{Doob-Meyer Decomposition Theorem} (KS Theorem 1.4.10) \\
+    Say we are given $(H_t)_{t \geq 0}$ a right continuous submartingale on a filtered probability space with filtration satisfying the usual conditions. \\
+    Then if $(H_t)_{t \geq 0}$ is class DL we can decompose $H$ as follows,
+    \[
+        H_t = M_t + A_t \spc \spc \forall t \geq 0
+    \]
+    Where $(M_t)_{t \geq 0}$ is an RCLL martingale and $(A_t)_{t \geq 0}$ is an adapted RCLL non-decreasing process. \\
+    If in addition $H$ is class D then $(M_t)_{t \geq 0}$ is U.I. and $(A_t)_{t \geq 0}$ has an integrable terminal element.
+\end{thm}
+
+\begin{cor}
+    Using the condition we imposed in Assumption 1 we get that $Y$ and in turn $Z$ and $Z^0$ are in classes DL and D.
+    We can now apply the Doob-Meyer Decomposition Theorem to get a decomposition $Z^0_t = M_t - A_t$ where $(M_t)_{t \geq 0}$ is a UI martingale and $(A_t)_{t \geq 0}$ is a non-decreasing adapted process with an integrable terminal element. \\
+\end{cor}
 
 \subsection*{\quad II.III The Markov Dream}
 At a high level we can think of the (strong) Markov property for a process $(X_t)_{t \geq 0}$ as the property that increments starting from a time $(\tau)$ $t$ are dependent only on the current state and not on the entire trajectory up to time $t$. \\
@@ -549,5 +577,8 @@ Example comes from Example 10.1 in Chapter 10.2 of Shiriaev and Peskir
 
 
 \section*{References}
+
+
+Doob Meyer Decomp Proof [https://arxiv.org/pdf/1012.5292]
 
 \end{document}
