@@ -63,6 +63,7 @@
 \newtheorem{thm}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{cor}{Corollary}
+\newtheorem{claim}{Claim}
 \newtheorem{obj}{Objective}
 
 \graphicspath{ {./media/} }
@@ -103,7 +104,19 @@ If the reverse inequality holds we say that $(X_t)_{t \geq 0}$ is a \textbf{supe
 If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t){t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$ \\
 \end{defn}
 
-We now build some machinery that will be needed to prove the Upcrossing Inequality,
+\begin{defn}
+    Two stochastic processes $(X_t)_{t \geq 0}$ and $(Y_t)_{t \geq 0}$ on $\PS$ are said to be \textbf{modifications} of each other if
+    \[
+        \Prb[X_t = Y_t] = 1 \spc \forall t \geq 0
+    \]
+    $X$ and $Y$ are further said to be \textbf{indistinguishable} if
+    \[
+        \Prb[X_t = Y_t \sspc \forall t \geq 0] = 1
+    \]
+\end{defn}
+
+We now build some machinery that will be needed to prove the Upcrossing Inequality.
+
 \begin{defn}
     Given $(X_t)_{t \geq 0}$ a stochastic process on $\PS$ and for a finite set of times $F \subset [s,t] \subset [0,\infty)$ and real valued constants $a < b$
     We define $T_1 := \min \{u \in F \quantifyspace X_u < a \}$ and $T_2 := \min \{u \in F \quantifyspace u > T_1, X_u > b\}$ \\
@@ -160,7 +173,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
         
 \end{lemma}
 
-(MAYBE) include submartingale convergence  \\
+% (MAYBE) include submartingale convergence  \\
 
 \begin{defn}
     We are given a filtered probability space $\cFPS$. 
@@ -169,6 +182,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{defn}
 
 % (MAYBE) DEF Uniform Integrability \\
+
 \begin{defn}
     A collection of random variables $(V_\alpha)_{\alpha \in A}$ we say that $(V_\alpha)$ is
     \textbf{Uniformly Integrable (U.I.)} if,
@@ -185,7 +199,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{thm}
 
 \begin{thm}
-    All submartingales have an right continuous with left limit (RCLL) modification
+    A (super) submartingale $(X_t)_{t \geq 0}$ with the property that the map $t \mapsto \E[X_t]$ is right continuous has an RCLL modification. \\
 \end{thm}
 
 \begin{thm}
@@ -388,7 +402,7 @@ We now introduce a specific instance of a class of Markov Processes,
 \end{defn}
 
 \section*{Part II: Optimal Stopping}
-\subsection*{Formulation of general problem}
+\subsection*{\quad II.I Formulation of general problem}
 We are given a filtered probability space $\cFPS$ s.t. $\cF_0 \subset \mathcal{W}$ \\
 We are also given a time horizon $T \in (0, \infty]$ \\
 We are given $(Y_t)_{t \geq 0}$ a non-negative valued and right continuous stochastic process on our probability space. \\
@@ -414,10 +428,10 @@ It is useful for intuition to conceive of $Y_t$ as representing the value that e
     \end{enumerate}
 \end{obj}
 
-\subsection*{Snell Envelope}
+\subsection*{\quad II.II Snell Envelope}
 The essential (pun intended) piece of intuition we need to start to build the right machinery
 is that given two stopping times $\tau, \theta \in \cS$ we can construct another stopping time $\gamma$ which takes values of $\tau$ when preferable and values of $\theta$ when preferable. \\
-Specifically, we define $A := \{\E[Y_\tau - Y_\theta \quantifyspace \cF_{\tau \vee \theta}] \geq 0\}$ and then define $\gamma := \tau 1_A + \theta 1_{A^c}$ \\
+Specifically, we define $A := \{\E[Y_\tau - Y_\theta \quantifyspace \cF_{\tau \wedge \theta}] \geq 0\}$ and then define $\gamma := \tau 1_A + \theta 1_{A^c}$ \\
 This observation tell us that
 given a fixed $\tau \in \cS$ we have that $\{\E[Y_\theta \quantifyspace \cF_\tau] \}_{\theta \in \cS_\tau}$ is closed under pairwise maximization. \\
 At a glance one might hope that this family would have a maximal element but we must recall that each of these elements are only defined up to a.s. equality so if we tried to make sense of such an $\omega$ by $\omega$ supremum we could get the random variable $\omega \mapsto \infty$. \\
@@ -430,6 +444,12 @@ This should be enough to tell you that the essential supremum is the right tool,
     \]
     A modification of this will be the "Snell Envelope"
 \end{defn}
+
+We only consider the non-trivial case where
+\[
+    0 < Z_0 = \sup_{\tau \in \cS} \E[Y_\tau] < \infty
+\]
+and so we will assume this going forward \\
 \cheekynewline
 We also impose the condition that $\E[\sup_{t \in [0,T]} Y_t] < \infty$, using this condition we can achieve sub-objective (ii). \\
 
@@ -444,11 +464,80 @@ We also impose the condition that $\E[\sup_{t \in [0,T]} Y_t] < \infty$, using t
     The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 5 of the Essential Supremum section. \\
 \end{lemma}
 
+The reader may note that $Z_v$ is a random variable that has been defined as a function of a stopping time $v \in \cS$, it is not clear that this definition of $Z$ is consistient i.e. if we consider the process given by $Z$ at deterministic times we do not know that stopping this process at $v$ is the same as what we defined as $Z_v$, we address this issue now and build some understanding of the relation between $Z$ and $Y$.
+\begin{claim} ***
+    For all $v, \sigma \in \cS$ and $\tau \in \cS_v$ we have
+    \[
+        Z_v = Z_\sigma \spc \als \text{ on } \{\sigma = v\}
+    \]
+    \[
+        \E[Z_\tau \quantifyspace \cF_v] = \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] \spc \als
+    \]
+    \[
+        \E[Z_\tau \quantifyspace \cF_v] \leq Z_v \spc \als
+    \]
+    \[
+        \E[Z_\tau] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] \leq Z_0 < \infty
+    \]
 
-\subsection*{The Markov Dream}
-. \\
+    \proof ...
+\end{claim}
+
+\begin{defn}
+    For a given $v \in \cS$ we introduce $\cS_v^* := \{\tau \in \cS_v \quantifyspace \tau > v \sspc \als \text{ on } \{v < T\} \}$ and we define,
+    \[
+        Z^*_v := \esssup_{\tau \in \cS_v^*} \E[Y_\tau \quantifyspace \cF_v]
+    \]
+\end{defn}
+Observe that our proof of Claim 1 also holds if we replace $Z$ with $Z^*$ so $Z^*$ has all the outlined properties. \\
+We now want to show right continuity of $Z^*$,
+\begin{claim}
+    For any $v \in \cS$ and a sequence $v_n \subset \cS_v^*$ s.t. $\lim_{n \to \infty} v_n = v$ a.s. we have,
+    \[
+        Z_v = Z_v^* \vee Y_v \spc \als
+    \]
+    \[
+        \int_A Z_v^* \df{\Prb} = \lim_{n \to \infty} \int_A Z_{v_n}^* \df{\Prb} \spc \spc \forall A \in \cF_v
+    \]
+\end{claim}
+
+\begin{cor}
+    For any $v \in \cS$, we have $Z_v^* = Z_v$ a.s.
+\end{cor}
+
+\begin{defn}
+    Since $Z$ (as a function from stopping times to random variables) is consistent in the sense of Claim 1 we take the deterministic times and consider the supermartingale $(Z_t)_{t \geq 0}$.
+    Since $t \mapsto \E [Z_t^*] = \E[Z_t]$ is right continuous we may apply Theorem 2 to see that there exists a supermartingale $(Z^0_t)_{t \geq 0}$ with RCLL paths that is a modification of $Z$.
+    We call $Z^0$ the \textbf{Snell Envelope} of $Y$.
+\end{defn}
+
+\begin{thm}
+    Given a stopping time $\tau \in \cS$ we define the following,
+    \[
+        \theta_\tau^* := \inf \{t \geq \tau \quantifyspace Z^0_t = Y_t \} \wedge T
+    \]
+    We claim that $\E[Y_{\theta_\tau^*}] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] $ i.e. $\theta_\tau^*$ is the optimal stopping time beginning from time $\tau$.
+\end{thm}
+
+\begin{thm}
+    Any stopping time $\tau_*$  is optimal starting from time 0 (meaning $\E[Y_{\tau_*}] = Z^0_0 = \sup_{\rho \in \cS} \E[Y_\rho]$) if and only if
+    \[
+        Z^0_{\tau_*} = Y_{\tau_*} \spc \als 
+    \]
+    and the stopped supermartingale
+    \[
+        \big ( Z^0(t \wedge \tau_*) \big )_{t \geq 0} \text{ is a martingale.}
+    \]
+\end{thm}
+
+
+\subsection*{\quad II.III The Markov Dream}
+At a high level we can think of the (strong) Markov property for a process $(X_t)_{t \geq 0}$ as the property that increments starting from a time $(\tau)$ $t$ are dependent only on the current state and not on the entire trajectory up to time $t$. \\
+We now consider $(X_t)_{t \geq 0}$ having the strong markov property and with state space $(\R, \cB(\R))$. 
+Given our high level description of the (strong) Markov property it may seem intuitive that the optimal stopping of $(X_t)_{t \geq 0}$ would depend only on the state at time of stoppage i.e. that there must be a set of states $S \in \cB$ s.t. $\tau_* := \inf \{ t \geq 0 \quantifyspace X_t \in S \}$ is optimal \\
+
 \section*{Part III: American Put Option}
-. \\
+
 \section*{Part IV: Stopping magnitude of Ornstein-Uhlenbeck with linear time penalty}
 Example comes from Example 10.1 in Chapter 10.2 of Shiriaev and Peskir
 
