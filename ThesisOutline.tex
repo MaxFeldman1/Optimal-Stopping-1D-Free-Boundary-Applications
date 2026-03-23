@@ -15,12 +15,14 @@
 \newcommand{\cH}{\mathcal{H}}
 \newcommand{\cE}{\mathcal{E}}
 \newcommand{\cS}{\mathcal{S}}
+\newcommand{\cL}{\mathcal{L}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\bL}{\mathbb{L}}
+\newcommand{\bH}{\mathbb{H}}
 \newcommand{\Prb}{\mathbb{P}}
 \newcommand{\Rp}{\R^{+}}
 \newcommand{\Rb}{\overline{\R}}
@@ -67,6 +69,7 @@
 \newtheorem{claim}{Claim}
 \newtheorem{obj}{Objective}
 \newtheorem{assume}{Assumption}
+\newtheorem{constr}{Contruction}
 
 \graphicspath{ {./media/} }
 
@@ -191,6 +194,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \[
         \lim_{K \to \infty} \sup_{\alpha \in A} \sspc \E [V_\alpha \ind{|V_\alpha| \geq K}] = 0
     \]
+    // TODO introduce stopped process notation
 \end{defn}
 
 % THM Optional Sampling \\
@@ -221,7 +225,10 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{defn}
 
 \begin{defn}
-    Given $(M_t)_{t \geq 0}$ RC and adapted on $\cFPS$ we say that $(M_t)_{t \geq 0}$ is a \textbf{local martingale} if there exist a sequence of stopping times $\{T_n\}_{n =1}^\infty$ s.t. $T_n \nearrow \infty$ a.s. and for all $n \in \N$ we have that $(M_{t \wedge T_n})_{t \geq 0}$ is a martingale. \\
+    Given $(M_t)_{t \geq 0}$ RC and adapted on $\cFPS$ we say that $(M_t)_{t \geq 0}$ is a \textbf{local martingale}
+    if there exist a sequence of stopping times $\{T_n\}_{n =1}^\infty$ s.t. $T_n \nearrow \infty$ a.s.
+    and for all $n \in \N$ we have that $(M_{t \wedge T_n})_{t \geq 0}$ is a martingale. \\
+    In this case we refer to such the a sequence of stopping times as a \textbf{localizing sequence}.
 \end{defn}
 
 \begin{defn} (KS)
@@ -234,7 +241,8 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \begin{thm}
     Let $M,N$ be continuous path local martingales then there exists a unique process $\la M, N \ra_t$ that starts at 0 and s.t. $(M_t N_t - \la M, N \ra_t)_{t \geq 0}$ is a local martingale.
     Also $\la M, N \ra$ is continuous and has bounded variation paths.
-    We refer to $\la M, N \ra$ as the \textbf{quadratic variation} of $M$ against $N$
+    We refer to $\la M, N \ra$ as the \textbf{quadratic variation} of $M$ against $N$ \\
+    In the case of $\la M, M \ra$ we have that the map $t \mapsto \la M, M \ra_t$ is non-decreasing \\
 \end{thm}
 
 \begin{cor}
@@ -253,26 +261,6 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     There exists a probability space $\PS$ s.t. there exists a brownian motion on this space.
 \end{lemma}
 
-\begin{lemma}
-    \textbf{Itô's Lemma} \\
-    Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^2(\R)$ we have,
-    \[
-        \Prb \bigg [ f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc \forall t \in \R_+ \bigg ] = 1
-    \]
-\end{lemma}
-\cheekynewline
-Infact Itô's lemma extends to a broader class of $f$.
-
-\begin{thm}
-    (KS Ch 3.7 problem 7.3)
-    Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^1(\R)$ with $f'$ being absolutely continuous then $f''$ exists $\lambda$-a.e.
-    and we have,
-    \[
-        f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
-        \forall t \in \R_+ \spc \spc \Prb - \als
-    \]
-\end{thm}
-
 \begin{thm}
     \textbf{Paul Levy Characterization of Brownian Motion} (A.S. Blog) \\
     Given a local martingale $(X_t)_{t \geq 0}$ starting at 0 on the filtered probability space $\cFPS$ the following are equivalent:
@@ -282,6 +270,81 @@ Infact Itô's lemma extends to a broader class of $f$.
         \item[(iii)] $\la X, X \ra_t = t$ for $t \in \R_+$ 
     \end{enumerate}
 \end{thm}
+
+\begin{defn}
+    A stochastic process $(X_t)_{t \geq 0}$ is \textbf{progressively measurable} with respect to the filtration $\cFi$ if for all $t \geq 0$
+    the map
+    \[
+        (s, \omega) \longmapsto X_s(\omega)
+    \]
+    is $\cB([0,t]) \otimes \cF_t$ measurable. 
+\end{defn}
+
+\begin{lemma}
+    Predictable processes are progressively measurable
+
+    \proof // TODO add proof
+\end{lemma}
+
+\begin{defn}
+    In a given probability space we take $\bH^2$ to be the set of progressively measurable martingales $(M_t)_{t \geq 0}$ s.t. 
+    \[
+        \sup_t \E[M_t^2] < \infty
+    \]
+    in other words the set of progressively measurable martingales that are bounded in $L^2$. \\
+    We endow $\bH^2$ with the norm $\norm{M}{\bH} := \big ( \lim_{t \to \infty} \E[M_t^2] \big )^{1/2}$ \\
+    We define $H^2$ to be the subset of processes in $\bH^2$ with continuous paths. \\
+    We take $H^2_0$ to be those elements of $H^2$ that deterministically assume the value 0 at time 0. \\
+\end{defn}
+
+\begin{defn}
+    Given some $(M_t)_{t \geq 0} \in H^2$ we let $\cL^2(M)$ denote the set of progressively measurable processes $K$ s.t.
+    \[
+        \norm{K}{M}^2 := \E \Big [
+            \int_0^\infty K_s^2 \df{\la M, M \ra_s}
+        \Big ] < \infty
+    \]
+    We would like to clarify that the integral inside the expectation is being taken w.r.t. the Lebesgue-Stieltjes measure induced by $t \mapsto \la M, M \ra_t$ \\
+    Notice that $\norm{\cdot}{M}$ is a norm and we define $L^2(M)$ to be the equivalence classes of $\cL^2(M)$ under this norm. \\
+\end{defn}
+
+\begin{defn}
+    For $M$ a continuous local martingale we define $L^2_{loc}(M)$ to be the space of progressively measurable processes $K$ s.t.
+    there exists a sequence of stopping times $\{\tau_n\}_{n=1}^\infty$ s.t. $\tau_n \nearrow \infty$ a.s. and
+    \[
+        \E \Big [
+            \int_0^{\tau_n} K_u \df{\la M, M \ra}
+        \Big ] < \infty \spc \spc \forall n \in \N
+    \]
+\end{defn}
+
+\begin{thm}
+    Let $M$ in $H^2$; for each $K \in L^2(M)$ there is a unique element of $H_0^2$ denoted by $K \cdot M$ s.t. 
+    \[
+        \la K \cdot M, N \ra = K \cdot \la M, N \ra
+    \]
+    for every $N \in H^2$. \\
+    If we relax to just having that $M$ is a continuous local martingale and $K \in L^2_{loc}(M)$ then we have that there is a unique local martingale $(K \cdot M)$ starting at 0 satisfying the above for every $N$ a continuous local martingale.
+\end{thm}
+
+\begin{defn}
+    We refer to $K \cdot M$ from the above theorem as the \textbf{stochastic integral} of $K$ with respect to $M$
+    we also use the notation,
+    \[
+        \int_0^t K_u \df{M_u} := (K \cdot M)_t
+    \]
+\end{defn}
+
+\begin{lemma}
+    \textbf{Itô's Lemma \& Itô-Tanaka-Meyer} \\
+    Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^2(\R)$ or $f \in C^1(\R)$ with $f'$ being absolutely continuous we have,
+    \[
+        f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
+        \forall t \in \R_+ \spc \spc \Prb - \als
+    \]
+    // TODO, extend to multidimensional
+\end{lemma}
+
 
 \subsection*{\quad I.II essential supremum}
 
@@ -485,7 +548,7 @@ and so we will assume this going forward \\
 \end{lemma}
 
 The reader may note that $Z_v$ is a random variable that has been defined as a function of a stopping time $v \in \cS$, it is not clear that this definition of $Z$ is consistient i.e. if we consider the process given by $Z$ at deterministic times we do not know that stopping this process at $v$ is the same as what we defined as $Z_v$, we address this issue now and build some understanding of the relation between $Z$ and $Y$.
-\begin{claim} ***
+\begin{claim}
     For all $v, \sigma \in \cS$ and $\tau \in \cS_v$ we have
     \[
         Z_v = Z_\sigma \spc \als \text{ on } \{\sigma = v\}
@@ -500,7 +563,8 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
         \E[Z_\tau] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] \leq Z_0 < \infty
     \]
 
-    \proof ...
+    \proof 
+    // TODO write proof
 \end{claim}
 
 \begin{defn}
@@ -576,14 +640,14 @@ At a high level we can think of the (strong) Markov property for a process $(X_t
 We now consider $(X_t)_{t \geq 0}$ having the strong markov property and with state space $(\R, \cB(\R))$. 
 Given our high level description of the (strong) Markov property it may seem intuitive that the optimal stopping of $(X_t)_{t \geq 0}$ would depend only on the state at time of stoppage i.e. that there must be a set of states $S \in \cB$ s.t. $\tau_* := \inf \{ t \geq 0 \quantifyspace X_t \in S \}$ is optimal
 however this requires a considerable amount of machinery to prove.
-Nonetheless, in certain applications we can find SDE characterizations of the snell envelope and
+Nonetheless, in certain applications
 we can use our Markov intuition to guide our search for explicit solutions for the snell envelope
 which we then verify with the help of other tools, namely Itô's lemma.
 We will see an example of this in chapter III. 
 
 \section*{Part III: Perpetual American Put Option}
 
-\subsection*{\quad III.I Black-Scholes Model}
+\subsection*{\quad III.I Black-Scholes Model} [swing1]
 We consider the probability space $\PS$ and $(W_t)_{t \geq 0}$ a Brownian motion on this space. \\
 We take $\cFi$ to be the filtration generated by $W$ \\
 We take $(X_t)_{t \geq 0}$ to be defined as follows,
@@ -637,6 +701,7 @@ Let us start with a lemma that will help us find $\bL_X$,
 \end{lemma}
 
 We now direct our attention back to the problem at hand. \\
+$\text{[PS s 25]}$ \\
 Applying lemma 7 to $X$ we find, $\bL_X = rx \frac{\partial}{\partial x} + \frac{\sigma^2}{2} x^2 \frac{\partial^2}{\partial x^2}$ \\
 \\
 Recall our discussion in the Markov Dream section. \\
@@ -677,7 +742,7 @@ We consider a solution of the form $x^p$, taking this candidate we $p$ need to s
     x^2 \Big ( rp + \frac{\sigma^2}{2} p [p-1] - r \Big ) = 0 \spc \spc \forall x > b
 \]
 Specifically, either $p = 1$ or $p = \frac{- 2 r}{\sigma^2}$ \\
-Intuitively we expect $\lim_{x \to \infty} V(x) = 0$ so having a $p > 0$ term doesn't make much sense, this leaves us with $p = \gamma := \frac{-2 r}{\sigma^2}$ \\
+Intuitively we expect $\lim_{x \to \infty} V(x) = 0$ so having a $p > 0$ term doesn't make much sense, this leaves us with $p = -\gamma := \frac{-2 r}{\sigma^2}$ \\
 And so we introduce the candidate,
 \[
     H (x) := \begin{cases}
@@ -695,6 +760,84 @@ We need the candidate and its derivatives to be continuous at $b$ so we get the 
 \]
 We first solve both for $C$ in terms of $b$ and then take these two expressions and solve for $b$ to find $b = \frac{K}{1 + \gamma^{-1}}$ \\
 Then we find $C = \Big ( \frac{K}{1 + \gamma^{-1}} \Big )^{\gamma + 1} \gamma^{-1}$ \\
+Now that we have our candidate our task is to verify it. \\
+\begin{thm}
+    $V(x) = H(x)$ for all $x \in (0,\infty)$
+
+    \proof
+    We expect $e^{-tr} H(X_t)$ to be the snell envelope of the interest rate adjusted payoff $e^{-tr}(K - X_t)^+$ so we define $f(x, t) := e^{-tr} H(x)$ and so $f(X_t, t) = e^{-tr} H(X_t)$ \\
+    For sake of brevity we let $f(u)$ denote $f(X_u, u)$ and we let $f_x = \frac{\partial f}{\partial x}$ and similarly define $f_{xx}$, note that $f_t = -r f$ \\
+    Since $X$ is a semimartingale and $H$ has an absolutely continuous derivative so we can apply the multi dimensional Itô-Tanaka-Meyer formula to $f$ to find,
+    \[
+        f(t) = f(0) + \int_0^t -r f(u) \df{u} + \int_0^t f_x(u) \big (r X_u \df{u} + \sigma X_u \df{W_u} \big ) +
+        \frac{1}{2} \int_0^t f_{xx}(u) \sigma^2 X_u^2 \df{u}
+    \]
+    By grouping $\df{u}$ terms together we find,
+    \[
+        f(t) = H(X_0) + \int_0^t e^{-ru } (\bL_X H - r H)(X_u) \df{u} + \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}
+    \]
+    Recall from Itô-Tanaka-Meyer that this is well defined even though $f_{xx}$ is not defined everywhere.
+    If the reader prefers we can simply multiply $f_{xx}$ by $\ind{X_u \neq b}$ but with probability 1 this event occurs at $\lambda$-a.e. $u \in [0, t]$ . \\
+    \\
+    First note that in domain $(b, \infty)$ we have $(\bL_X H - r H)(x) = 0$ from our construction of  $V$. \\
+    in the $(0,b)$ domain we have $(L_X H - rH)(x) = -rx - r(K - x) = -rK < 0$ and so we have $(\bL_X H - rH)(x) \leq 0$ where it is defined \\
+    \\
+    Now we define $M_t := \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}$ \\
+    Since $W$ is a martingale and the integrand is adapted and continuous and so predictable and so progressively measurable we have that $M_t$ is a local martingale starting at 0. \\
+    We select a localizing sequence of $M_t$ say $\{\tau_n\}_{n=1}^\infty$ \\
+    \\
+    Due to the integrand in the $du$ integral being negative we have,
+    \[
+        e^{-rt} H(X_t) \leq H(X_0) + M_t
+    \]
+    \\
+    Combining properties (ii) and (iii) of our construction of $H$ we see,
+    \[
+        (K - x)^+ \leq H(x) \spc \spc \forall x > 0
+    \]
+    and so,
+    \[
+        e^{-r s} (K - X_s)^+ \leq e^{-rs} H(X_s) \leq H(X_0) + M_s
+    \]
+    Now fix a stopping time $\tau$ and consider 
+    \[
+        e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n}) \leq H(X_0) + M_{\tau \wedge \tau_n}
+    \]
+    Fix some $x > 0$ to be the starting point of our process \\
+    Take expectation $\E^x$ of both sides to see,
+    \[
+        \E^x \big [
+            e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n})
+        \big ] \leq H(x)
+    \]
+    Note that the above holds for all $n$, now apply Fatou's lemma,
+    \[
+        \E^x[e^{-r \tau} (K - X_{\tau})^+] \leq H(x)
+    \]
+    This shows that $V(x) \leq H(x)$ \\
+    \\
+    Now we need to show the reverse ... \\
+    Fix some $x > 0$ in the case that $x \leq b$ then $H(x) = K - x \leq V(x)$ so we consider the case that $x > b$ \\
+    Note that since $\bL_X H - r H = 0$ on $(b, \infty)$ we have that for all $n$,
+    \[
+        \Big ( e^{ - r (t \wedge \tau_b \wedge \tau_n)} H(X_{t \wedge \tau_b \wedge \tau_n}) = H(x) + M_{t \wedge \tau_b \wedge \tau_n} \Big )_{t \geq 0} \text{ is a martingale w.r.t. } \Prb^x
+    \]
+    And so
+    \[
+        H(x) = \E^x [e^{-r \tau_b \wedge \tau_n} H(X_{\tau_b \wedge \tau_n})] % = \E^x[e^{-r (\tau_b \wedge \tau_n)} (K - X_{\tau_b \wedge \tau_n})] \leq \sup_\tau \E^x [e^{-r \tau} (K - X_\tau)] = V(x)
+    \]
+    Since $e^{-r \tau_b \wedge \tau_n} H(X_{\tau_b \wedge \tau_n})$ for all $n$ is dominated by the constant $K$ we can apply the dominated convergence theorem to find,
+    \[
+        H(x) = \E^x [e^{-r \tau_b} H(X_{\tau_b})] = \E^x[e^{-r \tau_b} H(X_{\tau_b}) \ind{\tau_b < \infty}] + \E[e^{-r \tau_b} H(X_{\tau_b}) \ind{\tau_b = \infty}] =
+    \]
+    \[
+        \E^x[e^{-r \tau_b} (K - b)^+ \ind{\tau_b < \infty}] = 
+        \E^x[e^{-r \tau_b} (K - X_{\tau_b})^+] \leq \sup_\tau \E^x [e^{-r \tau} (K - X_\tau)^+] = V(x)
+    \]
+    We have now shown $H(x) = V(x)$ for all $x > 0$ and that $\tau_b$ achieves $V(x)$ \\
+    QED
+\end{thm}
+
 
 \section*{Part IV: Stopping magnitude of Ornstein-Uhlenbeck with linear time penalty}
 Example comes from Example 10.1 in Chapter 10.2 of Shiriaev and Peskir
@@ -708,7 +851,13 @@ Example comes from Example 10.1 in Chapter 10.2 of Shiriaev and Peskir
 
 \section*{References}
 
+KS BMSC
 
-Doob Meyer Decomp Proof [https://arxiv.org/pdf/1012.5292]
+Reveuz and Yor
+
+% Doob Meyer Decomp Proof [https://arxiv.org/pdf/1012.5292]
+
+
+% Protter, P. E. (2005). Stochastic Integration and Differential Equations (2nd ed.). Springer. 
 
 \end{document}
