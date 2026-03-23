@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -16,6 +16,7 @@
 \newcommand{\cE}{\mathcal{E}}
 \newcommand{\cS}{\mathcal{S}}
 \newcommand{\cL}{\mathcal{L}}
+\newcommand{\cP}{\mathcal{P}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -183,7 +184,8 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \begin{defn}
     We are given a filtered probability space $\cFPS$. 
     An $\cF$-measurable random variable $T: \Omega \to [0,\infty]$ is called a random time. \\
-    A random time $T$ is said to be a \textbf{stopping time} if $\{T \leq t\} \in \cF_t$ for all $t \geq 0$ 
+    A random time $T$ is said to be a \textbf{stopping time} if $\{T \leq t\} \in \cF_t$ for all $t \geq 0$  \\
+    Given a process $(X_t)_{t \geq 0}$ and a stopping time $\tau$ we introduce the notation of the stopped process $(X^\tau_t)_{t \geq 0}$ we define $X^\tau_t := X_{t \wedge \tau}$
 \end{defn}
 
 % (MAYBE) DEF Uniform Integrability \\
@@ -194,7 +196,6 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \[
         \lim_{K \to \infty} \sup_{\alpha \in A} \sspc \E [V_\alpha \ind{|V_\alpha| \geq K}] = 0
     \]
-    // TODO introduce stopped process notation
 \end{defn}
 
 % THM Optional Sampling \\
@@ -277,14 +278,11 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \[
         (s, \omega) \longmapsto X_s(\omega)
     \]
-    is $\cB([0,t]) \otimes \cF_t$ measurable. 
+    is $\cB([0,t]) \otimes \cF_t$ measurable. \\
+    We also present a stronger condition, \\
+    If the above map is $\cP := \sigma \Big ( \{ (s, t] \times A \quantifyspace 0 \leq s \leq t, A \in \cF_x \} \Big )$ measurable
+    then we say that $(X_t)_{t \geq 0}$ is \textbf{predictable}
 \end{defn}
-
-\begin{lemma}
-    Predictable processes are progressively measurable
-
-    \proof // TODO add proof
-\end{lemma}
 
 \begin{defn}
     In a given probability space we take $\bH^2$ to be the set of progressively measurable martingales $(M_t)_{t \geq 0}$ s.t. 
@@ -342,7 +340,13 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
         f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
         \forall t \in \R_+ \spc \spc \Prb - \als
     \]
-    // TODO, extend to multidimensional
+    This extends to $f$ having a multi dimensional input \\
+    Say that $(X_t)_{t \geq 0}$ is a $d$-dimensional semimartingale, meaning $X^k$ is a semimartingale for every dimension $k=1, .., d$ \\
+    In the case that we have $f: \R^d \to \R$ in $C^2$ or $C^1$ with absolutely continuous derivative then we have,
+    \[
+        f(X_t) = f(X_0) + \sum_{i=1}^d f_{e_i}(X_t) \df{X_t^i} + \frac{1}{2} \sum_{1 \leq j, k \leq d} f_{e_j, e_k}(X_t) \df{\la X^j, X^k \ra_t}
+    \]
+    Where $f_{e_k}$ represents the partial derivative of $f$ in the $e_k$ direction where $e_k$ is the $k^{th}$ standard basis vector for $\R^d$
 \end{lemma}
 
 
@@ -839,15 +843,12 @@ Now that we have our candidate our task is to verify it. \\
 \end{thm}
 
 
-\section*{Part IV: Stopping magnitude of Ornstein-Uhlenbeck with linear time penalty}
+\section*{Part IV: Stopping magnitude of Ornstein-Uhlenbeck with negative exponential time penalty}
 Example comes from Example 10.1 in Chapter 10.2 of Shiriaev and Peskir
-
 
 \subsection*{Alternate: 11.2 Space Change example is simple}
 
 \subsection*{Alternate: 12.2 Measure Change is between 11.2 and ex 10.1 in terms of detail}
-. \\
-
 
 \section*{References}
 
@@ -855,6 +856,7 @@ KS BMSC
 
 Reveuz and Yor
 
+Peskir \& Shiriaev optimal stopping and free boundary problems
 % Doob Meyer Decomp Proof [https://arxiv.org/pdf/1012.5292]
 
 
