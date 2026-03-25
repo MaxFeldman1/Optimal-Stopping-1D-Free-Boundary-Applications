@@ -176,7 +176,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
         \]
         QED
         \\
-        
+
 \end{lemma}
 
 % (MAYBE) include submartingale convergence  \\
@@ -185,6 +185,10 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     We are given a filtered probability space $\cFPS$. 
     An $\cF$-measurable random variable $T: \Omega \to [0,\infty]$ is called a random time. \\
     A random time $T$ is said to be a \textbf{stopping time} if $\{T \leq t\} \in \cF_t$ for all $t \geq 0$  \\
+    We also define the sigma algebra
+    \[
+        \cF_T := \{A \in \cF \quantifyspace A \cap \{T \leq t\} \in \cF_t \spc \forall t \}
+    \]
     Given a process $(X_t)_{t \geq 0}$ and a stopping time $\tau$ we introduce the notation of the stopped process $(X^\tau_t)_{t \geq 0}$ we define $X^\tau_t := X_{t \wedge \tau}$
 \end{defn}
 
@@ -280,9 +284,13 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \]
     is $\cB([0,t]) \otimes \cF_t$ measurable. \\
     We also present a stronger condition, \\
-    If the above map is $\cP := \sigma \Big ( \{ (s, t] \times A \quantifyspace 0 \leq s \leq t, A \in \cF_x \} \Big )$ measurable
+    If the map $(s, \omega) \mapsto X_s(\omega)$ is $\cP := \sigma \Big ( \{ (s, t] \times A \quantifyspace 0 \leq s \leq t, A \in \cF_s \} \Big )$ measurable
     then we say that $(X_t)_{t \geq 0}$ is \textbf{predictable}
 \end{defn}
+
+\begin{lemma}
+    Adapted, continuous path processes are predictable
+\end{lemma}
 
 \begin{defn}
     In a given probability space we take $\bH^2$ to be the set of progressively measurable martingales $(M_t)_{t \geq 0}$ s.t. 
@@ -408,7 +416,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     Now we fix some random variable $Y$ s.t. $X \leq Y$ a.s. for all $X \in \mathcal{Q}$ \\
     Observe,
     \[
-        \E \big [X^* A \big ] =
+        \E \big [X^* 1_A \big ] =
         \sup_{\pi = (k, A_1 .. A_k , X_1 .. X_k) \in P_A } \mu_\pi^\infty (A) =
         \sup_{\pi \in P_A} \E \bigg [\sum_{j=1}^k X_j 1_{A_j} \bigg ]  \leq
         \sup_{\pi \in P_A} \E \bigg [ Y \sum_{j=1}^k 1_{A_j} \bigg ] = \E \big [ Y 1_{A} \big ] 
@@ -420,6 +428,44 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
 \begin{lemma}
     Consider $\mathcal{Q}$ a collection of random variables defined on the probability space $\PS$ s.t. $\mathcal{Q}$ is closed under pairwise maximum i.e.
     $A,B \in \mathcal{Q}$ implies $A \vee B \in \mathcal{Q}$, then there is a non-decreasing sequence $\{C_n\}_{n=1}^\infty \subset \mathcal{Q}$ s.t. $X^* = \lim_{n \to \infty} C_n$ a.s.
+\end{lemma}
+
+\begin{lemma}
+    Given a nonempty family of non-negative random variables $\mathcal{Q}$ and a non-negative random variable $J$ we have,
+    \[
+        J \big ( \esssup \sspc \mathcal{Q} \big ) = \esssup \sspc \big \{J Q \quantifyspace Q \in \mathcal{Q} \big \} \spc \spc \als
+    \]
+    \proof
+    We take $\chi := \esssup \mathcal{Q}$ and we now want to show that $J \chi$ satisfies the properties of being the essential supremum of $\{JQ \quantifyspace Q \in \mathcal{Q}\}$ \\
+    First take some element $Q \in \mathcal{Q}$ \\
+    From the first property of $\chi$ being essential supremum of $\mathcal{Q}$,
+    \[
+        Q \leq \chi \spc \als
+    \]
+    and so,
+    \[
+        JQ \leq J \chi \spc \als
+    \]
+    This shows that $J\chi$ satisfies the first property. \\
+    Now fix some random variable $Z$ s.t. $Z \geq JQ$ a.s. for all $Q \in \mathcal{Q}$ \\
+    we now fix a specific $Q \in \mathcal{Q}$ and see,
+    \[
+        \ind{J > 0} \frac{1}{J}Z \geq \ind{J > 0} Q \spc \als
+    \]
+    And now,
+    \[
+        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} \chi \geq Q \spc \als
+    \]
+    Since this holds for all $Q$ from the second property of $\chi$ we get,
+    \[
+        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} \chi \geq \chi \spc \als
+    \]
+    \[
+        Z \geq \ind{J > 0} Z \geq J \chi \spc \als
+    \]
+    This shows the second property \\
+    QED
+
 \end{lemma}
 
 \subsection*{ \quad I.III markov property and strong markov property \& Ornstein-Uhlenbeck processes}
@@ -514,9 +560,9 @@ is that given two stopping times $\tau, \theta \in \cS$ we can construct another
 Specifically, we define $A := \{\E[Y_\tau - Y_\theta \quantifyspace \cF_{\tau \wedge \theta}] \geq 0\}$ and then define $\gamma := \tau 1_A + \theta 1_{A^c}$ \\
 This observation tell us that
 given a fixed $\tau \in \cS$ we have that $\{\E[Y_\theta \quantifyspace \cF_\tau] \}_{\theta \in \cS_\tau}$ is closed under pairwise maximization. \\
-At a glance one might hope that this family would have a maximal element but we must recall that each of these elements are only defined up to a.s. equality so if we tried to make sense of such an $\omega$ by $\omega$ supremum we could get the random variable $\omega \mapsto \infty$. \\
+At a glance one might hope that this family would have a maximal element in an $\omega$ by $\omega$ sense but we must recall that each of these elements are only defined up to a.s. equality so if we tried to make sense of such an $\omega$ by $\omega$ supremum we could get the random variable $\omega \mapsto \infty$. \\
 This should be enough to tell you that the essential supremum is the right tool, we can now get to the main definition \\
-\\
+
 \begin{defn}
     We define the following,
     \[
@@ -548,7 +594,7 @@ and so we will assume this going forward \\
         \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] = \lim_{n\to \infty} \E[Y_{\rho_n} \quantifyspace \cF_v]
     \]
     \proof
-    The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 5 of the Essential Supremum section. \\
+    The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 5 of the Essential Supremum section. QED \\
 \end{lemma}
 
 The reader may note that $Z_v$ is a random variable that has been defined as a function of a stopping time $v \in \cS$, it is not clear that this definition of $Z$ is consistient i.e. if we consider the process given by $Z$ at deterministic times we do not know that stopping this process at $v$ is the same as what we defined as $Z_v$, we address this issue now and build some understanding of the relation between $Z$ and $Y$.
@@ -568,7 +614,79 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     \]
 
     \proof 
-    // TODO write proof
+    We start by showing the first statement, \\
+    Apply Lemma 7,
+    \[
+        Z_v \ind{\sigma = v} = \esssup_{\rho \in \cS_v} \E[Y_\rho \ind{v = \sigma} \quantifyspace \cF_v] \spc \als
+    \]
+    We make a sub-claim about conditional expectation and stopping times, namely, for an $\cF$ measurable random variable $X$ and stopping times $a, b$ we have,
+    \[
+        \E[X \quantifyspace \cF_a] \ind{a = b} = \E[X \quantifyspace \cF_b] \ind{a = b} \spc \als
+    \]
+    proof of subclaim:
+    Note that $\ind{a = b}$ is in both $\cF_a$ and $\cF_b$ \\
+    we will try to show that the right hand side satisfies the properties of the conditional expectation $\E[X \ind{a = b} \quantifyspace \cF_a]$ \\
+    We need to show that the right hand side is $\cF_a$ measurable and yields the proper value when integrated over $\cF_a$ events \\
+    Fix some $O \in \cB(\R)$ \\
+    Take $\gamma := \E[X \quantifyspace \cF_b]$, by definition $\gamma$ is $\cF_b$ measurable
+    Now in the case that $0 \not \in O$,
+    \[
+        (\gamma \ind{a = b})^{-1}(O) = \{a = b\} \cap \gamma^{-1}(O)
+    \]
+    We define $S := \gamma^{-1}(O) \in \cF_b$ \\
+    We want to show that $\{a = b\} \cap S \in \cF_a$. Infact, we show this for general $S \in \cF_b$ \\
+    Fix $t \geq 0$ \\
+    Note that since $S \in \cF_b$ we have,
+    \[
+        S \cap \{b \leq t\} \in \cF_t
+    \]
+    And now,
+    \[
+        S \cap \{a = b\} \cap \{a \leq t\} = 
+        \{a = b \leq t\} \cap \big ( S \cap \{b \leq t\} \big ) \in \cF_t
+    \]
+    This shows that $S \cap \{a = b\}$ is in $\cF_a$ \\
+    The other case is that $0 \in O$ and in this case $(\gamma \ind{a = b})^{-1}(O) = \gamma^{-1}(O) \cup \{a \neq b\} = \big (\gamma^{-1}(O^c) \cap \{a = b\} \big )^c$ but we know $\gamma^{-1}(O^c) \in \cF_b$ and so $\gamma^{-1}(O^c) \cap \{a = b\} \in \cF_a$ and hence its compliment is also in $\cF_a$ \\
+    We now see that $\E[X \quantifyspace \cF_b] \ind{a=b} \in \cF_a$ and reversing these roles we see $\E[X \quantifyspace \cF_a] \ind{a = b} \in \cF_b$ thus seeing that both of these random variables are $\cF_{a \wedge b}$ measurable. \\
+    And for $A \in \cF_a$ using what we know about measurability $A \cap \{a = b\} \in \cF_b$
+    \[
+        \E[X \ind{a = b} 1_A] =
+        \E[\E[X 1_{A \cap \{a = b\}} \quantifyspace \cF_b]] =
+        \E[1_A \ind{a = b} \E[X \quantifyspace \cF_b]] =
+        \E[1_A \E[X \ind{a = b} \quantifyspace \cF_b]] \spc \als
+    \]
+    End of proof of subclaim \\
+    \\
+    And now we fix some $\rho \in \cS_v$ and define $\rho' := \rho \ind{\sigma = v} + T \ind{\sigma \neq v}$,
+    \[
+        \E[Y_\rho \ind{v = \sigma} \quantifyspace \cF_v] =
+        \E[Y_\rho \ind{v = \sigma} \quantifyspace \cF_\sigma] =
+        \E[Y_{\rho'} \ind{v = \sigma} \quantifyspace \cF_\sigma] \leq
+    \]
+    \[
+        \Big ( \esssup_{\kappa \in \cS_\sigma} \E[Y_\kappa \quantifyspace \cF_\sigma] \Big ) \ind{v = \sigma} = Z_\sigma \spc \als
+    \]
+    Taking the essential supremum over all $\rho$, the left hand side becomes $Z_v \ind{v = \sigma}$ and we have $Z_v \ind{v = \sigma} \leq Z_\sigma \ind{v = \sigma}$
+    Swapping $v$ and $\sigma$ yields the reverse inequality and so $Z_v = Z_\sigma$ a.s. on $\{v = \sigma\}$ \\
+    \\
+    Now for the second statement we invoke lemma 8 to get $\{\rho_n\}_{n=1}^\infty \subset \cS_\tau$ s.t. $\{\E[Y_{\rho_n} \quantifyspace \cF_\tau]\}_{n=1}^\infty$ is non-decreasing and $Z_\tau = \lim_{n \to \infty} \E[Y_{\rho_n} \quantifyspace \cF_\tau]$ \\
+    By monotone convergence theorem for conditional expectation,
+    \[
+        \E[Z_\tau \quantifyspace \cF_v] = \lim_{n \to \infty} \E[ \E[Y_{\rho_n} \quantifyspace \cF_\tau] \quantifyspace \cF_v] = 
+        \lim_{n \to \infty} \E[ Y_{\rho_n} \quantifyspace \cF_v ] \leq \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v]
+    \]
+    And for $\rho \in \cS_\tau$ $\E[Y_\rho]$ we have
+    \[
+        Z_\tau \geq \E[Y_\rho \quantifyspace \cF_\tau] \spc \text{ and }\spc
+        \E[ Z_\tau \quantifyspace \cF_v] \geq \E[Y_\rho \quantifyspace \cF_v]
+    \]
+    Since the above holds for all $\rho \in \cS_\tau$ we get $\E[Z_\tau \quantifyspace \cF_v] \geq \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v]$ \\
+    This yields the second statement. \\
+    \\
+    The third statement is a direct consequence of the fact that $\cS_\tau \subset \cS_v$ \\
+    The fourth statement follows from lemma 8 and the third statement where $v$ is selected to be 0. \\
+    QED
+    % // TODO finish proof
 \end{claim}
 
 \begin{defn}
