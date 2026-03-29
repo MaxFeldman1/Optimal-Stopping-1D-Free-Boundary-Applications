@@ -367,6 +367,8 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 
 \subsection*{\quad I.II essential supremum}
 
+In this section we present the main definitions and results of Appendix A from [MMF]. \\
+
 \begin{defn}
 Consider a probability space $\PS$ and $\mathcal{Q}$ a nonempty collection of non-negative random variables defined on $\PS$.
 The \textbf{essential supremum} of $\mathcal{Q}$ (denoted ess sup $\mathcal{Q}$) is a random variable $X^*$ with the following two properties 
@@ -571,6 +573,9 @@ This observation tell us that
 given a fixed $\tau \in \cS$ we have that $\{\E[Y_\theta \quantifyspace \cF_\tau] \}_{\theta \in \cS_\tau}$ is closed under pairwise maximization. \\
 At a glance one might hope that this family would have a maximal element in an $\omega$ by $\omega$ sense but we must recall that each of these elements are only defined up to a.s. equality so if we tried to make sense of such an $\omega$ by $\omega$ supremum we could get the random variable $\omega \mapsto \infty$. \\
 This should be enough to tell you that the essential supremum is the right tool, we can now get to the main definition \\
+\\
+In the remainder of this section we present the main results of Appendix D from [MMF] about the Snell envelope. \\
+
 
 \begin{defn}
     We define the following,
@@ -684,7 +689,10 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     By monotone convergence theorem for conditional expectation,
     \[
         \E[Z_\tau \quantifyspace \cF_v] = \lim_{n \to \infty} \E[ \E[Y_{\rho_n} \quantifyspace \cF_\tau] \quantifyspace \cF_v] = 
-        \lim_{n \to \infty} \E[ Y_{\rho_n} \quantifyspace \cF_v ] \leq \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v]
+        \lim_{n \to \infty} \E[ Y_{\rho_n} \quantifyspace \cF_v ] \leq
+    \]
+    \[
+        \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v]
     \]
     And for $\rho \in \cS_\tau$ $\E[Y_\rho]$ we have
     \[
@@ -773,6 +781,7 @@ At a high level we can think of the (strong) Markov property for a process $(X_t
 We now consider $(X_t)_{t \geq 0}$ having the strong markov property and with state space $(\R, \cB(\R))$. 
 Given our high level description of the (strong) Markov property it may seem intuitive that the optimal stopping of $(X_t)_{t \geq 0}$ would depend only on the state at time of stoppage i.e. that there must be a set of states $S \in \cB$ s.t. $\tau_* := \inf \{ t \geq 0 \quantifyspace X_t \in S \}$ is optimal
 however this requires a considerable amount of machinery to prove.
+A full treatment of this general task may be seen in [OSR].
 Nonetheless, in certain applications
 we can use our Markov intuition to guide our search for explicit solutions for the snell envelope
 which we then verify with the help of other tools, namely Itô's lemma.
@@ -988,11 +997,17 @@ Example comes from Example 10.1 in Chapter 10.2 of Shiriaev and Peskir
 
 \section*{References}
 
-KS BMSC
+[KS] KS BMSC
 
-Reveuz and Yor
+[RY] Reveuz and Yor
 
-Peskir \& Shiriaev optimal stopping and free boundary problems
+[PS] Peskir \& Shiriaev optimal stopping and free boundary problems
+
+[MMF] Methods of Mathematical Finance KS
+
+[OSR] Optimal stopping rules Bok av Albert Sjirjajev
+
+[S1] Swing1
 % Doob Meyer Decomp Proof [https://arxiv.org/pdf/1012.5292]
 
 
