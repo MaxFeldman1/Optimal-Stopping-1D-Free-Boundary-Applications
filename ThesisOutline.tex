@@ -71,6 +71,7 @@
 \newtheorem{obj}{Objective}
 \newtheorem{assume}{Assumption}
 \newtheorem{constr}{Contruction}
+\newtheorem{remark}{Remark}
 
 \graphicspath{ {./media/} }
 
@@ -162,7 +163,10 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
         \]
         \[
             \E[(M_n - a)^+ - (M_0 - a)^+]
-            \leq \E[(M_n - a)^+] \leq \E[M_n^+] + |a|
+            \leq \E[(M_n - a)^+]
+        \]
+        \[
+            \leq \E[M_n^+] + |a|
         \]
         This proves the discrete case. \\
         \\
@@ -172,7 +176,10 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
         \]
         Further restricting to finite times we find that $\E[U_{F_n}(X, [a,b])] \leq \E[X_t^+] + |a|$ from the discrete case, and since this holds for all $F_n$ by Fatou's lemma we find,
         \[
-            \E \big [U_{[s,t]}(X, [a,b]) \big ] = \E \Big [ \liminf_{n \to \infty } U_{F_n}(X, [a,b]) \Big ] \leq \liminf_{n \to \infty} \E \big [ U_{F_n}(X, [a,b]) \big ] \leq \frac{\E[X_t^+] + |a|}{(b-a)}
+            \E \big [U_{[s,t]}(X, [a,b]) \big ] = \E \Big [ \liminf_{n \to \infty } U_{F_n}(X, [a,b]) \Big ] \leq
+        \]
+        \[
+            \liminf_{n \to \infty} \E \big [ U_{F_n}(X, [a,b]) \big ] \leq \frac{\E[X_t^+] + |a|}{(b-a)}
         \]
         QED
         \\
@@ -419,6 +426,8 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
         \E \big [X^* 1_A \big ] =
         \sup_{\pi = (k, A_1 .. A_k , X_1 .. X_k) \in P_A } \mu_\pi^\infty (A) =
         \sup_{\pi \in P_A} \E \bigg [\sum_{j=1}^k X_j 1_{A_j} \bigg ]  \leq
+    \]
+    \[
         \sup_{\pi \in P_A} \E \bigg [ Y \sum_{j=1}^k 1_{A_j} \bigg ] = \E \big [ Y 1_{A} \big ] 
     \]
     This shows the second condition. \\
@@ -653,6 +662,8 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
         \E[X \ind{a = b} 1_A] =
         \E[\E[X 1_{A \cap \{a = b\}} \quantifyspace \cF_b]] =
         \E[1_A \ind{a = b} \E[X \quantifyspace \cF_b]] =
+    \]
+    \[
         \E[1_A \E[X \ind{a = b} \quantifyspace \cF_b]] \spc \als
     \]
     End of proof of subclaim \\
@@ -816,6 +827,8 @@ Let us start with a lemma that will help us find $\bL_X$,
             \int_0^t f'(C_u) \mu(C_t) \df{t} +
             \frac{1}{2} \int_0^t f''(C_u) \big ( \sigma(C_u) \big )^2 \df{t}
         \Big ]}{t} =
+    \]
+    \[
         f'(x) \mu(x) + f''(x) (\sigma(x))^2
     \]
     This proves the desired result. \\
@@ -889,9 +902,8 @@ Now that we have our candidate our task is to verify it. \\
     \proof
     We expect $e^{-tr} H(X_t)$ to be the snell envelope of the interest rate adjusted payoff $e^{-tr}(K - X_t)^+$ so we define $f(x, t) := e^{-tr} H(x)$ and so $f(X_t, t) = e^{-tr} H(X_t)$ \\
     For sake of brevity we let $f(u)$ denote $f(X_u, u)$ and we let $f_x = \frac{\partial f}{\partial x}$ and similarly define $f_{xx}$, note that $f_t = -r f$ \\
-    Since $X$ is a semimartingale and $H$ has an absolutely continuous derivative so we can apply the multi dimensional Itô-Tanaka-Meyer formula to $f$ to find,
-    \[
-        f(t) = f(0) + \int_0^t -r f(u) \df{u} + \int_0^t f_x(u) \big (r X_u \df{u} + \sigma X_u \df{W_u} \big ) +
+    Since $X$ is a semimartingale and $H$ has an absolutely continuous derivative so we can apply the multi dimensional Itô-Tanaka-Meyer formula to $f$ to find that $f(t)$ is equal to,
+    \[f(0) + \int_0^t -r f(u) \df{u} + \int_0^t f_x(u) \big (r X_u \df{u} + \sigma X_u \df{W_u} \big ) +
         \frac{1}{2} \int_0^t f_{xx}(u) \sigma^2 X_u^2 \df{u}
     \]
     By grouping $\df{u}$ terms together we find,
@@ -958,6 +970,12 @@ Now that we have our candidate our task is to verify it. \\
     \]
     We have now shown $H(x) = V(x)$ for all $x > 0$ and that $\tau_b$ achieves $V(x)$ \\
     QED
+\end{thm}
+
+Now we want to see that the snell envelope is exactly that which our Markov intuition would suggest.
+
+\begin{thm}
+    The snell envelope of $e^{-rt} (K - X_t)^+$ is $e^{-rt} V(X_t)$
 \end{thm}
 
 
