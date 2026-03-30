@@ -985,7 +985,56 @@ Now we want to see that the snell envelope is exactly that which our Markov intu
 
 \begin{thm}
     The snell envelope of $e^{-rt} (K - X_t)^+$ is $e^{-rt} V(X_t)$
+    \proof
+We recall that in the proof of the previous theorem we found a decomposition of $e^{-rt} V(X_t) = V(X_0) + M_t - A_t$ where $M_t$ is a local martingale and $A_t$ is a non-decreasing process \\
+Fix some $\tau \in \cS$ and some $\theta \in \cS_\tau$ \\
+Now we have the following,
+\[
+    e^{-r\theta}(K - X_\theta)^+ \leq e^{-r\theta} V(X_\theta) = e^{-r\tau} V(X_\tau) + (M_\theta - M_\tau) - (A_\theta - A_\tau) \leq
+\]
+\[
+    e^{-r\tau} V(X_\tau) + (M_\theta - M_\tau) \spc \als
+\]
+Now take the minimum of these times stopped at $\tau_n$ where $\{\tau_n\}_{n=1}^\infty$ is a localizing sequence of $M_t$ \\
+\[
+    e^{-r (\theta \wedge \tau_n)} (K - X_{\theta \wedge \tau_n})^+ \leq e^{-r(\tau \wedge \tau_n)} V(X_{\tau  \wedge \tau_n}) + M_{\theta \wedge \tau_n} - M_{\tau \wedge \tau_n}
+\]
+Now take conditional expectation w.r.t. $\cF_\tau$ and because $M^{\tau_n}$ is a martingale we can move terms around to get
+\[
+    \E \big [ e^{-r (\theta \wedge \tau_n)} (K - X_{\theta \wedge \tau_n})^+ - e^{-r (\tau \wedge \tau_n)} V(X_{\tau \wedge \tau_n}) \quantifyspace \cF_\tau \big ] \leq 0
+\]
+Now due to the fact that the inside of the conditional expectation above is dominated by $2K$ we can use dominated convergence for conditional expectation to get,
+\[
+    \E[e^{-r \theta}(K - X_\theta) \quantifyspace \cF_\tau] \leq e^{-r \tau}V(X_\tau) \spc \als
+\]
+This demonstrates that $\esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)] \leq e^{-r \tau} V(X_\tau)$ a.s. \\
+\\
+Now we want to show the reverse, \\
+We can decompose $F_t := e^{-rt} V(X_{t}) = V(x) + M_t - A_t$ \\
+We define $\rho := \inf \{t \quantifyspace t \geq \tau, \sspc X_t \leq b \}$ \\
+We note that $A_t = \int_0^t e^{-ru} (\bL_X H - r H)(X_u) \df{u}$ is constant on the interval $[\tau, \rho]$ \\
+\\
+We consider $\{\tau_n\}_{n=1}^\infty$ to the a localizing sequence of $(M^{\rho}_t)_{t \geq 0}$ \\
+Now we fix some $\tau \in \cS$ and some $n \in \N$, \\
+From properties of conditional expectation we find,
+\[
+    F_{\tau \wedge \tau_n} = \E[F_{\rho \wedge \tau_n} \quantifyspace \cF_{\tau \wedge \tau_n}] =
+    \E[F_{\rho \wedge \tau_n} \quantifyspace \cF_\tau] \spc \als
+\]
+Again we can apply conditional dominated convergence to get,
+\[
+    F_\tau = \E[F_\rho \quantifyspace \cF_\tau] = \E[e^{-r \rho} (K - X_\rho)^+ \quantifyspace \cF_\tau] \spc \als
+\]
+This shows that $e^{-r \tau} V(X_\tau) \leq \esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)^+ \quantifyspace \cF_\tau]$ a.s. \\
+This proves the theorem and that $\rho$ is optimal for stopping after $\tau$ \\
+QED \\
 \end{thm}
+
+With the proof of this theorem we have now achieved what our intuition in the Markov Dream section informed us might be possible. 
+We used our intuition to find an explicit characterization of a Snell Envelope candidate and then went about proving it is indeed the Snell Envelope. 
+Most notably we found that the Snell Envelope is a product of the imposed scale-invariant time penalty function $e^{-rt}$ and a value function which is dependent only on the current state.
+We also saw that the optimal stopping time for stopping after some stopping time $\tau$ is a hitting time.
+This matches nicely with our intuition coming from the fact that $e^{-rt} (K - X_t)$ is strong markov and that taking the positive portion of this is a deterministic function of a strong markov process. 
 
 
 \section*{Part IV: Stopping magnitude of Ornstein-Uhlenbeck with negative exponential time penalty}
