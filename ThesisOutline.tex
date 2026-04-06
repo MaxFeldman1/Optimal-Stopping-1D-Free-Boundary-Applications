@@ -1239,7 +1239,7 @@ Also note,
 And so by lemma 2 we have that $(Y^{\tau_{z_*} \wedge n}_t)_{t \geq 0}$ is a true martingale \\
 Now,
 \[
-    \E^z[Y_{n \wedge \tau_{z_*}}] = \E^z[Y_0] let = f(z)
+    \E^z[Y_{n \wedge \tau_{z_*}}] = \E^z[Y_0] = f(z)
 \]
 From Fatou's lemma,
 \[
@@ -1284,12 +1284,31 @@ We also have the following theorem for the $c < r$ case \\
 
 \begin{thm}
     For $c < r$ we have $V_*(t, x) = \infty$ and it is never optimal to stop. \\
+    \proof
+    Fix some $\alpha \in (c, r)$ \\
+    We have already seen that en route to the proof of the previous theorem that $\tau := \inf \{t \quantifyspace |Z_t| \geq \alpha\} \in T^z$ for all $z$ \\
+    Similarly, $\rho_t := \inf \{s \geq t \quantifyspace |Z_s| \geq \alpha \} \in T^z$ for all $z$ \\
+    And so for any fixed $t$,
+    \[
+        \Prb^z[\{\rho_t = \infty\}] = 0 \spc \spc \forall z
+    \]
+    This implies,
+    \[
+        (\alpha - c) e^t \leq (\alpha - c) e^\rho = (|Z_\rho| - c)e^\rho \spc \spc \Prb^z-\als
+    \]
+    And so,
+    \[
+        W_{c, *}(z) \geq (\alpha - c) e^t
+    \]
+    Since this holds for all $t$ we have that $W_{c,*}(z) = \infty$ \\
+    QED
 \end{thm}
 
 \cheekynewline
 
 // TODO RECAP MARKOV INTUITION
 
+// TODO add 3 more proofs throughout
 
 \section*{References}
 
