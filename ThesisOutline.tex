@@ -200,6 +200,13 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     Given a process $(X_t)_{t \geq 0}$ and a stopping time $\tau$ we introduce the notation of the stopped process $(X^\tau_t)_{t \geq 0}$ we define $X^\tau_t := X_{t \wedge \tau}$
 \end{defn}
 
+\iffalse
+\begin{thm}
+    \textbf{Martingale Convergence}
+    Given a martingale $(M_t)_{t \geq 0}$ on the filtered probability space $\cFPS$ if $sup_t \E[M_t^+] < \infty$ we have that there is a random variable $X$ measurable w.r.t $\cF_\infty = \sigma(\cup \cF_t)$ w
+\end{thm}
+\fi
+
 % (MAYBE) DEF Uniform Integrability \\
 
 \begin{defn}
@@ -212,7 +219,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 
 % THM Optional Sampling \\
 \begin{thm}
-    \textbf{Optional Stopping} \\
+    \textbf{Optional Sampling} \\
     Let us say that $(M_t)_{t \geq 0}$ and is a right continuous submartingale on $\cFPS$ and we are given optional times $S, T$ s.t. $0 \leq S \leq T$. \\
     If $(M_{t \wedge T}^+)_{t \geq 0}$ is U.I. then $M_S \leq \E[M_T \quantifyspace \cF_{S^+}]$
 \end{thm}
@@ -711,7 +718,6 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     The third statement is a direct consequence of the fact that $\cS_\tau \subset \cS_v$ \\
     The fourth statement follows from lemma 8 and the third statement where $v$ is selected to be 0. \\
     QED
-    % // TODO finish proof
 \end{claim}
 
 \begin{defn}
@@ -1102,11 +1108,11 @@ This correspondence between stopping times gives us,
 For sake of clarity we note that $Z_0 = X_0$ and so if we ever refer to $W_*(z)$ or write $\E^z$ these have the same meaning as we have defined already and there should be no confusion from the semantics. \\
 
 \subsection*{IV.III Conversion to Free Boundary Problem}
-With $Z$ being an Ornstien-Uhlenbeck process we note that $e^t (|Z_t| - c)$ does not seem to be a deterministic function of a strong markov process but $(|Z_t| - c)$ is strong markov and the $e^\tau$ term maintains a scale invariance. Heuristically, if state-time is $(z, t)$ and this is in the continuation region because we can stop in a manner that improves expected reward by say $k$\% over stopping immediately at $(z, t+h)$ we can again stop in a manner that improves expected reward by $k$\% over stopping immediately, i.e. our intuition suggest that the time induced change in transition dynamics due to time should not impact the optimal stopping policy. \\
+With $Z$ being an Ornstien-Uhlenbeck process we note that $e^t (|Z_t| - c)$ does not seem to be a deterministic function of a strong markov process but $(|Z_t| - c)$ is strong markov and the $e^t$ term maintains a scale invariance. Heuristically, if state-time is $(z, t)$ and this is in the continuation region because we can stop in a manner that improves expected reward by say $k$\% over stopping immediately, then at $(z, t+h)$ we expect that we can again stop in a manner that improves expected reward by $k$\% over stopping immediately, i.e. our intuition suggest that the time induced change in transition dynamics due to time should not impact the optimal stopping policy. \\
 \\
 We assume that the optimal stopping time is of the form $\tau_{z_*} := \inf \{t \geq 0 \quantifyspace |Z_t| \geq z_*\}$ where $z_* > 0$ is a constant \\
 We can now set up the free boundary problem \\
-Any candidate solution $W(z)$ must satisfy,
+We seach for a candidate solution $W(z)$ that satisfies the following,
 \begin{enumerate}
     \item[(i)] Since we expect $e^t W(Z_t)$ to be a martingale in $z \in (-z_*, z_*)$
     \[
@@ -1141,8 +1147,7 @@ We introduce a function which will be helpful for characterizing the solution in
 \end{defn}
 
 Importantly note that $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $x M(0, \frac{3}{2}, \frac{z^2}{2})$ are linearly independent and solve $\bL_X W(z) = -W(z)$. \\
-// TODO CHECK WITH BOOK, VERIFY THIS IS CORRECT REFERENCE \\
-By Corollary 4.34 from [TA], the solution space for a second order ODE is 2-dimensional and so the two aforementioned functions form a basis of the solution space to $\bL_X W(z) = -W$. \\
+By Corollary 4.35 from [TA], the solution space for a second order ODE is 2-dimensional and so the two aforementioned functions form a basis of the solution space to $\bL_X W(z) = -W$. \\
 Infact, since $-Z_t$ follows the same SDE as $Z_t$ (with the corresponding negative brownian motion) we expect $W$ to be an even function. \\
 Since the first of our basis functions is even and the second is odd we expect our solution to be of the form,
 \[
@@ -1234,17 +1239,31 @@ Also note,
 And so by lemma 2 we have that $(Y^{\tau_{z_*} \wedge n}_t)_{t \geq 0}$ is a true martingale \\
 Now,
 \[
-    \E^z[Y_{n \wedge \tau_{z_*}}] = \E^z[Y_0]  = f(z)
+    \E^z[Y_{n \wedge \tau_{z_*}}] = \E^z[Y_0] let = f(z)
 \]
 From Fatou's lemma,
 \[
     \E^z[e^{\tau_{z_*}}] = f(z_*) \E^z[ e^{\tau_{z_*}}] = \E^z[Y_{\tau_{z_*}}] \leq f(z)
 \]
-And so we have shown that in the case where $c > r$ that $W(z) = W_*(z)$ \\
+And so we have shown that in the case where $c > r$ that $W(z) = W_*(z)$. \\
 \\
-Putting it all together we have shown,
+From the $c > r$ case we can also get the $c = r$ case \\
+We let $W_c$ and $W_{c, *}$ represent $W$ and $W_*$ as before except now with $c$ specified explicitly \\
+We take $\{c_n\}_{n=1}^\infty$ a decreasing sequence converging to $r$ and fix some $z$ \\
+Using monotone convergence and continuity of $c \mapsto W_{c}(z)$ for $c \geq r$ we find,
+\[
+    W_{r, *}(z) = \sup_{\tau \in T^z} \E^z[e^\tau (|Z_\tau| - r)] = 
+    \sup_{\tau \in T^z} \bigg ( \sup_{n \in \N} \E^z[e^\tau (|Z_\tau| - c_n)]  \bigg ) =
+\]
+\[
+    \sup_{n \in \N} \bigg ( \sup_{\tau \in T^z} \E^z[e^\tau (|Z_\tau| - c_n)]  \bigg ) =
+    \sup_{n \in \N} W_{c_n, *}(z) =
+    \sup_{n \in \N} W_{c_n}(z) = W_{r}(z)
+\]
+\\
+Putting it all together we have now shown,
 \begin{thm}
-    Given $c > z_1^*$
+    Given $c \geq r$
     \[
         V(x, t) = \sup_\tau \E^x  \Big ( |X_\tau| - c \sqrt{t + \tau} \Big ) =
     \]
@@ -1258,22 +1277,23 @@ Putting it all together we have shown,
     \[
         \tau_* = \inf \{s > 0 \quantifyspace |X_s| \geq z_* \sqrt{t + s}\}
     \]
-    For $c = z_1^*$ the stopping times $\tau_*$ are approximately optimal if we let $c \downarrow z_1^*$.
-    For $c < z_1^*$ we have $V_*(t, x) = \infty$ and it is never optimal to stop.
+    For $c = r$ the stopping times $\tau_*$ from Theorem 12 are approximately optimal if we let $c \downarrow r$. \\
+\end{thm}
+\cheekynewline
+We also have the following theorem for the $c < r$ case \\
+
+\begin{thm}
+    For $c < r$ we have $V_*(t, x) = \infty$ and it is never optimal to stop. \\
 \end{thm}
 
+\cheekynewline
 
-// TODO relate to original problem in terms of X
+// TODO RECAP MARKOV INTUITION
 
-// TODO RECAP
-
-%Example comes from Example 10.1 in Chapter 10.2 of Shiriaev and Peskir
-
-%\subsection*{Alternate: 11.2 Space Change example is simple}
-
-%\subsection*{Alternate: 12.2 Measure Change is between 11.2 and ex 10.1 in terms of detail}
 
 \section*{References}
+
+// TODO put references in proper format
 
 [KS] KS BMSC
 
