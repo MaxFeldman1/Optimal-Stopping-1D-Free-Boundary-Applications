@@ -100,6 +100,9 @@ In Part III we look at a specific problem, namely that of valuing the perpetual 
 from the markov property and additional structure in an application specific question of optimal stopping.
 In Part IV we finally use the machinery and intuition we have built up to address the Ornstein-Uhlenbeck problem.
 
+
+// TODO: Add table of contents
+
 \section*{Part I: Preliminaries}
 \subsection*{\quad I.I martingale theory}
 
@@ -109,7 +112,7 @@ We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if, \\
     \forall t < s \spc \spc X_t \leq \E[ X_s \quantifyspace \cF_t] \spc  \als
 \]
 If the reverse inequality holds we say that $(X_t)_{t \geq 0}$ is a \textbf{supermartingale} with respect to $\cFi$. \\
-If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t){t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$ \\
+If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t)_{t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$ \\
 \end{defn}
 
 \begin{defn}
@@ -269,11 +272,11 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     We refer to $\la M, N \ra$ as the \textbf{quadratic variation} of $M$ against $N$ \\
     In the case of $\la M, M \ra$ we have that the map $t \mapsto \la M, M \ra_t$ is non-decreasing \\
 \end{thm}
-
+\iffalse
 \begin{cor}
     We note that for a local martingale $M$ we must have that $\la M, M \ra$ is non-decreasing
 \end{cor}
-
+\fi
 \begin{defn}
     A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional brownian motion (brownian motion)} if
     \begin{enumerate}
@@ -318,7 +321,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
         \sup_t \E[M_t^2] < \infty
     \]
     in other words the set of progressively measurable martingales that are bounded in $L^2$. \\
-    We endow $\bH^2$ with the norm $\norm{M}{\bH} := \big ( \lim_{t \to \infty} \E[M_t^2] \big )^{1/2}$ \\
+    We endow $\bH^2$ with $\norm{M}{\bH} := \big ( \lim_{t \to \infty} \E[M_t^2] \big )^{1/2}$ \\
     We define $H^2$ to be the subset of processes in $\bH^2$ with continuous paths. \\
     We take $H^2_0$ to be those elements of $H^2$ that deterministically assume the value 0 at time 0. \\
 \end{defn}
@@ -621,7 +624,7 @@ and so we will assume this going forward \\
         \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] = \lim_{n\to \infty} \E[Y_{\rho_n} \quantifyspace \cF_v]
     \]
     \proof
-    The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 5 of the Essential Supremum section. QED \\
+    The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 5 in the Essential Supremum section. QED \\
 \end{lemma}
 
 The reader may note that $Z_v$ is a random variable that has been defined as a function of a stopping time $v \in \cS$, it is not clear that this definition of $Z$ is consistient i.e. if we consider the process given by $Z$ at deterministic times we do not know that stopping this process at $v$ is the same as what we defined as $Z_v$, we address this issue now and build some understanding of the relation between $Z$ and $Y$.
@@ -749,22 +752,57 @@ We now want to show right continuity of $Z^*$,
 \end{defn}
 
 \begin{thm}
-    Given a stopping time $\tau \in \cS$ we define the following,
-    \[
-        \theta_\tau^* := \inf \{t \geq \tau \quantifyspace Z^0_t = Y_t \} \wedge T
-    \]
-    We claim that $\E[Y_{\theta_\tau^*}] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] $ i.e. $\theta_\tau^*$ is the optimal stopping time beginning from time $\tau$.
-\end{thm}
-
-\begin{thm}
     Any stopping time $\tau_*$  is optimal starting from time 0 (meaning $\E[Y_{\tau_*}] = Z^0_0 = \sup_{\rho \in \cS} \E[Y_\rho]$) if and only if
     \[
         Z^0_{\tau_*} = Y_{\tau_*} \spc \als 
     \]
     and the stopped supermartingale
     \[
-        \big ( Z^0(t \wedge \tau_*) \big )_{t \geq 0} \text{ is a martingale.}
+        \big ( Z^0_{t \wedge \tau_*}) \big )_{t \geq 0} \text{ is a martingale.}
     \]
+    \proof
+    First we assume that $\tau_*$ is optimal \\
+    From the definition of $Z$ we have,
+    \[
+        Z_{\tau_*}^0 \geq Y_{\tau_*} \spc \spc \als
+    \]
+    From optimality of $\tau_*$,
+    \[
+        \E[Y_{\tau_*}] \leq \E[Z_{\tau_*}^0] = Z_0^0 = \E[Y_{\tau_*}]
+    \]
+    And so,
+    \[
+        \E[ Z_{\tau_*}^0 - Y_{\tau_*}] = 0
+    \]
+    And since the integrand above is $\geq 0$ a.s. we must have that the integrand is equal to 0 a.s. \\
+    Thus,
+    \[
+        Z_{\tau_*}^0 = Y_{\tau_*} \spc \spc \als
+    \]
+    Now it remains to show that $(Z^0)^{\tau_*}$ is a martingale \\
+    Fix $\theta$ any stopping time less than or equal to $\tau_*$ \\
+    From Claim 2 and from the definition of $Z$ along with $Z_{\tau_*}^0 = Y_{\tau_*}$ a.s. we get,
+    \[
+        \E[Y_{\tau_*} \quantifyspace \cF_\theta] = \E[Z_{\tau_*}^0 \quantifyspace \cF_\theta] \leq Z^0_\theta \leq \E[Y_{\tau_*} \quantifyspace \cF_\theta] \spc \spc \als
+    \]
+    And so we find $Z_\theta^0 = \E[Y_{\tau_*} \quantifyspace \cF_\theta]$ \\
+    The fact that $(Z^0)^{\tau_*}$ is a martingale then follows directly from the tower property of conditional expectation. \\
+    \\
+    Now we assume that $\tau_*$ is such that $Z_{\tau_*}^0 = Y_{\tau_*}$ a.s.
+    and $(Z^0)^{\tau_*}$ is a martingale \\
+    Using our two assumptions directly we find,
+    \[
+        \sup_{\rho \in \cS} \E[Y_\rho] = Z_0^0 = \E[Z_{\tau_*}^0 \quantifyspace \cF_0] = \E[Z_{\tau_*}] = \E[Y_{\tau_*}] \spc \spc \als
+    \]
+    QED
+\end{thm}
+
+\begin{thm}
+    Given a stopping time $\tau \in \cS$ we define the following,
+    \[
+        \theta_\tau^* := \inf \{t \geq \tau \quantifyspace Z^0_t = Y_t \} \wedge T
+    \]
+    We claim that $\E[Y_{\theta_\tau^*}] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] $ i.e. $\theta_\tau^*$ is the optimal stopping time beginning from time $\tau$.
 \end{thm}
 
 \iffalse
@@ -793,13 +831,13 @@ We now want to show right continuity of $Z^*$,
 \subsection*{\quad II.III The Markov Dream}
 At a high level we can think of the (strong) Markov property for a process $(X_t)_{t \geq 0}$ as the property that increments starting from a time $(\tau)$ $t$ are dependent only on the current state and not on the entire trajectory up to time $t$. \\
 We now consider $(X_t)_{t \geq 0}$ having the strong markov property and with state space $(\R, \cB(\R))$. 
-Given our high level description of the (strong) Markov property it may seem intuitive that the optimal stopping of $(X_t)_{t \geq 0}$ would depend only on the state at time of stoppage i.e. that there must be a set of states $S \in \cB$ s.t. $\tau_* := \inf \{ t \geq 0 \quantifyspace X_t \in S \}$ is optimal
+Given our high level description of the (strong) Markov property it may seem intuitive that the optimal stopping of $(X_t)_{t \geq 0}$ would depend only on the state at time of stoppage i.e. that there must be a set of states $S \in \cB(R)$ s.t. $\tau_* := \inf \{ t \geq 0 \quantifyspace X_t \in S \}$ is optimal
 however this requires a considerable amount of machinery to prove.
 A full treatment of this general task may be seen in [OSR].
 Nonetheless, in certain applications
 we can use our Markov intuition to guide our search for explicit solutions for the snell envelope
 which we then verify with the help of other tools, namely Itô's lemma.
-We will see an example of this in chapter III. 
+We will see examples of this in chapters III and IV. 
 
 \section*{Part III: Perpetual American Put Option}
 
@@ -1099,7 +1137,7 @@ Observe the following identity,
     |X_{\sigma_\tau}| - c \sqrt{1 + \sigma_\tau} = \sqrt{1 + \sigma_\tau} (|Z_\tau| - c) = e^\tau (|Z_\tau| - c)
 \]
 Due to the manner in which $Z_t$ is constructed as a function of $X_{\sigma_t}$ we have that $\cF^Z_t = \cF^X_{\sigma_t}$ so $\tau$ is a stopping time w.r.t. the filtration generated by $Z$ iff $\sigma_\tau$ is a stopping time w.r.t. the filtration generated by $X$ \\
-Note that $\E^x[\sqrt{\sigma \tau}] < \infty$ if and only if $\E^x[ e^\tau ] < \infty$ \\
+Note that $\E^x[\sqrt{\sigma_\tau}] < \infty$ if and only if $\E^x[ e^\tau ] < \infty$ \\
 We take $T^x$ to be the set of stopping times $\tau$ s.t. $\E^x[e^\tau] < \infty$ \\
 This correspondence between stopping times gives us,
 \[
@@ -1216,7 +1254,6 @@ Now we want to show the reverse, \\
 Recall that for each $n$ we have that $F^{\tau_n \wedge \tau_{z_*}}$ is a martingale \\
 Also we know from our construction of $W$ that $F_{\tau_{z_*}} = G_{\tau_{z_*}}$ on $\{\tau_{z_*} < \infty\}$ which has probability 1 under each $\Prb^z$ \\
 And since $(z_* - c) \leq 0$, \\
-// TODO JUSTIFY TAKING THE INFINITY ELEMENT
 \[
     W(z) = \E^z[F_0] = \E^z [F_{\tau_n \wedge \tau_{z_*}}] = \E^z [ \ind{\tau_n > \tau_{z_*}} G_{\tau_{z_*}} ] + \E^z[\ind{\tau_n \leq \tau_{z_*}} F_{\tau_n}] \leq
 \]
@@ -1283,9 +1320,9 @@ Putting it all together we have now shown,
 We also have the following theorem for the $c < r$ case \\
 
 \begin{thm}
-    For $c < r$ we have $V_*(t, x) = \infty$ and it is never optimal to stop. \\
+    For $c < r$ we have $V_*(t, x) = \infty$ and it is never optimal to stop.
     \proof
-    Fix some $\alpha \in (c, r)$ \\
+    Take $\alpha := \frac{c + r}{2} \in (c, r)$ \\
     We have already seen that en route to the proof of the previous theorem that $\tau := \inf \{t \quantifyspace |Z_t| \geq \alpha\} \in T^z$ for all $z$ \\
     Similarly, $\rho_t := \inf \{s \geq t \quantifyspace |Z_s| \geq \alpha \} \in T^z$ for all $z$ \\
     And so for any fixed $t$,
@@ -1294,25 +1331,24 @@ We also have the following theorem for the $c < r$ case \\
     \]
     This implies,
     \[
-        (\alpha - c) e^t \leq (\alpha - c) e^\rho = (|Z_\rho| - c)e^\rho \spc \spc \Prb^z-\als
+        (\alpha - c) e^t \leq (\alpha - c) e^{\rho_t} = (|Z_{\rho_t}| - c)e^{\rho_t} \spc \spc \Prb^z-\als
     \]
     And so,
     \[
         W_{c, *}(z) \geq (\alpha - c) e^t
     \]
-    Since this holds for all $t$ we have that $W_{c,*}(z) = \infty$ \\
+    Since this holds for all $t$ we have that $W_{c,*}(z) = \infty$ for all $z$ \\
     QED
 \end{thm}
-
 \cheekynewline
-
-// TODO RECAP MARKOV INTUITION
-
-// TODO add 3 more proofs throughout
+In this most recent example we have again used our Markov intuition to find suitable conditions that a reasonable candidate value function must satisfy.
+Using these conditions we then found an explicit characterization for the candidate value function and used other tools to verify it is indeed correct. \\
 
 \section*{References}
 
 // TODO put references in proper format
+
+// TODO update/correct thm numbers in references to previous theorems
 
 [KS] KS BMSC
 
@@ -1322,7 +1358,7 @@ We also have the following theorem for the $c < r$ case \\
 
 [MMF] Methods of Mathematical Finance KS
 
-[OSR] Optimal stopping rules Bok av Albert Sjirjajev
+[OSR] Optimal stopping rules by Albert Sjirjajev
 
 [S1] Swing1
 
