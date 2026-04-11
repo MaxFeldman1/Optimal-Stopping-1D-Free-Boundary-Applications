@@ -973,24 +973,38 @@ Now that we have our candidate our task is to verify it. \\
     $V(x) = H(x)$ for all $x \in (0,\infty)$
 
     \proof
-    We expect $e^{-tr} H(X_t)$ to be the snell envelope of the interest rate adjusted payoff $e^{-tr}(K - X_t)^+$ so we define $f(x, t) := e^{-tr} H(x)$ and so $f(X_t, t) = e^{-tr} H(X_t)$ \\
-    For sake of brevity we let $f(u)$ denote $f(X_u, u)$ and we let $f_x = \frac{\partial f}{\partial x}$ and similarly define $f_{xx}$, note that $f_t = -r f$ \\
-    Since $X$ is a semimartingale and $H$ has an absolutely continuous derivative so we can apply the multi dimensional Itô-Tanaka-Meyer formula to $f$ to find that $f(t)$ is equal to,
+    We define $\df\daleth_t := e^{-rt}$ and $\beth_t := H(X_t)$
+    From simple calculus we know $\df{\daleth_t} = -r \daleth_t \df{t}$ \\
+    Since $H'$ is absolutely continuous we can use Itô-Tanaka-Meyer to find,
+    \[
+        \df{\beth_t} = H'(X_t) \df{X_t} + \frac{1}{2} H''(X_t) \df{\la X, X \ra_t}
+    \]
+    Recall from Itô-Tanaka-Meyer that this is well defined even though $H''$ is not defined everywhere.
+    Since $\daleth_t$ is finite variation we get that $\la \daleth, \beth \ra_t = 0$ \\
+    Now using 2-dimensional Itô's lemma on $(a,b) \mapsto ab $ we find,
+    \[
+        \df{(\daleth_t \beth_t)} = \daleth_t \df{\beth_t} + \beth_t \df{\daleth_t}
+    \]
+    We define $f(x, t) := e^{-tr} H(x)$ and so $f(X_t, t) = e^{-tr} H(X_t) = \daleth_t \beth_t$ \\
+    For sake of brevity we let $f(u)$ denote $f(X_u, u) = \daleth_u \beth_u$ and we let $f_x = \frac{\partial f}{\partial x}$ and similarly define $f_{xx}$, note that $f_t = -r f$ \\
+    Putting everything together we find,
+    \[
+        f(t) = f(0) + \int_0^t f_x(u) \df{X_u} + \int_0^t -r f(u) \df{u} + \frac{1}{2} \int_0^t f_{xx}(u) \df{\la X, X \ra_u}
+    \]
+    at all times a.s. \\
+    Rearranging terms we find,
     \[f(0) + \int_0^t -r f(u) \df{u} + \int_0^t f_x(u) \big (r X_u \df{u} + \sigma X_u \df{W_u} \big ) +
         \frac{1}{2} \int_0^t f_{xx}(u) \sigma^2 X_u^2 \df{u}
     \]
-    By grouping $\df{u}$ terms together we find,
+    By grouping $\df{u}$ terms together we find $f(t)$ to be equal to the following at all times a.s.,
     \[
         f(t) = H(X_0) + \int_0^t e^{-ru } (\bL_X H - r H)(X_u) \df{u} + \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}
     \]
-    Recall from Itô-Tanaka-Meyer that this is well defined even though $f_{xx}$ is not defined everywhere.
-    If the reader prefers we can simply multiply $f_{xx}$ by $\ind{X_u \neq b}$ but with probability 1 this event occurs at $\lambda$-a.e. $u \in [0, t]$ . \\
-    \\
     First note that in domain $(b, \infty)$ we have $(\bL_X H - r H)(x) = 0$ from our construction of  $V$. \\
-    in the $(0,b)$ domain we have $(L_X H - rH)(x) = -rx - r(K - x) = -rK < 0$ and so we have $(\bL_X H - rH)(x) \leq 0$ where it is defined \\
+    In the $(0,b)$ domain we have $(L_X H - rH)(x) = -rx - r(K - x) = -rK < 0$ and so we have $(\bL_X H - rH)(x) \leq 0$ where it is defined \\
     \\
     Now we define $M_t := \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}$ \\
-    Since $W$ is a martingale and the integrand is adapted and continuous and so predictable and so progressively measurable we have that $M_t$ is a local martingale starting at 0. \\
+    Since $W$ is a martingale and the integrand is adapted and continuous and so progressively measurable and in $L^2_{loc}(W)$. Thus from Theorem 6 we have that $M_t$ is a local martingale starting at 0. \\
     We select a localizing sequence of $M_t$ say $\{\tau_n\}_{n=1}^\infty$ \\
     \\
     Due to the integrand in the $du$ integral being negative we have,
