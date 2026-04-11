@@ -9,6 +9,9 @@
 \usepackage{pifont}
 \usepackage{multirow}
 \usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\newmdenv[backgroundcolor=yellow, linewidth=0pt, innerleftmargin=4pt, innerrightmargin=4pt]{hlt}
 
 \newcommand{\cB}{\mathcal{B}}
 \newcommand{\cF}{\mathcal{F}}
@@ -159,6 +162,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     This implies that $\Prb [U_{[s,t]}(X, [a,b]) = \infty] = 0$ \\
 
     \proof
+    \begin{hlt}
         We first prove that the result holds for $(M_n)_{n \geq 0}$ a discrete time sub-martingale over a finite time steps \\
         It will suffice to show that for fixed $N \in \N$ we have $\E [U_{\{0,1,..,N\}}(X, [a,b])] \leq \Big ( \E[M_N^+] + |a| \Big ) (b - a)^{-1}$ \\
         Now take $H_n := \sum_{j=0}^\infty \ind{T_{2j + 1} \leq n \leq T_{2j + 2}}$ \\
@@ -198,7 +202,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
             \liminf_{n \to \infty} \E \big [ U_{F_n}(X, [a,b]) \big ] \leq \frac{\E[X_t^+] + |a|}{(b-a)}
         \]
         QED
-        \\
+    \end{hlt}
 
 \end{lemma}
 
@@ -478,12 +482,14 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     $A,B \in \mathcal{Q}$ implies $A \vee B \in \mathcal{Q}$, then there is a non-decreasing sequence $\{C_n\}_{n=1}^\infty \subset \mathcal{Q}$ s.t. $X^* = \lim_{n \to \infty} C_n$ a.s.
 \end{lemma}
 
+    \begin{hlt}
 \begin{lemma}
     Given a nonempty family of non-negative random variables $\mathcal{Q}$ and a non-negative random variable $J$ we have,
     \[
         J \big ( \esssup \sspc \mathcal{Q} \big ) = \esssup \sspc \big \{J Q \quantifyspace Q \in \mathcal{Q} \big \} \spc \spc \als
     \]
     \proof
+    
     We take $\chi := \esssup \mathcal{Q}$ and we now want to show that $J \chi$ satisfies the properties of being the essential supremum of $\{JQ \quantifyspace Q \in \mathcal{Q}\}$ \\
     First take some element $Q \in \mathcal{Q}$ \\
     From the first property of $\chi$ being essential supremum of $\mathcal{Q}$,
@@ -513,8 +519,8 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     \]
     This shows the second property \\
     QED
-
 \end{lemma}
+    \end{hlt}
 
 \subsection*{ \quad I.III markov property and strong markov property \& Ornstein-Uhlenbeck processes}
 \cheekynewline
@@ -665,6 +671,8 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     \]
 
     \proof 
+    \begin{hlt}
+    
     We start by showing the first statement, \\
     Apply Lemma 7,
     \[
@@ -742,6 +750,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     The third statement is a direct consequence of the fact that $\cS_\tau \subset \cS_v$ \\
     The fourth statement follows from lemma 8 and the third statement where $v$ is selected to be 0. \\
     QED
+    \end{hlt}
 \end{claim}
 
 \begin{defn}
@@ -983,6 +992,7 @@ Now that we have our candidate our task is to verify it. \\
     $V(x) = H(x)$ for all $x \in (0,\infty)$
 
     \proof
+    \begin{hlt} 
     We define $\df\daleth_t := e^{-rt}$ and $\beth_t := H(X_t)$
     From simple calculus we know $\df{\daleth_t} = -r \daleth_t \df{t}$ \\
     Since $H'$ is absolutely continuous we can use Itô-Tanaka-Meyer to find,
@@ -1010,6 +1020,7 @@ Now that we have our candidate our task is to verify it. \\
     \[
         f(t) = H(X_0) + \int_0^t e^{-ru } (\bL_X H - r H)(X_u) \df{u} + \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}
     \]
+    \end{hlt}
     First note that in domain $(b, \infty)$ we have $(\bL_X H - r H)(x) = 0$ from our construction of  $V$. \\
     In the $(0,b)$ domain we have $(L_X H - rH)(x) = -rx - r(K - x) = -rK < 0$ and so we have $(\bL_X H - rH)(x) \leq 0$ where it is defined \\
     \\
@@ -1063,7 +1074,10 @@ Now that we have our candidate our task is to verify it. \\
     \]
     \[
         \E^x[e^{-r \tau_b} (K - b)^+ \ind{\tau_b < \infty}] = 
-        \E^x[e^{-r \tau_b} (K - X_{\tau_b})^+] \leq \sup_\tau \E^x [e^{-r \tau} (K - X_\tau)^+] = V(x)
+        \E^x[e^{-r \tau_b} (K - X_{\tau_b})^+] \leq
+    \]
+    \[
+        \sup_\tau \E^x [e^{-r \tau} (K - X_\tau)^+] = V(x)
     \]
     We have now shown $H(x) = V(x)$ for all $x > 0$ and that $\tau_b$ achieves $V(x)$ \\
     QED
@@ -1074,6 +1088,7 @@ Now we want to see that the Snell envelope is exactly that which our Markov intu
 \begin{thm}
     The Snell envelope of $e^{-rt} (K - X_t)^+$ is $e^{-rt} V(X_t)$
     \proof
+    \begin{hlt}
 We recall that in the proof of the previous theorem we found a decomposition of $e^{-rt} V(X_t) = V(X_0) + M_t - A_t$ where $M_t$ is a local martingale and $A_t$ is a non-decreasing process \\
 Fix some $\tau \in \cS$ and some $\theta \in \cS_\tau$ \\
 Now we have the following,
@@ -1116,6 +1131,7 @@ Again we can apply conditional dominated convergence to get,
 This shows that $e^{-r \tau} V(X_\tau) \leq \esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)^+ \quantifyspace \cF_\tau]$ a.s. \\
 This proves the theorem and that $\rho$ is optimal for stopping after $\tau$ \\
 QED \\
+    \end{hlt}
 \end{thm}
 
 With the proof of this theorem we have now achieved what our intuition in the Markov Motivation section informed us might be possible. 
@@ -1217,7 +1233,7 @@ We introduce a function which will be helpful for characterizing the solution in
     \[
         M(a, b, x) = \sum_{k=0}^\infty \frac{(a)_k \sspc x^k}{(b)_k \sspc k!} \spc \spc a,b,x \in \C
     \]
-    Where $(\rho)_k$ represents the product $\rho (\rho + 1) .. (\rho + k)$. Using standard analysis techniques this function can be seen to be well defined and in $C^1$
+    Where $(\rho)_k$ represents the product $\rho (\rho + 1) .. (\rho + k)$. Using standard analysis techniques this function can be seen to be well defined and in $C^2$
 \end{defn}
 
 Importantly note that $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $x M(0, \frac{3}{2}, \frac{z^2}{2})$ are linearly independent and solve $\bL_X W(z) = -W(z)$. \\
@@ -1252,6 +1268,8 @@ We now have our candidate satisfying criteria (i)-(v) and our task is now to pro
 \\
 We now define $f(z, t) := e^t W(z)$ \\
 We also define $F_t := f(Z_t, t)$ \\
+\begin{hlt}
+
 First we can apply Itô-Tanaka-Meyer to find $\df{(W(Z_t))}$ (Since $W$ is $C^1$ with absolutely continuous derivative) and calculus to find $\df{e^t}$ and then apply Itô's lemma to the product map $(a, b) \mapsto ab$ to find,
 \[
     F_t = F_0 + \int_0^t F_u \df{u} + \int_0^t e^u W'(Z_u) \df{Z_u} + \frac{1}{2} \int_0^t 2 e^u W''(Z_u) \df{u} \spc \forall t \sspc \als
@@ -1260,6 +1278,7 @@ Recall the SDE that $Z_t$ satisfies and rearrange terms to find,
 \[
     F_t = F_0 + \int_0^t (\bL_Z W + W)(Z_u) \df{u} + \sqrt{2} \int_0^t W'(Z_u) \df{B_u}
 \]
+\end{hlt}
 We decompose as expected,
 \[
     A_t := - \int_0^t (\bL_Z W + W)(Z_u) \df{u} \spc \text{ and } \spc M_t := \sqrt{2} \int_0^t W'(Z_u) \df{B_u}
@@ -1300,6 +1319,7 @@ And by Monotone convergence,
 \[
     W(z) \leq \E^z [G_{\tau_{z_*}}]
 \]
+\begin{hlt}
 If we can show that $\E[e^{\tau_{z_*}}] < \infty$ we will have shown $W(z) = W_*(z)$ \\
 \\
 Define $f(z) := \frac{M(-1/2,1/2,z^2/2)}{M(-1/2,1/2,z_*^2/2)} \geq 0$ \\
@@ -1319,7 +1339,9 @@ From Fatou's lemma,
     \E^z[e^{\tau_{z_*}}] = f(z_*) \E^z[ e^{\tau_{z_*}}] = \E^z[Y_{\tau_{z_*}}] \leq f(z)
 \]
 And so we have shown that in the case where $c > r$ that $W(z) = W_*(z)$. \\
-\\
+\end{hlt}
+
+\begin{hlt}
 From the $c > r$ case we can also get the $c = r$ case \\
 We let $W_c$ and $W_{c, *}$ represent $W$ and $W_*$ as before except now with $c$ specified explicitly \\
 We take $\{c_n\}_{n=1}^\infty$ a decreasing sequence converging to $r$ and fix some $z$ \\
@@ -1333,7 +1355,8 @@ Using monotone convergence and continuity of $c \mapsto W_{c}(z)$ for $c \geq r$
     \sup_{n \in \N} W_{c_n, *}(z) =
     \sup_{n \in \N} W_{c_n}(z) = W_{r}(z)
 \]
-\\
+\end{hlt}
+\cheekynewline
 Putting it all together we have now shown,
 \begin{thm}
     Given $c \geq r$
@@ -1354,6 +1377,8 @@ Putting it all together we have now shown,
 \end{thm}
 \cheekynewline
 We also have the following theorem for the $c < r$ case \\
+
+\begin{hlt}
 
 \begin{thm}
     For $c < r$ we have $V_*(t, x) = \infty$ and it is never optimal to stop.
@@ -1377,6 +1402,7 @@ We also have the following theorem for the $c < r$ case \\
     Since this holds for all $t$ we have that $W_{c,*}(z) = \infty$ for all $z$ \\
     QED
 \end{thm}
+\end{hlt}
 \cheekynewline
 In this most recent example we have again used our Markov intuition to find suitable conditions that a reasonable candidate value function must satisfy.
 Using these conditions we then found an explicit characterization for the candidate value function and used other tools to verify it is indeed correct. \\
