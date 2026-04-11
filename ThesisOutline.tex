@@ -75,7 +75,7 @@
 \newtheorem{claim}{Claim}
 \newtheorem{obj}{Objective}
 \newtheorem{assume}{Assumption}
-\newtheorem{constr}{Contruction}
+\newtheorem{constr}{Construction}
 \newtheorem{remark}{Remark}
 
 \graphicspath{ {./media/} }
@@ -120,7 +120,7 @@ In Part IV we use the machinery and intuition we have built up to address an Orn
 
 // TODO: point to where proofs of the unproven theorems may be found
 
-\subsection*{\quad I.I martingale theory}
+\subsection*{\quad I.I Martingale Theory}
 
 \begin{defn} Given a continuous time filtered probability space $\cFPS$ and a $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$ 
 We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if, \\
@@ -268,7 +268,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     Given $(M_t)_{t \geq 0}$ RC and adapted on $\cFPS$ we say that $(M_t)_{t \geq 0}$ is a \textbf{local martingale}
     if there exist a sequence of stopping times $\{T_n\}_{n =1}^\infty$ s.t. $T_n \nearrow \infty$ a.s.
     and for all $n \in \N$ we have that $(M_{t \wedge T_n})_{t \geq 0}$ is a martingale. \\
-    In this case we refer to such the a sequence of stopping times as a \textbf{localizing sequence}.
+    In this case we refer to such a sequence of stopping times as a \textbf{localizing sequence}.
 \end{defn}
 
 \begin{lemma}
@@ -523,20 +523,20 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
 \end{lemma}
 \end{hlt}
 
-\subsection*{ \quad I.III markov property and strong markov property \& Ornstein-Uhlenbeck processes}
+\subsection*{ \quad I.III Markov Property, Strong Markov Property \& Ornstein-Uhlenbeck Processes}
 \cheekynewline
-We introduce the idea of the Markov Property which is motivated by the idea that for some processes the increments are dependent only on state at beginning of the start of the time interval of the increment and not on the entire trajectory. \\
+We introduce the idea of the Markov Property which is motivated by the idea that for some processes the increments are dependent only on state at the start of the time interval of the increment and not on the entire trajectory. \\
 \begin{defn}
     Given a state space $(E, \mathcal{E})$ a \textbf{transition function} is a function \\
     $P: [0,\infty) \times E \times [0,\infty) \times \mathcal{E} \to [0,1]$ s.t.
     For each $s,t \in [0,\infty), e \in E$ we have that $P(s, e; t, \cdot)$ is a probability measure and for every $0 \leq s < r < t$ and $e \in E$ we have,
     \begin{equation}
         P(s, e; t, A) = \int_E P(s,e;r, dy) P(r, y; t, A)
-        \tag{\textsc{Chapman-Kolmogorv equation}}
+        \tag{\textsc{Chapman-Kolmogorov equation}}
     \end{equation}
     If in addition for all $s,t \geq 0$ and $\alpha > 0$ we have \\
     $$P(s, \spdot; s+\alpha, \spdot) = P(t, \spdot; t + \alpha, \spdot)$$ \\
-    then we say that $P$ is \textbf{time-homogenous} and define \\
+    then we say that $P$ is \textbf{time-homogeneous} and define \\
     $$P(\alpha, \spdot; \spdot) := P(s, \spdot; s+\alpha, \spdot) = P(t, \spdot; t+\alpha, \spdot)$$
 \end{defn}
 
@@ -556,7 +556,7 @@ We introduce the idea of the Markov Property which is motivated by the idea that
     \[
         \E[f(X_{\tau+\alpha}) \quantifyspace \cF_\tau] = \int_E P(\alpha, X_\tau; dy) f(y) \spc \spc \Prb-\als \text{ on } \{\tau < \infty\}
     \]
-    \small{ \spc we note that some authors relax away the requirement that $X$ must be time-homogenous in order to have the strong markov property}
+    \small{ \spc we note that some authors relax away the requirement that $X$ must be time-homogeneous in order to have the strong markov property}
 \end{defn}
 
 We introduce a piece of machinery specific to strong Markov processes that will be useful later,
@@ -738,12 +738,12 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
         \lim_{n \to \infty} \E[ Y_{\rho_n} \quantifyspace \cF_v ] \leq
     \]
     \[
-        \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v]
+        \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v].
     \]
-    And for $\rho \in \cS_\tau$ $\E[Y_\rho]$ we have
+    And for $\rho \in \cS_\tau$ we have,
     \[
         Z_\tau \geq \E[Y_\rho \quantifyspace \cF_\tau] \spc \text{ and }\spc
-        \E[ Z_\tau \quantifyspace \cF_v] \geq \E[Y_\rho \quantifyspace \cF_v]
+        \E[ Z_\tau \quantifyspace \cF_v] \geq \E[Y_\rho \quantifyspace \cF_v].
     \]
     Since the above holds for all $\rho \in \cS_\tau$ we get $\E[Z_\tau \quantifyspace \cF_v] \geq \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v]$ \\
     This yields the second statement. \\
@@ -1163,7 +1163,7 @@ Now apply lemma 9 to get,
     \bL_Z = -z \frac{\partial}{\partial z} + \frac{\partial^2}{\partial z^2}
 \]
 \begin{remark}
-    The stopping problem in this section is no longer of a time-homogenous structure, note that $
+    The stopping problem in this section is no longer of a time-homogeneous structure, note that $
         |X_\tau| - c \sqrt{t + \tau}
     $ is not strong markov due to the structure of the time term, infact it does not seem that this is a deterministic function of a strong markov process. \\
     This said, when we have some extra time dependence we can introduce time into a new state space i.e. if we had state space $(E, \cE)$ and a strong markov process $X_t$ on this space we can construct state space $(E \times \R_+, \cE \otimes \cB(\R_+))$ and in this new state space we can reasonably expect to have the strong markov property for $(X_t, t)$. \\
@@ -1239,7 +1239,7 @@ We introduce a function which will be helpful for characterizing the solution in
 
 Importantly note that $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $x M(0, \frac{3}{2}, \frac{z^2}{2})$ are linearly independent and solve $\bL_X W(z) = -W(z)$. \\
 By Corollary 4.35 from [TA], the solution space for a second order ODE is 2-dimensional and so the two aforementioned functions form a basis of the solution space to $\bL_X W(z) = -W$. \\
-Infact, since $-Z_t$ follows the same SDE as $Z_t$ (with the corresponding negative brownian motion) we expect $W$ to be an even function. \\
+In fact, since $-Z_t$ follows the same SDE as $Z_t$ (with the corresponding negative brownian motion) we expect $W$ to be an even function. \\
 Since the first of our basis functions is even and the second is odd we expect our solution to be of the form,
 \[
     W(z) = \begin{cases}
