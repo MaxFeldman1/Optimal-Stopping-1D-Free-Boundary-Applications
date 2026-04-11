@@ -103,6 +103,10 @@ In Part IV we finally use the machinery and intuition we have built up to addres
 
 // TODO: Add table of contents
 
+\section*{Introduction}
+
+
+
 \section*{Part I: Preliminaries}
 
 // TODO: point to where proofs of the unproven theorems may be found
@@ -424,7 +428,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
 \]
 
 \begin{lemma}
-    $\mu^\infty: \cF \to \R_+$ is a measure on $\Omega$ and $\mu^\infty$ is absolutely continuous with respect to $\Prb$.
+    The map $\mu^\infty: \cF \to \R_+$ is a measure on $\Omega$ and $\mu^\infty$ is absolutely continuous with respect to $\Prb$.
 \end{lemma}
 
 \vspc
@@ -593,8 +597,8 @@ It is useful for intuition to conceive of $Y_t$ as representing the value that e
     \end{enumerate}
 \end{obj}
 
-\subsection*{\quad II.II Snell Envelope}
-The essential (pun intended) piece of intuition we need to start to build the right machinery
+\subsection*{\quad II.II The Snell Envelope}
+The essential piece of intuition we need to start to build the right machinery
 is that given two stopping times $\tau, \theta \in \cS$ we can construct another stopping time $\gamma$ which takes values of $\tau$ when preferable and values of $\theta$ when preferable. \\
 Specifically, we define $A := \{\E[Y_\tau - Y_\theta \quantifyspace \cF_{\tau \wedge \theta}] \geq 0\}$ and then define $\gamma := \tau 1_A + \theta 1_{A^c}$ \\
 This observation tell us that
@@ -840,14 +844,14 @@ We now want to show right continuity of $Z^*$,
 \end{cor}
 \fi
 
-\subsection*{\quad II.III The Markov Dream}
+\subsection*{\quad II.III Markov Motivation}
 At a high level we can think of the (strong) Markov property for a process $(X_t)_{t \geq 0}$ as the property that increments starting from a time $(\tau)$ $t$ are dependent only on the current state and not on the entire trajectory up to time $t$. \\
 We now consider $(X_t)_{t \geq 0}$ having the strong markov property and with state space $(\R, \cB(\R))$. 
 Given our high level description of the (strong) Markov property it may seem intuitive that the optimal stopping of $(X_t)_{t \geq 0}$ would depend only on the state at time of stoppage i.e. that there must be a set of states $S \in \cB(R)$ s.t. $\tau_* := \inf \{ t \geq 0 \quantifyspace X_t \in S \}$ is optimal
 however this requires a considerable amount of machinery to prove.
 A full treatment of this general task may be seen in [OSR].
 Nonetheless, in certain applications
-we can use our Markov intuition to guide our search for explicit solutions for the snell envelope
+we can use our Markov intuition to guide our search for explicit solutions for the Snell envelope
 which we then verify with the help of other tools, namely Itô's lemma.
 We will see examples of this in chapters III and IV. 
 
@@ -874,7 +878,7 @@ We introduce $V(x)$ the value function of the perpetual (no expiry) put option d
 \[
     V(x) := \sup_{\tau \in \cS} \E^x \Big [ e^{-r\tau} (K - X_\tau)^+ \Big ]
 \]
-i.e. $V(x)$ is the value of the snell envelope of $e^{-tr} (K - X_t)^+$ at time 0 given that $X$ starts at $x$ \\
+i.e. $V(x)$ is the value of the Snell envelope (see Section II.II The Snell Envelope) of $e^{-tr} (K - X_t)^+$ at time 0 given that $X$ starts at $x$ \\
 Our goal for this chapter is to characterize $V$ and also the optimal stopping time that achieves the value $V(x)$ \\
 
 \subsection*{\quad III.II Characterization of the Solution}
@@ -912,13 +916,13 @@ We now direct our attention back to the problem at hand. \\
 $\text{[PS s 25]}$ \\
 Applying lemma 7 to $X$ we find, $\bL_X = rx \frac{\partial}{\partial x} + \frac{\sigma^2}{2} x^2 \frac{\partial^2}{\partial x^2}$ \\
 \\
-Recall our discussion in the Markov Dream section. \\
+Recall our discussion in the Markov Motivation section. \\
 We use the intuition from there along with the fact that intuitively as $x$ decreases it seems that we stand to gain less and less from waiting to exercise. \\
 For now we assume that the optimal stopping time is a hitting time of the form $\tau_b := \{t \quantifyspace X_t \leq b\}$ for some $0 < b < K$, we will not prove this yet, but rather use this as a starting place from which to find a candidate Characterization of $V$ \\
 We now list some properties that we expect $V$ to have and some reasoning why we expect this (again we do not prove them, they just help us arrive at a candidate) \\
 \begin{enumerate}
     \item[(i)]
-If $\tau_b$ is optimal we expect that the snell envelope of $(e^{-tr} (K - X_{t})^+)_{t \geq 0}$ stopped at $t \wedge \tau_b$ is a martingale and so,
+If $\tau_b$ is optimal we expect that the Snell envelope of $(e^{-tr} (K - X_{t})^+)_{t \geq 0}$ stopped at $t \wedge \tau_b$ is a martingale and so,
 \[
     \bL_X V = r V \spc  x > b \\
 \]
@@ -933,7 +937,7 @@ Due to sub-optimality of exercise above $b$,
     V(x) > (K - x)^+ \spc x > b
 \]
     \item[(iv)]
-Necessitated for $V$ to be $C^1$ and given we expect (ii) to hold,
+Necessitated for $V$ to be $C^1$ (we want $C^1$ so that we can apply  Itô's lemma or Itô-Tanaka-Meyer) and given we expect (ii) to hold,
 \[
     V'(x) = -1 \spc x \leq b
 \]
@@ -970,6 +974,7 @@ We first solve both for $C$ in terms of $b$ and then take these two expressions 
 Then we find $C = \Big ( \frac{K}{1 + \gamma^{-1}} \Big )^{\gamma + 1} \gamma^{-1}$ \\
 Now that we have our candidate our task is to verify it. \\
 \begin{thm}
+    The candidate $H(x)$ is equal to the value function $V(x)$ i.e.
     $V(x) = H(x)$ for all $x \in (0,\infty)$
 
     \proof
@@ -1059,10 +1064,10 @@ Now that we have our candidate our task is to verify it. \\
     QED
 \end{thm}
 
-Now we want to see that the snell envelope is exactly that which our Markov intuition would suggest.
+Now we want to see that the Snell envelope is exactly that which our Markov intuition would suggest.
 
 \begin{thm}
-    The snell envelope of $e^{-rt} (K - X_t)^+$ is $e^{-rt} V(X_t)$
+    The Snell envelope of $e^{-rt} (K - X_t)^+$ is $e^{-rt} V(X_t)$
     \proof
 We recall that in the proof of the previous theorem we found a decomposition of $e^{-rt} V(X_t) = V(X_0) + M_t - A_t$ where $M_t$ is a local martingale and $A_t$ is a non-decreasing process \\
 Fix some $\tau \in \cS$ and some $\theta \in \cS_\tau$ \\
@@ -1108,7 +1113,7 @@ This proves the theorem and that $\rho$ is optimal for stopping after $\tau$ \\
 QED \\
 \end{thm}
 
-With the proof of this theorem we have now achieved what our intuition in the Markov Dream section informed us might be possible. 
+With the proof of this theorem we have now achieved what our intuition in the Markov Motivation section informed us might be possible. 
 We used our intuition to find an explicit characterization of a Snell Envelope candidate and then went about proving it is indeed the Snell Envelope. 
 Most notably we found that the Snell Envelope is a product of the imposed scale-invariant time penalty function $e^{-rt}$ and a value function which is dependent only on the current state.
 We also saw that the optimal stopping time for stopping after some stopping time $\tau$ is a hitting time.
@@ -1190,7 +1195,7 @@ We seach for a candidate solution $W(z)$ that satisfies the following,
     \[
         W(z) \geq |z| - c \spc \spc \forall z 
     \]
-    \item[(iv)] To maintain $W \in C^1$
+    \item[(iv)] To maintain $W \in C^1$ (so that we can hope to apply Itô's lemma or Itô-Tanaka-Meyer)
     \[
         W'(\pm z_*) = \pm 1
     \]
