@@ -1242,7 +1242,7 @@ We now have our candidate satisfying criteria (i)-(v) and our task is now to pro
 \\
 We now define $f(z, t) := e^t W(z)$ \\
 We also define $F_t := f(Z_t, t)$ \\
-Since $W$ is $C^1$ with absolutely continuous derivative we can use Itô-Tanaka-Meyer we find,
+First we can apply Itô-Tanaka-Meyer to find $\df{(W(Z_t))}$ (Since $W$ is $C^1$ with absolutely continuous derivative) and calculus to find $\df{e^t}$ and then apply Itô's lemma to the product map $(a, b) \mapsto ab$ to find,
 \[
     F_t = F_0 + \int_0^t F_u \df{u} + \int_0^t e^u W'(Z_u) \df{Z_u} + \frac{1}{2} \int_0^t 2 e^u W''(Z_u) \df{u} \spc \forall t \sspc \als
 \]
