@@ -118,9 +118,8 @@ In Part IV we use the machinery and intuition we have built up to address an Orn
 
 \section*{Part I: Preliminaries}
 
-// TODO: point to where proofs of the unproven theorems may be found
-
 \subsection*{\quad I.I Martingale Theory}
+The definitions and theorems in this section are motivated by the first three chapters of [KS] and the first four chapters of [RY].
 
 \begin{defn} Given a continuous time filtered probability space $\cFPS$ and a $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$ 
 We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if \\
@@ -307,7 +306,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{lemma}
 
 \begin{thm}
-    \textbf{Paul Levy Characterization of Brownian Motion} (A.S. Blog) \\
+    \textbf{Paul Levy Characterization of Brownian Motion} \\
     Given a local martingale $(X_t)_{t \geq 0}$ starting at 0 on the filtered probability space $\cFPS$ the following are equivalent:
     \begin{enumerate}
         \item[(i)] $X_t$ is a Brownian motion on specified filtered probability space
@@ -834,29 +833,6 @@ We now want to show right continuity of $Z^*$,
     \]
     We claim that $\E[Y_{\theta_\tau^*}] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] $ i.e. $\theta_\tau^*$ is the optimal stopping time beginning from time $\tau$.
 \end{thm}
-
-\iffalse
-\begin{defn}
-    We say that a stochastic process $(X_t)_{t \geq 0}$ is \textbf{class D} if it is U.I. \\
-    And we say that $(X_t)_{t \geq 0}$ is \textbf{class DL} if for any fixed $t$ we have that $\{X_\tau\}_{\tau \leq t, \tau \in \cS}$ is U.I. \\
-\end{defn}
-
-\begin{thm}
-    \textbf{Doob-Meyer Decomposition Theorem} (KS Theorem 1.4.10) \\
-    Say we are given $(H_t)_{t \geq 0}$ a right continuous submartingale on a filtered probability space with filtration satisfying the usual conditions. \\
-    Then if $(H_t)_{t \geq 0}$ is class DL we can decompose $H$ as follows,
-    \[
-        H_t = M_t + A_t \spc \spc \forall t \geq 0
-    \]
-    Where $(M_t)_{t \geq 0}$ is an RCLL martingale and $(A_t)_{t \geq 0}$ is an adapted RCLL non-decreasing process. \\
-    If in addition $H$ is class D then $(M_t)_{t \geq 0}$ is U.I. and $(A_t)_{t \geq 0}$ has an integrable terminal element.
-\end{thm}
-
-\begin{cor}
-    Using the condition we imposed in Assumption 1 we get that $Y$ and in turn $Z$ and $Z^0$ are in classes DL and D.
-    We can now apply the Doob-Meyer Decomposition Theorem to get a decomposition $Z^0_t = M_t - A_t$ where $(M_t)_{t \geq 0}$ is a UI martingale and $(A_t)_{t \geq 0}$ is a non-decreasing adapted process with an integrable terminal element. \\
-\end{cor}
-\fi
 
 \subsection*{\quad II.III Markov Motivation}
 At a high level, we can think of the (strong) Markov property for a process $(X_t)_{t \geq 0}$ as the property that increments starting from a time $t$ are dependent only on the current state and not on the entire trajectory up to time $t$. \\
@@ -1405,8 +1381,6 @@ We also have the following theorem for the $c < r$ case. \\
 \cheekynewline
 In this most recent example, we have again used our Markov intuition to find suitable conditions that a reasonable candidate value function must satisfy.
 Using these conditions we then found an explicit characterization for the candidate value function and used other tools to verify it is indeed correct. \\
-
-// TODO update/correct thm numbers in references to previous theorems
 
 \section*{References}
 
