@@ -480,7 +480,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
 
 \begin{lemma}
     Consider $\mathcal{Q}$ a collection of random variables defined on the probability space $\PS$ s.t. $\mathcal{Q}$ is closed under pairwise maximum i.e.
-    $A,B \in \mathcal{Q}$ implies $A \vee B \in \mathcal{Q}$, then there is a non-decreasing sequence $\{C_n\}_{n=1}^\infty \subset \mathcal{Q}$ s.t. $X^* = \lim_{n \to \infty} C_n$ a.s.
+    $A,B \in \mathcal{Q}$ implies $A \vee B \in \mathcal{Q}$, then there is a non-decreasing sequence $\{C_n\}_{n=1}^\infty \subset \mathcal{Q}$ s.t. $X^* = \lim_{n \to \infty} C_n$ a.s..
 \end{lemma}
 
     \begin{hlt}
@@ -545,7 +545,7 @@ We introduce the idea of the Markov Property, which is motivated by the idea tha
     and given a transition function $P$
     we say that $X_t$ is a \textbf{Markov Process} with respect to $\cFi$ with transition function $P$ if for all $s < t$ and measurable functions $f: E \to \R_+$ we have 
     \begin{equation*}
-        \E[f(X_t) \quantifyspace \cF_s] = \int_E P(s, X_s; t, dy) f(y) \spc \spc \Prb-\als
+        \E[f(X_t) \quantifyspace \cF_s] = \int_E P(s, X_s; t, dy) f(y) \spc \spc \Prb-\als.
     \end{equation*}
     If in addition $P$ is time-homogeneous then we say that $X_t$ is a \textbf{time-homogeneous} Markov Process. \\
 \end{defn}
@@ -556,12 +556,12 @@ We introduce the idea of the Markov Property, which is motivated by the idea tha
     \[
         \E[f(X_{\tau+\alpha}) \quantifyspace \cF_\tau] = \int_E P(\alpha, X_\tau; dy) f(y) \spc \spc \Prb\text{-}\als \text{ on } \{\tau < \infty\}.
     \]
-    \small{ \spc we note that some authors relax away the requirement that $X$ must be time-homogeneous in order to have the strong markov property}
+    \small{ \spc \textit{we note that some authors relax away the requirement that $X$ must be time-homogeneous in order to have the strong markov property}}
 \end{defn}
 
 We introduce a piece of machinery specific to strong Markov processes that will be useful later,
 \begin{defn}
-    Given a real-valued strong Markov process $(X_t)_{t \geq 0}$ we define $\bL_X$ acting on functions $f: \R \to \oR$ \\
+    Given a real-valued strong Markov process $(X_t)_{t \geq 0}$ we define $\bL_X$ acting on functions $f: \R \to \oR$. \\
     We let $\Prb^x$ be a probability measure on giving $\Prb^x = 1$ to the event that $X_0 = x$ for some $x \in \R$. ($X_t$ is still a strong markov process with the same transition function regardless of choice of $x$) \\
     We let $\E^x$ represent integration w.r.t. the probability measure $\Prb^x$. \\
     We now introduce the \textbf{infinitesimal generator} $\bL_X$.
@@ -602,10 +602,10 @@ It is useful for intuition to conceive of $Y_t$ as representing the value that e
     \begin{enumerate}
         \item[(i)] Compute the maximal expected value of stopping $Y$
             \[
-                Z_0 := \sup_{\tau \in \cS} \E[Y_\tau]
+                Z_0 := \sup_{\tau \in \cS} \E[Y_\tau].
             \]
-        \item[(ii)] Find conditions that yield existence of a stopping time $\tau_*$ that achieves the value in the prior sub-objective
-        \item[(iii)] Build understanding of $\tau_*$
+        \item[(ii)] Find conditions that yield existence of a stopping time $\tau_*$ that achieves the value in the prior sub-objective.
+        \item[(iii)] Build understanding of $\tau_*$.
     \end{enumerate}
 \end{obj}
 
@@ -675,7 +675,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     \begin{hlt}
     
     We start by showing the first statement, \\
-    Apply Lemma 7,
+    Apply lemma 9,
     \[
         Z_v \ind{\sigma = v} = \esssup_{\rho \in \cS_v} \E[Y_\rho \ind{v = \sigma} \quantifyspace \cF_v] \spc \als.
     \]
@@ -715,9 +715,9 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
         \E[1_A \ind{a = b} \E[X \quantifyspace \cF_b]] =
     \]
     \[
-        \E[1_A \E[X \ind{a = b} \quantifyspace \cF_b]] \spc \als
+        \E[1_A \E[X \ind{a = b} \quantifyspace \cF_b]] \spc \als.
     \]
-    End of proof of subclaim \\
+    End of proof of subclaim. \\
     \\
     And now we fix some $\rho \in \cS_v$ and define $\rho' := \rho \ind{\sigma = v} + T \ind{\sigma \neq v}$,
     \[
@@ -726,7 +726,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
         \E[Y_{\rho'} \ind{v = \sigma} \quantifyspace \cF_\sigma] \leq
     \]
     \[
-        \Big ( \esssup_{\kappa \in \cS_\sigma} \E[Y_\kappa \quantifyspace \cF_\sigma] \Big ) \ind{v = \sigma} = Z_\sigma \spc \als
+        \Big ( \esssup_{\kappa \in \cS_\sigma} \E[Y_\kappa \quantifyspace \cF_\sigma] \Big ) \ind{v = \sigma} = Z_\sigma \spc \als.
     \]
     Taking the essential supremum over all $\rho$, the left hand side becomes $Z_v \ind{v = \sigma}$, and we have $Z_v \ind{v = \sigma} \leq Z_\sigma \ind{v = \sigma}$
     Swapping $v$ and $\sigma$ yields the reverse inequality and so $Z_v = Z_\sigma$ a.s. on $\{v = \sigma\}$ \\
@@ -773,7 +773,7 @@ We now want to show right continuity of $Z^*$,
 \end{claim}
 
 \begin{cor}
-    For any $v \in \cS$, we have $Z_v^* = Z_v$ a.s.
+    For any $v \in \cS$, we have $Z_v^* = Z_v$ a.s..
 \end{cor}
 
 \begin{defn}
@@ -928,7 +928,7 @@ Let us start with a lemma that will help us find $\bL_X$,
 
 We now direct our attention back to the problem at hand. \\
 $\text{[PS s 25]}$ \\
-Applying lemma 7 to $X$, we find $\bL_X = rx \frac{\partial}{\partial x} + \frac{\sigma^2}{2} x^2 \frac{\partial^2}{\partial x^2}$. \\
+Applying lemma 11 to $X$, we find $\bL_X = rx \frac{\partial}{\partial x} + \frac{\sigma^2}{2} x^2 \frac{\partial^2}{\partial x^2}$. \\
 \\
 Recall our discussion in the Markov Motivation section. \\
 We use the intuition from there along with the fact that intuitively as $x$ decreases it seems that we stand to gain less and less from waiting to exercise. \\
@@ -989,7 +989,7 @@ Then we find $C = \Big ( \frac{K}{1 + \gamma^{-1}} \Big )^{\gamma + 1} \gamma^{-
 Now that we have our candidate our task is to verify it. \\
 \begin{thm}
     The candidate $H(x)$ is equal to the value function $V(x)$ i.e.
-    $V(x) = H(x)$ for all $x \in (0,\infty)$
+    $V(x) = H(x)$ for all $x \in (0,\infty)$.
 
     \proof
     \begin{hlt} 
@@ -1011,7 +1011,7 @@ Now that we have our candidate our task is to verify it. \\
     \[
         f(t) = f(0) + \int_0^t f_x(u) \df{X_u} + \int_0^t -r f(u) \df{u} + \frac{1}{2} \int_0^t f_{xx}(u) \df{\la X, X \ra_u}
     \]
-    at all times a.s. \\
+    at all times a.s.. \\
     Rearranging terms we find,
     \[f(0) + \int_0^t -r f(u) \df{u} + \int_0^t f_x(u) \big (r X_u \df{u} + \sigma X_u \df{W_u} \big ) +
         \frac{1}{2} \int_0^t f_{xx}(u) \sigma^2 X_u^2 \df{u}.
@@ -1085,7 +1085,7 @@ Now that we have our candidate our task is to verify it. \\
 Now we want to see that the Snell envelope is exactly that which our Markov intuition would suggest.
 
 \begin{thm}
-    The Snell envelope of $e^{-rt} (K - X_t)^+$ is $e^{-rt} V(X_t)$
+    The Snell envelope of $e^{-rt} (K - X_t)^+$ is $e^{-rt} V(X_t)$.
     \proof
     \begin{hlt}
 We recall that in the proof of the previous theorem we found a decomposition of $e^{-rt} V(X_t) = V(X_0) + M_t - A_t$, where $M_t$ is a local martingale and $A_t$ is a non-decreasing process. \\
@@ -1095,7 +1095,7 @@ Now we have the following,
     e^{-r\theta}(K - X_\theta)^+ \leq e^{-r\theta} V(X_\theta) = e^{-r\tau} V(X_\tau) + (M_\theta - M_\tau) - (A_\theta - A_\tau) \leq
 \]
 \[
-    e^{-r\tau} V(X_\tau) + (M_\theta - M_\tau) \spc \als
+    e^{-r\tau} V(X_\tau) + (M_\theta - M_\tau) \spc \als.
 \]
 Now take the minimum of these times stopped at $\tau_n$, where $\{\tau_n\}_{n=1}^\infty$ is a localizing sequence of $M_t$:
 \[
@@ -1107,9 +1107,9 @@ Now take conditional expectation w.r.t. $\cF_\tau$ and, because $M^{\tau_n}$ is 
 \]
 Now, due to the fact that the inside of the conditional expectation above is dominated by $2K$, we can use dominated convergence for conditional expectation to get,
 \[
-    \E[e^{-r \theta}(K - X_\theta) \quantifyspace \cF_\tau] \leq e^{-r \tau}V(X_\tau) \spc \als
+    \E[e^{-r \theta}(K - X_\theta) \quantifyspace \cF_\tau] \leq e^{-r \tau}V(X_\tau) \spc \als.
 \]
-This demonstrates that $\esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)] \leq e^{-r \tau} V(X_\tau)$ a.s. \\
+This demonstrates that $\esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)] \leq e^{-r \tau} V(X_\tau)$ a.s.. \\
 \\
 Now we want to show the reverse. \\
 We can decompose $F_t := e^{-rt} V(X_{t}) = V(x) + M_t - A_t$. \\
@@ -1121,13 +1121,13 @@ Now we fix some $\tau \in \cS$ and some $n \in \N$. \\
 From properties of conditional expectation we find,
 \[
     F_{\tau \wedge \tau_n} = \E[F_{\rho \wedge \tau_n} \quantifyspace \cF_{\tau \wedge \tau_n}] =
-    \E[F_{\rho \wedge \tau_n} \quantifyspace \cF_\tau] \spc \als
+    \E[F_{\rho \wedge \tau_n} \quantifyspace \cF_\tau] \spc \als.
 \]
 Again we can apply conditional dominated convergence to get,
 \[
-    F_\tau = \E[F_\rho \quantifyspace \cF_\tau] = \E[e^{-r \rho} (K - X_\rho)^+ \quantifyspace \cF_\tau] \spc \als
+    F_\tau = \E[F_\rho \quantifyspace \cF_\tau] = \E[e^{-r \rho} (K - X_\rho)^+ \quantifyspace \cF_\tau] \spc \als.
 \]
-This shows that $e^{-r \tau} V(X_\tau) \leq \esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)^+ \quantifyspace \cF_\tau]$ a.s. \\
+This shows that $e^{-r \tau} V(X_\tau) \leq \esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)^+ \quantifyspace \cF_\tau]$ a.s.. \\
 This proves the theorem and that $\rho$ is optimal for stopping after $\tau$. \\
 \QED \\
     \end{hlt}
@@ -1156,7 +1156,7 @@ Using Itô's lemma and quadratic variation arguments, one can find
     \df{Z_t} = - Z_t \df{t} + \sqrt{2} \df{B_t},
 \]
 where $B_t$ is a Brownian motion. \\
-Now apply lemma 9 to get,
+Now apply lemma 11 to get,
 \[
     \bL_Z = -z \frac{\partial}{\partial z} + \frac{\partial^2}{\partial z^2}.
 \]
@@ -1200,7 +1200,7 @@ For sake of clarity, we note that $Z_0 = X_0$ and so if we ever refer to $W_*(z)
 With $Z$ being an Ornstien-Uhlenbeck process we note that $e^t (|Z_t| - c)$ does not seem to be a deterministic function of a strong markov process but $(|Z_t| - c)$ is strong markov and the $e^t$ term maintains a scale invariance. Heuristically, if state-time is $(z, t)$ and this is in the continuation region because we can stop in a manner that improves expected reward by say $k$\% over stopping immediately, then at $(z, t+h)$ we expect that we can again stop in a manner that improves expected reward by $k$\% over stopping immediately, i.e. our intuition suggest that the time induced change in transition dynamics due to time should not impact the optimal stopping policy. \\
 \\
 We assume that the optimal stopping time is of the form $\tau_{z_*} := \inf \{t \geq 0 \quantifyspace |Z_t| \geq z_*\}$, where $z_* > 0$ is a constant. \\
-We can now set up the free boundary problem \\
+We can now set up the free boundary problem. \\
 We seach for a candidate solution $W(z)$ that satisfies the following,
 \begin{enumerate}
     \item[(i)] Since we expect $e^t W(Z_t)$ to be a martingale in $z \in (-z_*, z_*)$:
@@ -1247,11 +1247,11 @@ Since the first of our basis functions is even and the second is odd we expect o
 \]
 where $A, z_* > 0$ are constants and the hypothesized optimal stopping time is $\tau_{z_*} := \inf \{t \quantifyspace |Z_t| \geq z_* \}$. \\
 \\
-Define $r$ to be the unique positive root of $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ \\
+Define $r$ to be the unique positive root of $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$. \\
 From conditions (ii) and (v), we find $c \geq r$. This tells us that existence of a solution meeting the criteria of $W$ is incompatible with $c < r$; this may be a hint that it is never optimal to stop in the case that $c < r$, giving $W_*(z) = \infty$. \\
-We now assume that $c > r$ (we will handle $c = r$ later) \\
+We now assume that $c > r$ (we will handle $c = r$ later). \\
 \\
-In order to maintain continuity we must select $A = \frac{z_* - c}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}$ \\
+In order to maintain continuity we must select $A = \frac{z_* - c}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}$. \\
 Also note that in order to maintain $W \in C^1$ we need to have that $W'(\pm z_*) = \pm 1$, and this gives us another relation for $A$:
 \[
     A = \Big ( z_* M \big (\frac{1}{2}, \frac{3}{2}, \frac{z_*^2}{2} \big ) \Big )^{-1} = \frac{-(z_* - c)}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}.
@@ -1271,7 +1271,7 @@ We also define $F_t := f(Z_t, t)$ \\
 
 First we can apply Itô-Tanaka-Meyer to find $\df{(W(Z_t))}$ (since $W$ is $C^1$ with absolutely continuous derivative) and calculus to find $\df{e^t}$, and then apply Itô's lemma to the product map $(a, b) \mapsto ab$ to find,
 \[
-    F_t = F_0 + \int_0^t F_u \df{u} + \int_0^t e^u W'(Z_u) \df{Z_u} + \frac{1}{2} \int_0^t 2 e^u W''(Z_u) \df{u} \spc \forall t \sspc \als
+    F_t = F_0 + \int_0^t F_u \df{u} + \int_0^t e^u W'(Z_u) \df{Z_u} + \frac{1}{2} \int_0^t 2 e^u W''(Z_u) \df{u} \spc \forall t \sspc \als.
 \]
 Recalling the SDE that $Z_t$ satisfies and rearranging terms we find,
 \[
@@ -1319,7 +1319,7 @@ And by Monotone convergence,
     W(z) \leq \E^z [G_{\tau_{z_*}}].
 \]
 \begin{hlt}
-If we can show that $\E[e^{\tau_{z_*}}] < \infty$ we will have shown $W(z) = W_*(z)$ \\
+If we can show that $\E[e^{\tau_{z_*}}] < \infty$ we will have shown $W(z) = W_*(z)$. \\
 \\
 Define $f(z) := \frac{M(-1/2,1/2,z^2/2)}{M(-1/2,1/2,z_*^2/2)} \geq 0$ \\
 \\
