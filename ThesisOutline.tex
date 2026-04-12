@@ -11,6 +11,7 @@
 \usepackage{amsthm}
 \usepackage{xcolor}
 \usepackage{mdframed}
+\usepackage[hidelinks]{hyperref}
 \newmdenv[backgroundcolor=yellow, linewidth=0pt, innerleftmargin=4pt, innerrightmargin=4pt]{hlt}
 
 \newcommand{\cB}{\mathcal{B}}
@@ -100,9 +101,35 @@ This thesis will be centered around building the general theory of optimal stopp
 The applications we address in this paper will serve as examples of how an optimal stopping problem may be solved using free boundary techniques. \\
 
 
-// TODO: Add table of contents
+\newpage
+\begin{center}
+    \large\textbf{Table of Contents}
+\end{center}
+\vspace{1em}
+\newcommand{\tocentry}[2]{\hyperref[#1]{#2} \dotfill \pageref{#1} \\[4pt]}
+\newcommand{\tocsubentry}[2]{\hspace{2em}\hyperref[#1]{#2} \dotfill \pageref{#1} \\[2pt]}
+{\setlength{\parskip}{0pt}
+\tocentry{sec:intro}{\textbf{Introduction}}
+\tocentry{sec:part1}{\textbf{Part I: Preliminaries}}
+\tocsubentry{sec:I.I}{\quad I.I \enspace Martingale Theory}
+\tocsubentry{sec:I.II}{\quad I.II \enspace Essential Supremum}
+\tocsubentry{sec:I.III}{\quad I.III \enspace Markov Property, Strong Markov Property \& Ornstein-Uhlenbeck Processes}
+\tocentry{sec:part2}{\textbf{Part II: Optimal Stopping}}
+\tocsubentry{sec:II.I}{\quad II.I \enspace Formulation of General Problem}
+\tocsubentry{sec:II.II}{\quad II.II \enspace The Snell Envelope}
+\tocsubentry{sec:II.III}{\quad II.III \enspace Markov Motivation}
+\tocentry{sec:part3}{\textbf{Part III: Perpetual American Put Option}}
+\tocsubentry{sec:III.I}{\quad III.I \enspace Black-Scholes Model}
+\tocsubentry{sec:III.II}{\quad III.II \enspace Characterization of the Solution}
+\tocentry{sec:part4}{\textbf{Part IV: Ornstein-Uhlenbeck Optimal Stopping Example}}
+\tocsubentry{sec:IV.I}{\quad IV.I \enspace Reduction of Value Function to 1 Variable}
+\tocsubentry{sec:IV.II}{\quad IV.II \enspace Conversion to Ornstein-Uhlenbeck Magnitude Stopping}
+\tocsubentry{sec:IV.III}{\quad IV.III \enspace Conversion to Free Boundary Problem}
+\tocentry{sec:refs}{\textbf{References}}
+}
+\newpage
 
-\section*{Introduction}
+\section*{Introduction}\label{sec:intro}
 
 \qquad
 In this expository thesis we will start Part I by introducing some foundational concepts from continuous time martingale theory.
@@ -116,9 +143,9 @@ In Part IV we use the machinery and intuition we have built up to address an Orn
 
 
 
-\section*{Part I: Preliminaries}
+\section*{Part I: Preliminaries}\label{sec:part1}
 
-\subsection*{\quad I.I Martingale Theory}
+\subsection*{\quad I.I Martingale Theory}\label{sec:I.I}
 The definitions and theorems in this section are motivated by the first three chapters of [KS] and the first four chapters of [RY].
 
 \begin{defn} Given a continuous time filtered probability space $\cFPS$ and a $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$ 
@@ -288,11 +315,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     We refer to $\la M, N \ra$ as the \textbf{quadratic variation} of $M$ against $N$ \\
     In the case of $\la M, M \ra$ we have that the map $t \mapsto \la M, M \ra_t$ is non-decreasing \\
 \end{thm}
-\iffalse
-\begin{cor}
-    We note that for a local martingale $M$ we must have that $\la M, M \ra$ is non-decreasing
-\end{cor}
-\fi
+
 \begin{defn}
     A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional brownian motion (brownian motion)} if
     \begin{enumerate}
@@ -407,7 +430,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{lemma}
 
 
-\subsection*{\quad I.II essential supremum}
+\subsection*{\quad I.II essential supremum}\label{sec:I.II}
 
 In this section we present the main definitions and results of Appendix A from [MMF]. \\
 
@@ -522,7 +545,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
 \end{lemma}
 \end{hlt}
 
-\subsection*{ \quad I.III Markov Property, Strong Markov Property \& Ornstein-Uhlenbeck Processes}
+\subsection*{ \quad I.III Markov Property, Strong Markov Property \& Ornstein-Uhlenbeck Processes}\label{sec:I.III}
 \cheekynewline
 We introduce the idea of the Markov Property, which is motivated by the idea that for some processes the increments are dependent only on the state at the start of the time interval of the increment and not on the entire trajectory. \\
 \begin{defn}
@@ -581,8 +604,8 @@ We now introduce a specific instance of a class of Markov Processes,
     where $W_t$ is a Wiener process and $\theta, \sigma > 0$ and $\mu \in \R$ are constants. \\
 \end{defn}
 
-\section*{Part II: Optimal Stopping}
-\subsection*{\quad II.I Formulation of general problem}
+\section*{Part II: Optimal Stopping}\label{sec:part2}
+\subsection*{\quad II.I Formulation of general problem}\label{sec:II.I}
 We are given a filtered probability space $\cFPS$ s.t. the filtration satisfies the usual conditions and we specifically impose $\cF_0 = \mathcal{W}$. \\
 We are also given a time horizon $T \in (0, \infty]$. \\
 We are given $(Y_t)_{t \geq 0}$ a non-negative valued and right continuous stochastic process on our probability space. \\
@@ -608,7 +631,7 @@ It is useful for intuition to conceive of $Y_t$ as representing the value that e
     \end{enumerate}
 \end{obj}
 
-\subsection*{\quad II.II The Snell Envelope}
+\subsection*{\quad II.II The Snell Envelope}\label{sec:II.II}
 The essential piece of intuition we need to start to build the right machinery
 is that, given two stopping times $\tau, \theta \in \cS$, we can construct another stopping time $\gamma$ which takes values of $\tau$ when preferable and values of $\theta$ when preferable. \\
 Specifically, we define $A := \{\E[Y_\tau - Y_\theta \quantifyspace \cF_{\tau \wedge \theta}] \geq 0\}$ and then define $\gamma := \tau 1_A + \theta 1_{A^c}$ \\
@@ -834,7 +857,7 @@ We now want to show right continuity of $Z^*$,
     We claim that $\E[Y_{\theta_\tau^*}] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] $ i.e. $\theta_\tau^*$ is the optimal stopping time beginning from time $\tau$.
 \end{thm}
 
-\subsection*{\quad II.III Markov Motivation}
+\subsection*{\quad II.III Markov Motivation}\label{sec:II.III}
 At a high level, we can think of the (strong) Markov property for a process $(X_t)_{t \geq 0}$ as the property that increments starting from a time $t$ are dependent only on the current state and not on the entire trajectory up to time $t$. \\
 We now consider $(X_t)_{t \geq 0}$ having the strong Markov property and with state space $(\R, \cB(\R))$.
 Given our high-level description of the (strong) Markov property, it may seem intuitive that the optimal stopping of $(X_t)_{t \geq 0}$ would depend only on the state at time of stoppage, i.e. that there must be a set of states $S \in \cB(\R)$ s.t. $\tau_* := \inf \{ t \geq 0 \quantifyspace X_t \in S \}$ is optimal;
@@ -845,9 +868,9 @@ we can use our Markov intuition to guide our search for explicit solutions for t
 which we then verify with the help of other tools, namely Itô's lemma.
 We will see examples of this in chapters III and IV. 
 
-\section*{Part III: Perpetual American Put Option}
+\section*{Part III: Perpetual American Put Option}\label{sec:part3}
 
-\subsection*{\quad III.I Black-Scholes Model} [swing1]
+\subsection*{\quad III.I Black-Scholes Model}\label{sec:III.I} [swing1]
 We consider the probability space $\PS$ and $(W_t)_{t \geq 0}$ a Brownian motion on this space. \\
 We take $\cFi$ to be the filtration generated by $W$. \\
 We take $(X_t)_{t \geq 0}$ to be defined as follows,
@@ -871,7 +894,7 @@ We introduce $V(x)$, the value function of the perpetual (no expiry) put option,
 i.e. $V(x)$ is the value of the Snell envelope (see Section II.II The Snell Envelope) of $e^{-tr} (K - X_t)^+$ at time 0, given that $X$ starts at $x$. \\
 Our goal for this chapter is to characterize $V$ and also the optimal stopping time that achieves the value $V(x)$. \\
 
-\subsection*{\quad III.II Characterization of the Solution}
+\subsection*{\quad III.II Characterization of the Solution}\label{sec:III.II}
 Let us start with a lemma that will help us find $\bL_X$,
 \begin{lemma}
     Consider a process $C_t$ satisfying the SDE,
@@ -1116,7 +1139,7 @@ We also saw that the optimal stopping time for stopping after some stopping time
 This matches nicely with our intuition coming from the fact that $e^{-rt} (K - X_t)$ is strong Markov, and that taking the positive portion of this is a deterministic function of a strong Markov process. 
 
 
-\section*{Part IV: Stopping magnitude of Ornstein-Uhlenbeck with negative exponential time penalty}
+\section*{Part IV: Ornstein-Uhlenbeck Optimal Stopping Example}\label{sec:part4}
 In this chapter we examine example 10.1 from chapter 10.2 of [PS], which is another example of the conversion of an optimal stopping problem to a free boundary problem. \\
 We are given the stopping problem with value function as follows,
 \[
@@ -1144,7 +1167,7 @@ Now apply lemma 11 to get,
     This should give us intuition that the optimal stopping time for such problems is a function only of state in the sense of $(E, \cE)$ and of time. \\
 \end{remark}
 
-\subsection*{IV.I Reduction of Value Function to 1 variable}
+\subsection*{IV.I Reduction of Value Function to 1 variable}\label{sec:IV.I}
 From the Paul Lévy characterization of Brownian motion, note that for a fixed $t > 0$, $W_s := \frac{1}{\sqrt{t}} B_{ts}$ is a Brownian motion. \\
 Consider $\tau$ a stopping time w.r.t. the filtration generated by $B_t$; note that $\tau/t$ is a stopping time w.r.t. the filtration generated by $W_t$, and vice versa, by multiplying stopping times by $t$. \\
 And so,
@@ -1158,7 +1181,7 @@ In this manner we have reduced our value function to a single variable,
 \[
     V_*(t, x) = \sqrt{t} V_*(1, x/\sqrt{t}).
 \]
-\subsection*{IV.II Conversion to Ornstein-Uhlenbeck magnitude stopping}
+\subsection*{IV.II Conversion to Ornstein-Uhlenbeck magnitude stopping}\label{sec:IV.II}
 Observe the following identity,
 \[
     |X_{\sigma_\tau}| - c \sqrt{1 + \sigma_\tau} = \sqrt{1 + \sigma_\tau} (|Z_\tau| - c) = e^\tau (|Z_\tau| - c).
@@ -1172,7 +1195,7 @@ This correspondence between stopping times gives us,
 \]
 For sake of clarity, we note that $Z_0 = X_0$ and so if we ever refer to $W_*(z)$ or write $\E^z$ these have the same meaning as we have defined already, and there should be no confusion from the semantics. \\
 
-\subsection*{IV.III Conversion to Free Boundary Problem}
+\subsection*{IV.III Conversion to Free Boundary Problem}\label{sec:IV.III}
 With $Z$ being an Ornstien-Uhlenbeck process we note that $e^t (|Z_t| - c)$ does not seem to be a deterministic function of a strong markov process but $(|Z_t| - c)$ is strong markov and the $e^t$ term maintains a scale invariance. Heuristically, if state-time is $(z, t)$ and this is in the continuation region because we can stop in a manner that improves expected reward by say $k$\% over stopping immediately, then at $(z, t+h)$ we expect that we can again stop in a manner that improves expected reward by $k$\% over stopping immediately, i.e. our intuition suggest that the time induced change in transition dynamics due to time should not impact the optimal stopping policy. \\
 \\
 We assume that the optimal stopping time is of the form $\tau_{z_*} := \inf \{t \geq 0 \quantifyspace |Z_t| \geq z_*\}$, where $z_* > 0$ is a constant. \\
@@ -1382,7 +1405,7 @@ We also have the following theorem for the $c < r$ case. \\
 In this most recent example, we have again used our Markov intuition to find suitable conditions that a reasonable candidate value function must satisfy.
 Using these conditions we then found an explicit characterization for the candidate value function and used other tools to verify it is indeed correct. \\
 
-\section*{References}
+\section*{References}\label{sec:refs}
 
 // TODO put references in proper format
 
