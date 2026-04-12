@@ -125,7 +125,7 @@ In Part IV we use the machinery and intuition we have built up to address an Orn
 \begin{defn} Given a continuous time filtered probability space $\cFPS$ and a $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$ 
 We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if \\
 \[
-    \forall t < s \spc \spc X_t \leq \E[ X_s \quantifyspace \cF_t] \spc  \als
+    \forall t < s \spc \spc X_t \leq \E[ X_s \quantifyspace \cF_t] \spc  \als.
 \]
 If the reverse inequality holds we say that $(X_t)_{t \geq 0}$ is a \textbf{supermartingale} with respect to $\cFi$. \\
 If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t)_{t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$. \\
@@ -134,11 +134,11 @@ If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect
 \begin{defn}
     Two stochastic processes $(X_t)_{t \geq 0}$ and $(Y_t)_{t \geq 0}$ on $\PS$ are said to be \textbf{modifications} of each other if
     \[
-        \Prb[X_t = Y_t] = 1 \spc \forall t \geq 0
+        \Prb[X_t = Y_t] = 1 \spc \forall t \geq 0.
     \]
     $X$ and $Y$ are further said to be \textbf{indistinguishable} if
     \[
-        \Prb[X_t = Y_t \sspc \forall t \geq 0] = 1
+        \Prb[X_t = Y_t \sspc \forall t \geq 0] = 1.
     \]
 \end{defn}
 
@@ -151,14 +151,14 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     We then define $U_F (X, [a,b]) := \max \{k \quantifyspace T_{2k} \leq t\}$ \\
     And for any infinite set of times $I$ we define,
     \[
-        U_I(X, [a,b]) := \sup_{F \subset I, F \text{ finite}} U_F(X, [a,b])
+        U_I(X, [a,b]) := \sup_{F \subset I, F \text{ finite}} U_F(X, [a,b]).
     \]
 \end{defn}
 
 \begin{lemma} Upcrossing inequality \\
     Given $(X_t)_{t \geq 0}$ a RC-submartingale and times $s < t$ we have,
     \[
-        \E[U_{[s,t]}(X, [a,b])] \leq \Big ( \E[X_t^+] + |a| \Big ) (b - a)^{-1}
+        \E[U_{[s,t]}(X, [a,b])] \leq \Big ( \E[X_t^+] + |a| \Big ) (b - a)^{-1}.
     \]
     This implies that $\Prb [U_{[s,t]}(X, [a,b]) = \infty] = 0$ \\
 
@@ -169,16 +169,16 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
         Now take $H_n := \sum_{j=0}^\infty \ind{T_{2j + 1} \leq n \leq T_{2j + 2}}$ \\
         And take $N_n := a \vee M_n = a + (M_n - a)^+$ since $a \vee \cdot$ is convex and non-decreasing we can apply conditional Jensen's and see that for $n \leq m$,
         \[
-            N_n = a \vee M_n \leq a \vee \E[M_m \quantifyspace \cF_n] \leq \E[N_m \quantifyspace \cF_m]
+            N_n = a \vee M_n \leq a \vee \E[M_m \quantifyspace \cF_n] \leq \E[N_m \quantifyspace \cF_m].
         \]
         And so $N_n$ is a submartingale and since $1 - H_n \geq 0$ we have that $((1 - H) \cdot N)_n$ is a submartingale \\
         Also by construction, $(H \cdot N)_n \geq (b - a) U_{\{0, 1, .., n\}}([a,b])$
         % \textit{The above can be heuristically interpreted as a portfolio strategy of buying $N$ above $b$ and selling below $a$ is a submartingale, since for every passage from above $b$ to below $a$ we lose at least $b-a$ we can hope to bound the expected number of times this happens as each of them incurs loss} \\
         We find that for fixed $n \in \N$,
         \[
-            0 = ((1 - H) \cdot N)_0 \leq \E[(1 \cdot N)_n - (H \cdot N)_n] 
+            0 = ((1 - H) \cdot N)_0 \leq \E[(1 \cdot N)_n - (H \cdot N)_n],
         \]
-        And so,
+        and so,
         \[
             (b - a) \E[U_{\{0,1..,n\}}(X, [a,b])] \leq \E[(H \cdot N)_n] \leq \E[N_n - N_0] =
         \]
@@ -187,20 +187,20 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
             \leq \E[(M_n - a)^+]
         \]
         \[
-            \leq \E[M_n^+] + |a|
+            \leq \E[M_n^+] + |a|.
         \]
         This proves the discrete case. \\
         \\
         By choosing $\{q_n\}_{n = 1}^\infty$ to enumerate $\{b\} \cup (\Q \cap [s, t])$ we can take $F_n := \{q_1, .., q_n\}$, and by right continuity of $X_t$ we will get,
         \[
-            U_{[s,t]}(X, [a,b]) = \lim_{n \to \infty} U_{F_n}(X, [a,b])
+            U_{[s,t]}(X, [a,b]) = \lim_{n \to \infty} U_{F_n}(X, [a,b]).
         \]
         Further restricting to finite times we find that $\E[U_{F_n}(X, [a,b])] \leq \E[X_t^+] + |a|$ from the discrete case, and since this holds for all $F_n$ by Fatou's lemma we find,
         \[
             \E \big [U_{[s,t]}(X, [a,b]) \big ] = \E \Big [ \liminf_{n \to \infty } U_{F_n}(X, [a,b]) \Big ] \leq
         \]
         \[
-            \liminf_{n \to \infty} \E \big [ U_{F_n}(X, [a,b]) \big ] \leq \frac{\E[X_t^+] + |a|}{(b-a)}
+            \liminf_{n \to \infty} \E \big [ U_{F_n}(X, [a,b]) \big ] \leq \frac{\E[X_t^+] + |a|}{(b-a)}.
         \]
         \QED
     \end{hlt}
@@ -215,7 +215,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     A random time $T$ is said to be a \textbf{stopping time} if $\{T \leq t\} \in \cF_t$ for all $t \geq 0$  \\
     We also define the sigma algebra
     \[
-        \cF_T := \{A \in \cF \quantifyspace A \cap \{T \leq t\} \in \cF_t \spc \forall t \}
+        \cF_T := \{A \in \cF \quantifyspace A \cap \{T \leq t\} \in \cF_t \spc \forall t \}.
     \]
     Given a process $(X_t)_{t \geq 0}$ and a stopping time $\tau$, we introduce the notation of the stopped process $(X^\tau_t)_{t \geq 0}$; we define $X^\tau_t := X_{t \wedge \tau}$.
 \end{defn}
@@ -233,7 +233,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     A collection of random variables $(V_\alpha)_{\alpha \in A}$ we say that $(V_\alpha)$ is
     \textbf{Uniformly Integrable (U.I.)} if,
     \[
-        \lim_{K \to \infty} \sup_{\alpha \in A} \sspc \E [V_\alpha \ind{|V_\alpha| \geq K}] = 0
+        \lim_{K \to \infty} \sup_{\alpha \in A} \sspc \E [V_\alpha \ind{|V_\alpha| \geq K}] = 0.
     \]
 \end{defn}
 
@@ -252,7 +252,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \textbf{Doob's Maximal Inequality} \\
     Given $(M_t)_{t \geq 0}$ a submartingale we define $M_t^* := \sup_{0 \leq s \leq t} M_t^+$ and then for $p \in (1,\infty)$ we have,
     \[
-        \E[(M_t^*)^p] \leq \Big ( \frac{p}{p-1} \Big )^p  \sspc \E[(M_t^+)^p]
+        \E[(M_t^*)^p] \leq \Big ( \frac{p}{p-1} \Big )^p  \sspc \E[(M_t^+)^p].
     \]
 \end{thm}
 
@@ -260,7 +260,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     We say that a filtration $\cFi$ for a probability space $\PS$ satisfies the \textbf{usual conditions} if $\mathcal{W} := \{A \in \cF \quantifyspace \Prb[A] = 0\}$ is contained in $\cF_0$
     and $(\cF_t)_{t \geq 0}$ is right continuous, i.e.
     \[
-        \forall t \geq 0 \spc \spc \cF_t = \cF_t^+ = \bigcap_{s > t} \cF_s
+        \forall t \geq 0 \spc \spc \cF_t = \cF_t^+ = \bigcap_{s > t} \cF_s.
     \]
 \end{defn}
 
@@ -279,7 +279,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \begin{defn} (KS)
     A stochastic process $(X_t)_{t \geq 0}$ is said to be a \textbf{semimartingale} if there exist a local martingale $(M_t)_{t \geq 0}$ starting at 0 and a finite variation adapted process $(A_t)_{t \geq 0}$ starting at 0 s.t.
     \[
-        X_t = X_0 + M_t + A_t
+        X_t = X_0 + M_t + A_t.
     \]
 \end{defn}
 
@@ -322,7 +322,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \[
         (s, \omega) \longmapsto X_s(\omega)
     \]
-    is $\cB([0,t]) \otimes \cF_t$ measurable. \\
+    is $\cB([0,t]) \otimes \cF_t$-measurable. \\
     We also present a stronger condition, \\
     If the map $(s, \omega) \mapsto X_s(\omega)$ is $\cP := \sigma \Big ( \{ (s, t] \times A \quantifyspace 0 \leq s \leq t, A \in \cF_s \} \Big )$ measurable
     then we say that $(X_t)_{t \geq 0}$ is \textbf{predictable}
@@ -333,9 +333,9 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{lemma}
 
 \begin{defn}
-    In a given probability space we take $\bH^2$ to be the set of progressively measurable martingales $(M_t)_{t \geq 0}$ s.t. 
+    In a given probability space we take $\bH^2$ to be the set of progressively measurable martingales $(M_t)_{t \geq 0}$ s.t.
     \[
-        \sup_t \E[M_t^2] < \infty
+        \sup_t \E[M_t^2] < \infty,
     \]
     in other words the set of progressively measurable martingales that are bounded in $L^2$. \\
     We endow $\bH^2$ with $\norm{M}{\bH} := \big ( \lim_{t \to \infty} \E[M_t^2] \big )^{1/2}$ \\
@@ -348,7 +348,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \[
         \norm{K}{M}^2 := \E \Big [
             \int_0^\infty K_s^2 \df{\la M, M \ra_s}
-        \Big ] < \infty
+        \Big ] < \infty.
     \]
     We would like to clarify that the integral inside the expectation is being taken w.r.t. the Lebesgue-Stieltjes measure induced by $t \mapsto \la M, M \ra_t$. \\
     Notice that $\norm{\cdot}{M}$ is a norm and we define $L^2(M)$ to be the equivalence classes of $\cL^2(M)$ under this norm. \\
@@ -360,14 +360,14 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \[
         \E \Big [
             \int_0^{\tau_n} K_u \df{\la M, M \ra}
-        \Big ] < \infty \spc \spc \forall n \in \N
+        \Big ] < \infty \spc \spc \forall n \in \N.
     \]
 \end{defn}
 
 \begin{thm}
     Let $M$ in $H^2$; for each $K \in L^2(M)$ there is a unique element of $H_0^2$ denoted by $K \cdot M$ s.t. 
     \[
-        \la K \cdot M, N \ra = K \cdot \la M, N \ra
+        \la K \cdot M, N \ra = K \cdot \la M, N \ra,
     \]
     for every $N \in H^2$. \\
     If we relax to just having that $M$ is a continuous local martingale and $K \in L^2_{loc}(M)$, then we have that there is a unique local martingale $(K \cdot M)$ starting at 0 satisfying the above for every $N$ a continuous local martingale.
@@ -377,7 +377,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     We refer to $K \cdot M$ from the above theorem as the \textbf{stochastic integral} of $K$ with respect to $M$.
     We also use the notation,
     \[
-        \int_0^t K_u \df{M_u} := (K \cdot M)_t
+        \int_0^t K_u \df{M_u} := (K \cdot M)_t.
     \]
 \end{defn}
 
@@ -386,13 +386,13 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^2(\R)$, we have,
     \[
         f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
-        \forall t \in \R_+ \spc \spc \Prb - \als
+        \forall t \in \R_+ \spc \spc \Prb\text{-}\als.
     \]
     This extends to $f$ having a multi dimensional input. \\
     Say that $(X_t)_{t \geq 0}$ is a $d$-dimensional semimartingale, meaning $X^k$ is a semimartingale for every dimension $k=1, .., d$. \\
     In the case that we have $f: \R^d \to \R$ in $C^2$ then,
     \[
-        f(X_t) = f(X_0) + \sum_{i=1}^d f_{e_i}(X_t) \df{X_t^i} + \frac{1}{2} \sum_{1 \leq j, k \leq d} f_{e_j, e_k}(X_t) \df{\la X^j, X^k \ra_t}
+        f(X_t) = f(X_0) + \sum_{i=1}^d f_{e_i}(X_t) \df{X_t^i} + \frac{1}{2} \sum_{1 \leq j, k \leq d} f_{e_j, e_k}(X_t) \df{\la X^j, X^k \ra_t},
     \]
     where $f_{e_k}$ represents the partial derivative of $f$ in the $e_k$ direction, where $e_k$ is the $k^{th}$ standard basis vector for $\R^d$.
 \end{lemma}
@@ -403,7 +403,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     with absolutely continuous derivative, we have,
     \[
         f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
-        \forall t \in \R_+ \spc \spc \Prb - \als
+        \forall t \in \R_+ \spc \spc \Prb\text{-}\als.
     \]
 \end{lemma}
 
@@ -430,11 +430,11 @@ The \textbf{essential supremum} of $\mathcal{Q}$ (denoted ess sup $\mathcal{Q}$)
 
 Now we construct $\mu_\pi^\infty: \cF \to \R_+$ as follows,
 \[
-    A \xmapsto{\mu_\pi^\infty} \E \bigg [ \sum_{j=1}^k X_j 1_{A_j} \bigg ]
+    A \xmapsto{\mu_\pi^\infty} \E \bigg [ \sum_{j=1}^k X_j 1_{A_j} \bigg ].
 \]
 We then define $\mu^\infty: \cF \to \R_+$ as,
 \[
-    A \xmapsto{\mu^\infty} \sup_{\pi \in P_A} \mu_\pi^\infty(A)
+    A \xmapsto{\mu^\infty} \sup_{\pi \in P_A} \mu_\pi^\infty(A).
 \]
 
 \begin{lemma}
@@ -460,7 +460,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     Fix some $X \in \mathcal{Q}$ \\
     Now fix a test event $A \in \cF$ and consider the $\mathcal{Q}$-partition of $A$, $\pi^* := (1, A, X)$ and observe,
     \[
-        \E \big [X 1_A \big ] = \mu_{\pi^*}^\infty(A) \leq \sup_{\pi} \mu_\pi^\infty(A) = \mu^\infty(A) = \E \Big [\frac{\df{\mu^\infty}}{\df{\Prb}} 1_A \Big ] = \E \big [X^* 1_A \big ]
+        \E \big [X 1_A \big ] = \mu_{\pi^*}^\infty(A) \leq \sup_{\pi} \mu_\pi^\infty(A) = \mu^\infty(A) = \E \Big [\frac{\df{\mu^\infty}}{\df{\Prb}} 1_A \Big ] = \E \big [X^* 1_A \big ].
     \]
     Since this holds for all $A \in \cF$, we have that $X \leq X^*$ a.s., and we have shown the first property. \\
     \\
@@ -472,7 +472,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
         \sup_{\pi \in P_A} \E \bigg [\sum_{j=1}^k X_j 1_{A_j} \bigg ]  \leq
     \]
     \[
-        \sup_{\pi \in P_A} \E \bigg [ Y \sum_{j=1}^k 1_{A_j} \bigg ] = \E \big [ Y 1_{A} \big ] 
+        \sup_{\pi \in P_A} \E \bigg [ Y \sum_{j=1}^k 1_{A_j} \bigg ] = \E \big [ Y 1_{A} \big ].
     \]
     This shows the second condition. \\
     \QED
@@ -487,7 +487,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
 \begin{lemma}
     Given a nonempty family of non-negative random variables $\mathcal{Q}$ and a non-negative random variable $J$ we have,
     \[
-        J \big ( \esssup \sspc \mathcal{Q} \big ) = \esssup \sspc \big \{J Q \quantifyspace Q \in \mathcal{Q} \big \} \spc \spc \als
+        J \big ( \esssup \sspc \mathcal{Q} \big ) = \esssup \sspc \big \{J Q \quantifyspace Q \in \mathcal{Q} \big \} \spc \spc \als.
     \]
     \proof
     
@@ -495,30 +495,30 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     First take some element $Q \in \mathcal{Q}$ \\
     From the first property of $\chi$ being essential supremum of $\mathcal{Q}$,
     \[
-        Q \leq \chi \spc \als
+        Q \leq \chi \spc \als,
     \]
     and so,
     \[
-        JQ \leq J \chi \spc \als
+        JQ \leq J \chi \spc \als.
     \]
     This shows that $J\chi$ satisfies the first property. \\
     Now fix some random variable $Z$ s.t. $Z \geq JQ$ a.s. for all $Q \in \mathcal{Q}$ \\
     we now fix a specific $Q \in \mathcal{Q}$ and see,
     \[
-        \ind{J > 0} \frac{1}{J}Z \geq \ind{J > 0} Q \spc \als
+        \ind{J > 0} \frac{1}{J}Z \geq \ind{J > 0} Q \spc \als,
     \]
-    And now,
+    and now,
     \[
-        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} \chi \geq Q \spc \als
+        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} \chi \geq Q \spc \als.
     \]
-    Since this holds for all $Q$ from the second property of $\chi$ we get,
+    Since this holds for all $Q$, from the second property of $\chi$ we get,
     \[
-        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} \chi \geq \chi \spc \als
+        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} \chi \geq \chi \spc \als,
     \]
     \[
-        Z \geq \ind{J > 0} Z \geq J \chi \spc \als
+        Z \geq \ind{J > 0} Z \geq J \chi \spc \als.
     \]
-    This shows the second property \\
+    This shows the second property. \\
     \QED
 \end{lemma}
 \end{hlt}
@@ -554,7 +554,7 @@ We introduce the idea of the Markov Property, which is motivated by the idea tha
     Given $(X_t)_{t \geq 0}$ a $(E, \mathcal{E})$-valued time-homogeneous Markov process with respect to $\cFi$ with transition function $P$
     we say that $X_t$ satisfies the \textbf{Strong Markov Property} if for all measurable functions $f: E \to \R_+$ and all stopping times $\tau$ we have,
     \[
-        \E[f(X_{\tau+\alpha}) \quantifyspace \cF_\tau] = \int_E P(\alpha, X_\tau; dy) f(y) \spc \spc \Prb-\als \text{ on } \{\tau < \infty\}
+        \E[f(X_{\tau+\alpha}) \quantifyspace \cF_\tau] = \int_E P(\alpha, X_\tau; dy) f(y) \spc \spc \Prb\text{-}\als \text{ on } \{\tau < \infty\}.
     \]
     \small{ \spc we note that some authors relax away the requirement that $X$ must be time-homogeneous in order to have the strong markov property}
 \end{defn}
@@ -567,7 +567,7 @@ We introduce a piece of machinery specific to strong Markov processes that will 
     We now introduce the \textbf{infinitesimal generator} $\bL_X$.
     The intuition behind the infinitesimal generator is that we want to capture the infinitesimal change in expectation of a function of $X_t$ from a given starting state $x$. It is defined as follows,
     \[
-        (\bL_X f)(x) = \lim_{t \to 0^+}\frac{\E^x[f(X_t)] - f(x)}{t}
+        (\bL_X f)(x) = \lim_{t \to 0^+}\frac{\E^x[f(X_t)] - f(x)}{t}.
     \]
 \end{defn}
 
@@ -591,7 +591,7 @@ In the case that $T = \infty$ we consider $\cF_\infty := \sigma ( \cup_{t \geq 0
 We now define $\mathcal{S}$ to be the set of all $\cFi$ stopping times. \\
 Now we take
 \[
-    \cS_\tau := \{\theta \in \cS \quantifyspace \theta \geq \tau \sspc \als \}
+    \cS_\tau := \{\theta \in \cS \quantifyspace \theta \geq \tau \sspc \als \}.
 \]
 \cheekynewline
 
@@ -624,14 +624,14 @@ In the remainder of this section we present the main results of Appendix D from 
 \begin{defn}
     We define the following,
     \[
-        Z_v := \esssup_{\tau \in \cS_v} \E[Y_\tau \quantifyspace \cF_v]
+        Z_v := \esssup_{\tau \in \cS_v} \E[Y_\tau \quantifyspace \cF_v].
     \]
-    A modification of this will be the "Snell Envelope"
+    A modification of this will be the "Snell Envelope."
 \end{defn}
 
 We only consider the non-trivial case where
 \[
-    0 < Z_0 = \sup_{\tau \in \cS} \E[Y_\tau] < \infty
+    0 < Z_0 = \sup_{\tau \in \cS} \E[Y_\tau] < \infty,
 \]
 and so we will assume this going forward. \\
 \cheekynewline
@@ -639,9 +639,9 @@ and so we will assume this going forward. \\
 \begin{assume}
     We now impose the condition that
     \begin{equation}
-        \E[\sup_{t \in [0,T]} Y_t] < \infty
+        \E[\sup_{t \in [0,T]} Y_t] < \infty.
     \end{equation}
-    using this condition we can achieve sub-objective (ii).
+    Using this condition, we can achieve sub-objective (ii).
 \end{assume}
 
 \begin{lemma}
@@ -649,7 +649,7 @@ and so we will assume this going forward. \\
     under pairwise maximization. Furthermore, there is a sequence $\{\rho_n\}_{n=1}^\infty$ of stopping times in $\cS_\tau$ s.t.
     the sequence $\{\E [Y_{\rho_n} \quantifyspace \cF_v] \}_{n=1}^\infty$ is non-decreasing and
     \[
-        \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] = \lim_{n\to \infty} \E[Y_{\rho_n} \quantifyspace \cF_v]
+        \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] = \lim_{n\to \infty} \E[Y_{\rho_n} \quantifyspace \cF_v].
     \]
     \proof
     The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 5 in the Essential Supremum section. \QED \\
@@ -659,16 +659,16 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
 \begin{claim}
     For all $v, \sigma \in \cS$ and $\tau \in \cS_v$ we have
     \[
-        Z_v = Z_\sigma \spc \als \text{ on } \{\sigma = v\}
+        Z_v = Z_\sigma \spc \als \text{ on } \{\sigma = v\},
     \]
     \[
-        \E[Z_\tau \quantifyspace \cF_v] = \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] \spc \als
+        \E[Z_\tau \quantifyspace \cF_v] = \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] \spc \als,
     \]
     \[
-        \E[Z_\tau \quantifyspace \cF_v] \leq Z_v \spc \als
+        \E[Z_\tau \quantifyspace \cF_v] \leq Z_v \spc \als,
     \]
     \[
-        \E[Z_\tau] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] \leq Z_0 < \infty
+        \E[Z_\tau] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] \leq Z_0 < \infty.
     \]
 
     \proof 
@@ -677,13 +677,13 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     We start by showing the first statement, \\
     Apply Lemma 7,
     \[
-        Z_v \ind{\sigma = v} = \esssup_{\rho \in \cS_v} \E[Y_\rho \ind{v = \sigma} \quantifyspace \cF_v] \spc \als
+        Z_v \ind{\sigma = v} = \esssup_{\rho \in \cS_v} \E[Y_\rho \ind{v = \sigma} \quantifyspace \cF_v] \spc \als.
     \]
     We make a sub-claim about conditional expectation and stopping times, namely, for an $\cF$ measurable random variable $X$ and stopping times $a, b$ we have,
     \[
-        \E[X \quantifyspace \cF_a] \ind{a = b} = \E[X \quantifyspace \cF_b] \ind{a = b} \spc \als
+        \E[X \quantifyspace \cF_a] \ind{a = b} = \E[X \quantifyspace \cF_b] \ind{a = b} \spc \als.
     \]
-    proof of subclaim:
+    Proof of subclaim:
     Note that $\ind{a = b}$ is in both $\cF_a$ and $\cF_b$ \\
     we will try to show that the right hand side satisfies the properties of the conditional expectation $\E[X \ind{a = b} \quantifyspace \cF_a]$ \\
     We need to show that the right hand side is $\cF_a$ measurable and yields the proper value when integrated over $\cF_a$ events \\
@@ -691,19 +691,19 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     Take $\gamma := \E[X \quantifyspace \cF_b]$, by definition $\gamma$ is $\cF_b$ measurable
     Now in the case that $0 \not \in O$,
     \[
-        (\gamma \ind{a = b})^{-1}(O) = \{a = b\} \cap \gamma^{-1}(O)
+        (\gamma \ind{a = b})^{-1}(O) = \{a = b\} \cap \gamma^{-1}(O).
     \]
-    We define $S := \gamma^{-1}(O) \in \cF_b$ \\
+    We define $S := \gamma^{-1}(O) \in \cF_b$. \\
     We want to show that $\{a = b\} \cap S \in \cF_a$. In fact, we show this for general $S \in \cF_b$. \\
-    Fix $t \geq 0$ \\
+    Fix $t \geq 0$. \\
     Note that since $S \in \cF_b$ we have,
     \[
-        S \cap \{b \leq t\} \in \cF_t
+        S \cap \{b \leq t\} \in \cF_t.
     \]
     And now,
     \[
-        S \cap \{a = b\} \cap \{a \leq t\} = 
-        \{a = b \leq t\} \cap \big ( S \cap \{b \leq t\} \big ) \in \cF_t
+        S \cap \{a = b\} \cap \{a \leq t\} =
+        \{a = b \leq t\} \cap \big ( S \cap \{b \leq t\} \big ) \in \cF_t.
     \]
     This shows that $S \cap \{a = b\}$ is in $\cF_a$ \\
     The other case is that $0 \in O$ and in this case $(\gamma \ind{a = b})^{-1}(O) = \gamma^{-1}(O) \cup \{a \neq b\} = \big (\gamma^{-1}(O^c) \cap \{a = b\} \big )^c$ but we know $\gamma^{-1}(O^c) \in \cF_b$ and so $\gamma^{-1}(O^c) \cap \{a = b\} \in \cF_a$ and hence its compliment is also in $\cF_a$ \\
@@ -757,7 +757,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
 \begin{defn}
     For a given $v \in \cS$ we introduce $\cS_v^* := \{\tau \in \cS_v \quantifyspace \tau > v \sspc \als \text{ on } \{v < T\} \}$ and we define,
     \[
-        Z^*_v := \esssup_{\tau \in \cS_v^*} \E[Y_\tau \quantifyspace \cF_v]
+        Z^*_v := \esssup_{\tau \in \cS_v^*} \E[Y_\tau \quantifyspace \cF_v].
     \]
 \end{defn}
 Observe that our proof of Claim 1 also holds if we replace $Z$ with $Z^*$, so $Z^*$ has all the outlined properties. \\
@@ -765,10 +765,10 @@ We now want to show right continuity of $Z^*$,
 \begin{claim}
     For any $v \in \cS$ and a sequence $v_n \subset \cS_v^*$ s.t. $\lim_{n \to \infty} v_n = v$ a.s. we have,
     \[
-        Z_v = Z_v^* \vee Y_v \spc \als
+        Z_v = Z_v^* \vee Y_v \spc \als,
     \]
     \[
-        \int_A Z_v^* \df{\Prb} = \lim_{n \to \infty} \int_A Z_{v_n}^* \df{\Prb} \spc \spc \forall A \in \cF_v
+        \int_A Z_v^* \df{\Prb} = \lim_{n \to \infty} \int_A Z_{v_n}^* \df{\Prb} \spc \spc \forall A \in \cF_v.
     \]
 \end{claim}
 
@@ -785,7 +785,7 @@ We now want to show right continuity of $Z^*$,
 \begin{thm}
     Any stopping time $\tau_*$  is optimal starting from time 0 (meaning $\E[Y_{\tau_*}] = Z^0_0 = \sup_{\rho \in \cS} \E[Y_\rho]$) if and only if
     \[
-        Z^0_{\tau_*} = Y_{\tau_*} \spc \als 
+        Z^0_{\tau_*} = Y_{\tau_*} \spc \als,
     \]
     and the stopped supermartingale
     \[
@@ -795,26 +795,25 @@ We now want to show right continuity of $Z^*$,
     First we assume that $\tau_*$ is optimal \\
     From the definition of $Z$ we have,
     \[
-        Z_{\tau_*}^0 \geq Y_{\tau_*} \spc \spc \als
+        Z_{\tau_*}^0 \geq Y_{\tau_*} \spc \spc \als.
     \]
     From optimality of $\tau_*$,
     \[
-        \E[Y_{\tau_*}] \leq \E[Z_{\tau_*}^0] = Z_0^0 = \E[Y_{\tau_*}]
+        \E[Y_{\tau_*}] \leq \E[Z_{\tau_*}^0] = Z_0^0 = \E[Y_{\tau_*}],
     \]
-    And so,
+    and so,
     \[
-        \E[ Z_{\tau_*}^0 - Y_{\tau_*}] = 0
+        \E[ Z_{\tau_*}^0 - Y_{\tau_*}] = 0.
     \]
-    And since the integrand above is $\geq 0$ a.s. we must have that the integrand is equal to 0 a.s. \\
-    Thus,
+    And since the integrand above is $\geq 0$ a.s. we must have that the integrand is equal to 0 a.s. Thus,
     \[
-        Z_{\tau_*}^0 = Y_{\tau_*} \spc \spc \als
+        Z_{\tau_*}^0 = Y_{\tau_*} \spc \spc \als.
     \]
     Now it remains to show that $(Z^0)^{\tau_*}$ is a martingale \\
     Fix $\theta$ any stopping time less than or equal to $\tau_*$ \\
     From Claim 2 and from the definition of $Z$ along with $Z_{\tau_*}^0 = Y_{\tau_*}$ a.s. we get,
     \[
-        \E[Y_{\tau_*} \quantifyspace \cF_\theta] = \E[Z_{\tau_*}^0 \quantifyspace \cF_\theta] \leq Z^0_\theta \leq \E[Y_{\tau_*} \quantifyspace \cF_\theta] \spc \spc \als
+        \E[Y_{\tau_*} \quantifyspace \cF_\theta] = \E[Z_{\tau_*}^0 \quantifyspace \cF_\theta] \leq Z^0_\theta \leq \E[Y_{\tau_*} \quantifyspace \cF_\theta] \spc \spc \als.
     \]
     And so we find $Z_\theta^0 = \E[Y_{\tau_*} \quantifyspace \cF_\theta]$ \\
     The fact that $(Z^0)^{\tau_*}$ is a martingale then follows directly from the tower property of conditional expectation. \\
@@ -823,7 +822,7 @@ We now want to show right continuity of $Z^*$,
     and $(Z^0)^{\tau_*}$ is a martingale \\
     Using our two assumptions directly we find,
     \[
-        \sup_{\rho \in \cS} \E[Y_\rho] = Z_0^0 = \E[Z_{\tau_*}^0 \quantifyspace \cF_0] = \E[Z_{\tau_*}] = \E[Y_{\tau_*}] \spc \spc \als
+        \sup_{\rho \in \cS} \E[Y_\rho] = Z_0^0 = \E[Z_{\tau_*}^0 \quantifyspace \cF_0] = \E[Z_{\tau_*}] = \E[Y_{\tau_*}] \spc \spc \als.
     \]
     \QED
 \end{thm}
@@ -831,7 +830,7 @@ We now want to show right continuity of $Z^*$,
 \begin{thm}
     Given a stopping time $\tau \in \cS$ we define the following,
     \[
-        \theta_\tau^* := \inf \{t \geq \tau \quantifyspace Z^0_t = Y_t \} \wedge T
+        \theta_\tau^* := \inf \{t \geq \tau \quantifyspace Z^0_t = Y_t \} \wedge T.
     \]
     We claim that $\E[Y_{\theta_\tau^*}] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] $ i.e. $\theta_\tau^*$ is the optimal stopping time beginning from time $\tau$.
 \end{thm}
@@ -877,7 +876,7 @@ We consider the probability space $\PS$ and $(W_t)_{t \geq 0}$ a Brownian motion
 We take $\cFi$ to be the filtration generated by $W$. \\
 We take $(X_t)_{t \geq 0}$ to be defined as follows,
 \[
-    X_t = x \exp \bigg [ \Big ( r - \frac{\sigma^2}{2} \Big ) t + \sigma W_t  \bigg ], \spc \spc t \geq 0
+    X_t = x \exp \bigg [ \Big ( r - \frac{\sigma^2}{2} \Big ) t + \sigma W_t  \bigg ], \spc \spc t \geq 0,
 \]
 where $r, \sigma > 0$ represent interest rate and volatility, respectively, and $x > 0$ is the initial value. \\
 $X$ represents the price of some asset, say, for example, a stock. \\
@@ -885,13 +884,13 @@ We are also given a payoff function $\phi: \R_+ \to \R_+$ s.t. the payoff of exe
 In the case of a put option with strike price of $K > 0$ we have $\phi(x) = (K - x)^+$. \\
 Using Itô's lemma we find that $X$ satisfies the following SDE,
 \[
-    \df{X_t} = r X_t \df{t} + \sigma X_t \df{W_t}
+    \df{X_t} = r X_t \df{t} + \sigma X_t \df{W_t}.
 \]
 Note that $X$ is strong Markov. \\
 
 We introduce $V(x)$, the value function of the perpetual (no expiry) put option, defined as follows using the notation outlined in the above definition:
 \[
-    V(x) := \sup_{\tau \in \cS} \E^x \Big [ e^{-r\tau} (K - X_\tau)^+ \Big ]
+    V(x) := \sup_{\tau \in \cS} \E^x \Big [ e^{-r\tau} (K - X_\tau)^+ \Big ],
 \]
 i.e. $V(x)$ is the value of the Snell envelope (see Section II.II The Snell Envelope) of $e^{-tr} (K - X_t)^+$ at time 0, given that $X$ starts at $x$. \\
 Our goal for this chapter is to characterize $V$ and also the optimal stopping time that achieves the value $V(x)$. \\
@@ -901,9 +900,9 @@ Let us start with a lemma that will help us find $\bL_X$,
 \begin{lemma}
     Consider a process $C_t$ satisfying the SDE,
     \[
-        \df{C_t} = \mu(C_t) \df{t} + \sigma(C_t) \df{B_t}
+        \df{C_t} = \mu(C_t) \df{t} + \sigma(C_t) \df{B_t},
     \]
-    Where $B_t$ is a brownian motion and $\mu, \sigma \in C(\R)$. \\
+    where $B_t$ is a Brownian motion and $\mu, \sigma \in C(\R)$. \\
     We then have $\bL_C = \mu(x) \frac{\partial}{\partial x} + \frac{1}{2} \big ( \sigma(x) \big )^2 \frac{\partial^2}{\partial x^2}$ (where we restrict domain to $f \in C^2(\R)$). \\
     \proof
     Using Itô's lemma and the SDE for $f \in C^2$ we find,
@@ -911,9 +910,9 @@ Let us start with a lemma that will help us find $\bL_X$,
         f(C_t) = f(C_0) + \int_0^t f'(C_u) \df{C_u} + \frac{1}{2} \int_0^t f''(C_u) \df{\la C, C \ra_u} =
     \]
     \[
-        f(C_0) + \int_0^t f'(C_u) \mu(C_t) \df{t} + \int_0^t f'(C_u) \sigma(C_t) \df{B_t} + \frac{1}{2} \int_0^t f''(C_u) \big ( \sigma(C_u) \big )^2 \df{t}
+        f(C_0) + \int_0^t f'(C_u) \mu(C_t) \df{t} + \int_0^t f'(C_u) \sigma(C_t) \df{B_t} + \frac{1}{2} \int_0^t f''(C_u) \big ( \sigma(C_u) \big )^2 \df{t}.
     \]
-    Note that when we take the expectation of the above the third term becomes 0. \\
+    Note that when we take the expectation of the above, the third term becomes 0. \\
     \[
         (\bL_C f)(x) = \lim_{t \to 0^+} \frac{\E^x \Big [
             \int_0^t f'(C_u) \mu(C_t) \df{t} +
@@ -921,7 +920,7 @@ Let us start with a lemma that will help us find $\bL_X$,
         \Big ]}{t} =
     \]
     \[
-        f'(x) \mu(x) + f''(x) (\sigma(x))^2
+        f'(x) \mu(x) + f''(x) (\sigma(x))^2.
     \]
     This proves the desired result. \\
     \QED
@@ -939,34 +938,34 @@ We now list some properties that we expect $V$ to have and some reasoning why we
     \item[(i)]
 If $\tau_b$ is optimal we expect that the Snell envelope of $(e^{-tr} (K - X_{t})^+)_{t \geq 0}$ stopped at $t \wedge \tau_b$ is a martingale and so,
 \[
-    \bL_X V = r V \spc  x > b \\
+    \bL_X V = r V, \spc  x > b.
 \]
     \item [(ii)]
 Due to optimality of $\tau_b$
 \[
-    V(x) = (K - x)^+ \spc x \leq b
+    V(x) = (K - x)^+, \spc x \leq b.
 \]
     \item[(iii)]
 Due to sub-optimality of exercise above $b$,
 \[
-    V(x) > (K - x)^+ \spc x > b
+    V(x) > (K - x)^+, \spc x > b.
 \]
     \item[(iv)]
 Necessitated for $V$ to be $C^1$ (we want $C^1$ so that we can apply  Itô's lemma or Itô-Tanaka-Meyer) and given we expect (ii) to hold,
 \[
-    V'(x) = -1 \spc x \leq b
+    V'(x) = -1, \spc x \leq b.
 \]
 \end{enumerate}
 
 The most interesting of these is (i), suddenly we have an ODE. \\
 Specifically we expect $V$ to satisfy,
 \[
-    rx V'(x) + \frac{\sigma^2}{2} x^2 V''(x) - r V(x) = 0 \spc \spc \forall x > b
+    rx V'(x) + \frac{\sigma^2}{2} x^2 V''(x) - r V(x) = 0 \spc \spc \forall x > b.
 \]
-Seeing that we have a sum of a $V$ term, an $x V'$ term, and an $x^2 V''$ term, it makes sense to think we can find a polynomial solution where all elements of the same power cancel out somehow. \\
-We consider a solution of the form $x^p$; taking this candidate, we need $p$ to satisfy,
+Seeing that we have a sum of a $V$ term, an $x V'$ term, and an $x^2 V''$ term, it makes sense to look for a polynomial solution where all elements of the same power cancel. \\
+We consider a solution of the form $x^p$; substituting this candidate, we need $p$ to satisfy,
 \[
-    x^2 \Big ( rp + \frac{\sigma^2}{2} p [p-1] - r \Big ) = 0 \spc \spc \forall x > b
+    x^2 \Big ( rp + \frac{\sigma^2}{2} p [p-1] - r \Big ) = 0 \spc \spc \forall x > b.
 \]
 Specifically, either $p = 1$ or $p = \frac{- 2 r}{\sigma^2}$. \\
 Intuitively, we expect $\lim_{x \to \infty} V(x) = 0$, so having a $p > 0$ term does not make much sense; this leaves us with $p = -\gamma := \frac{-2 r}{\sigma^2}$. \\
@@ -974,16 +973,16 @@ And so we introduce the candidate,
 \[
     H (x) := \begin{cases}
         C x^{-\gamma} & x > b \\
-        K - x                & x \leq b < K
-    \end{cases}
+        K - x                & x \leq b < K.
+    \end{cases}.
 \]
 Now our task becomes finding suitable values of $b$ and $C$. \\
 We need the candidate and its derivatives to be continuous at $b$, so we get the following system:
 \[
-    H(b) = K - b = C b^{-\gamma}
+    H(b) = K - b = C b^{-\gamma},
 \]
 \[
-    H'(b) = -1 = - \gamma C b^{-\gamma - 1}
+    H'(b) = -1 = - \gamma C b^{-\gamma - 1}.
 \]
 We first solve both for $C$ in terms of $b$ and then take these two expressions and solve for $b$ to find $b = \frac{K}{1 + \gamma^{-1}}$. \\
 Then we find $C = \Big ( \frac{K}{1 + \gamma^{-1}} \Big )^{\gamma + 1} \gamma^{-1}$. \\
@@ -998,16 +997,16 @@ Now that we have our candidate our task is to verify it. \\
     From simple calculus we know $\df{\daleth_t} = -r \daleth_t \df{t}$ \\
     Since $H'$ is absolutely continuous we can use Itô-Tanaka-Meyer to find,
     \[
-        \df{\beth_t} = H'(X_t) \df{X_t} + \frac{1}{2} H''(X_t) \df{\la X, X \ra_t}
+        \df{\beth_t} = H'(X_t) \df{X_t} + \frac{1}{2} H''(X_t) \df{\la X, X \ra_t}.
     \]
     Recall from Itô-Tanaka-Meyer that this is well defined even though $H''$ is not defined everywhere.
     Since $\daleth_t$ is finite variation we get that $\la \daleth, \beth \ra_t = 0$ \\
     Now using 2-dimensional Itô's lemma on $(a,b) \mapsto ab $ we find,
     \[
-        \df{(\daleth_t \beth_t)} = \daleth_t \df{\beth_t} + \beth_t \df{\daleth_t}
+        \df{(\daleth_t \beth_t)} = \daleth_t \df{\beth_t} + \beth_t \df{\daleth_t}.
     \]
-    We define $f(x, t) := e^{-tr} H(x)$ and so $f(X_t, t) = e^{-tr} H(X_t) = \daleth_t \beth_t$ \\
-    For sake of brevity we let $f(u)$ denote $f(X_u, u) = \daleth_u \beth_u$ and we let $f_x = \frac{\partial f}{\partial x}$ and similarly define $f_{xx}$, note that $f_t = -r f$ \\
+    We define $f(x, t) := e^{-tr} H(x)$ and so $f(X_t, t) = e^{-tr} H(X_t) = \daleth_t \beth_t$. \\
+    For sake of brevity we let $f(u)$ denote $f(X_u, u) = \daleth_u \beth_u$ and we let $f_x = \frac{\partial f}{\partial x}$ and similarly define $f_{xx}$; note that $f_t = -r f$. \\
     Putting everything together we find,
     \[
         f(t) = f(0) + \int_0^t f_x(u) \df{X_u} + \int_0^t -r f(u) \df{u} + \frac{1}{2} \int_0^t f_{xx}(u) \df{\la X, X \ra_u}
@@ -1015,72 +1014,71 @@ Now that we have our candidate our task is to verify it. \\
     at all times a.s. \\
     Rearranging terms we find,
     \[f(0) + \int_0^t -r f(u) \df{u} + \int_0^t f_x(u) \big (r X_u \df{u} + \sigma X_u \df{W_u} \big ) +
-        \frac{1}{2} \int_0^t f_{xx}(u) \sigma^2 X_u^2 \df{u}
+        \frac{1}{2} \int_0^t f_{xx}(u) \sigma^2 X_u^2 \df{u}.
     \]
     By grouping $\df{u}$ terms together we find $f(t)$ to be equal to the following at all times a.s.,
     \[
-        f(t) = H(X_0) + \int_0^t e^{-ru } (\bL_X H - r H)(X_u) \df{u} + \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}
+        f(t) = H(X_0) + \int_0^t e^{-ru } (\bL_X H - r H)(X_u) \df{u} + \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}.
     \]
     \end{hlt}
     First note that in domain $(b, \infty)$ we have $(\bL_X H - r H)(x) = 0$ from our construction of  $V$. \\
-    In the $(0,b)$ domain we have $(L_X H - rH)(x) = -rx - r(K - x) = -rK < 0$ and so we have $(\bL_X H - rH)(x) \leq 0$ where it is defined \\
+    In the $(0,b)$ domain we have $(L_X H - rH)(x) = -rx - r(K - x) = -rK < 0$ and so we have $(\bL_X H - rH)(x) \leq 0$ where it is defined. \\
     \\
-    Now we define $M_t := \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}$ \\
-    Since $W$ is a martingale and the integrand is adapted and continuous, and so progressively measurable and in $L^2_{loc}(W)$. Thus, from Theorem 6, we have that $M_t$ is a local martingale starting at 0. \\
-    We select a localizing sequence of $M_t$ say $\{\tau_n\}_{n=1}^\infty$ \\
+    Now we define $M_t := \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}$. \\
+    Since $W$ is a martingale and the integrand is adapted and continuous, it is progressively measurable and in $L^2_{loc}(W)$. Thus, from Theorem 6, we have that $M_t$ is a local martingale starting at 0. \\
+    We select a localizing sequence of $M_t$, say $\{\tau_n\}_{n=1}^\infty$. \\
     \\
     Due to the integrand in the $du$ integral being negative we have,
     \[
-        e^{-rt} H(X_t) \leq H(X_0) + M_t
+        e^{-rt} H(X_t) \leq H(X_0) + M_t.
     \]
-    \\
     Combining properties (ii) and (iii) of our construction of $H$ we see,
     \[
-        (K - x)^+ \leq H(x) \spc \spc \forall x > 0
+        (K - x)^+ \leq H(x) \spc \spc \forall x > 0,
     \]
     and so,
     \[
-        e^{-r s} (K - X_s)^+ \leq e^{-rs} H(X_s) \leq H(X_0) + M_s
+        e^{-r s} (K - X_s)^+ \leq e^{-rs} H(X_s) \leq H(X_0) + M_s.
     \]
-    Now fix a stopping time $\tau$ and consider 
+    Now fix a stopping time $\tau$ and consider
     \[
-        e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n}) \leq H(X_0) + M_{\tau \wedge \tau_n}
+        e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n}) \leq H(X_0) + M_{\tau \wedge \tau_n}.
     \]
-    Fix some $x > 0$ to be the starting point of our process \\
+    Fix some $x > 0$ to be the starting point of our process. \\
     Take expectation $\E^x$ of both sides to see,
     \[
         \E^x \big [
             e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n})
-        \big ] \leq H(x)
+        \big ] \leq H(x).
     \]
     Note that the above holds for all $n$. Now apply Fatou's lemma:
     \[
-        \E^x[e^{-r \tau} (K - X_{\tau})^+] \leq H(x)
+        \E^x[e^{-r \tau} (K - X_{\tau})^+] \leq H(x).
     \]
-    This shows that $V(x) \leq H(x)$ \\
+    This shows that $V(x) \leq H(x)$. \\
     \\
-    Now we need to show the reverse ... \\
-    Fix some $x > 0$ in the case that $x \leq b$ then $H(x) = K - x \leq V(x)$ so we consider the case that $x > b$ \\
+    Now we need to show the reverse. \\
+    Fix some $x > 0$; in the case that $x \leq b$ then $H(x) = K - x \leq V(x)$, so we consider the case that $x > b$. \\
     Note that since $\bL_X H - r H = 0$ on $(b, \infty)$ we have that for all $n$,
     \[
-        \Big ( e^{ - r (t \wedge \tau_b \wedge \tau_n)} H(X_{t \wedge \tau_b \wedge \tau_n}) = H(x) + M_{t \wedge \tau_b \wedge \tau_n} \Big )_{t \geq 0} \text{ is a martingale w.r.t. } \Prb^x
+        \Big ( e^{ - r (t \wedge \tau_b \wedge \tau_n)} H(X_{t \wedge \tau_b \wedge \tau_n}) = H(x) + M_{t \wedge \tau_b \wedge \tau_n} \Big )_{t \geq 0} \text{ is a martingale w.r.t. } \Prb^x.
     \]
-    And so
+    And so,
     \[
-        H(x) = \E^x [e^{-r \tau_b \wedge \tau_n} H(X_{\tau_b \wedge \tau_n})] % = \E^x[e^{-r (\tau_b \wedge \tau_n)} (K - X_{\tau_b \wedge \tau_n})] \leq \sup_\tau \E^x [e^{-r \tau} (K - X_\tau)] = V(x)
+        H(x) = \E^x [e^{-r \tau_b \wedge \tau_n} H(X_{\tau_b \wedge \tau_n})]. % = \E^x[e^{-r (\tau_b \wedge \tau_n)} (K - X_{\tau_b \wedge \tau_n})] \leq \sup_\tau \E^x [e^{-r \tau} (K - X_\tau)] = V(x)
     \]
-    Since $e^{-r \tau_b \wedge \tau_n} H(X_{\tau_b \wedge \tau_n})$ for all $n$ is dominated by the constant $K$ we can apply the dominated convergence theorem to find,
+    Since $e^{-r \tau_b \wedge \tau_n} H(X_{\tau_b \wedge \tau_n})$ for all $n$ is dominated by the constant $K$, we can apply the dominated convergence theorem to find,
     \[
         H(x) = \E^x [e^{-r \tau_b} H(X_{\tau_b})] = \E^x[e^{-r \tau_b} H(X_{\tau_b}) \ind{\tau_b < \infty}] + \E[e^{-r \tau_b} H(X_{\tau_b}) \ind{\tau_b = \infty}] =
     \]
     \[
-        \E^x[e^{-r \tau_b} (K - b)^+ \ind{\tau_b < \infty}] = 
+        \E^x[e^{-r \tau_b} (K - b)^+ \ind{\tau_b < \infty}] =
         \E^x[e^{-r \tau_b} (K - X_{\tau_b})^+] \leq
     \]
     \[
-        \sup_\tau \E^x [e^{-r \tau} (K - X_\tau)^+] = V(x)
+        \sup_\tau \E^x [e^{-r \tau} (K - X_\tau)^+] = V(x).
     \]
-    We have now shown $H(x) = V(x)$ for all $x > 0$ and that $\tau_b$ achieves $V(x)$ \\
+    We have now shown $H(x) = V(x)$ for all $x > 0$ and that $\tau_b$ achieves $V(x)$. \\
     \QED
 \end{thm}
 
@@ -1099,13 +1097,13 @@ Now we have the following,
 \[
     e^{-r\tau} V(X_\tau) + (M_\theta - M_\tau) \spc \als
 \]
-Now take the minimum of these times stopped at $\tau_n$ where $\{\tau_n\}_{n=1}^\infty$ is a localizing sequence of $M_t$ \\
+Now take the minimum of these times stopped at $\tau_n$, where $\{\tau_n\}_{n=1}^\infty$ is a localizing sequence of $M_t$:
 \[
-    e^{-r (\theta \wedge \tau_n)} (K - X_{\theta \wedge \tau_n})^+ \leq e^{-r(\tau \wedge \tau_n)} V(X_{\tau  \wedge \tau_n}) + M_{\theta \wedge \tau_n} - M_{\tau \wedge \tau_n}
+    e^{-r (\theta \wedge \tau_n)} (K - X_{\theta \wedge \tau_n})^+ \leq e^{-r(\tau \wedge \tau_n)} V(X_{\tau  \wedge \tau_n}) + M_{\theta \wedge \tau_n} - M_{\tau \wedge \tau_n}.
 \]
 Now take conditional expectation w.r.t. $\cF_\tau$ and, because $M^{\tau_n}$ is a martingale, we can move terms around to get
 \[
-    \E \big [ e^{-r (\theta \wedge \tau_n)} (K - X_{\theta \wedge \tau_n})^+ - e^{-r (\tau \wedge \tau_n)} V(X_{\tau \wedge \tau_n}) \quantifyspace \cF_\tau \big ] \leq 0
+    \E \big [ e^{-r (\theta \wedge \tau_n)} (K - X_{\theta \wedge \tau_n})^+ - e^{-r (\tau \wedge \tau_n)} V(X_{\tau \wedge \tau_n}) \quantifyspace \cF_\tau \big ] \leq 0.
 \]
 Now, due to the fact that the inside of the conditional expectation above is dominated by $2K$, we can use dominated convergence for conditional expectation to get,
 \[
@@ -1113,13 +1111,13 @@ Now, due to the fact that the inside of the conditional expectation above is dom
 \]
 This demonstrates that $\esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)] \leq e^{-r \tau} V(X_\tau)$ a.s. \\
 \\
-Now we want to show the reverse, \\
+Now we want to show the reverse. \\
 We can decompose $F_t := e^{-rt} V(X_{t}) = V(x) + M_t - A_t$. \\
-We define $\rho := \inf \{t \quantifyspace t \geq \tau, \sspc X_t \leq b \}$ \\
+We define $\rho := \inf \{t \quantifyspace t \geq \tau, \sspc X_t \leq b \}$. \\
 We note that $A_t = \int_0^t e^{-ru} (\bL_X H - r H)(X_u) \df{u}$ is constant on the interval $[\tau, \rho]$. \\
 \\
 We consider $\{\tau_n\}_{n=1}^\infty$ to be a localizing sequence of $(M^{\rho}_t)_{t \geq 0}$. \\
-Now we fix some $\tau \in \cS$ and some $n \in \N$, \\
+Now we fix some $\tau \in \cS$ and some $n \in \N$. \\
 From properties of conditional expectation we find,
 \[
     F_{\tau \wedge \tau_n} = \E[F_{\rho \wedge \tau_n} \quantifyspace \cF_{\tau \wedge \tau_n}] =
@@ -1130,7 +1128,7 @@ Again we can apply conditional dominated convergence to get,
     F_\tau = \E[F_\rho \quantifyspace \cF_\tau] = \E[e^{-r \rho} (K - X_\rho)^+ \quantifyspace \cF_\tau] \spc \als
 \]
 This shows that $e^{-r \tau} V(X_\tau) \leq \esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)^+ \quantifyspace \cF_\tau]$ a.s. \\
-This proves the theorem and that $\rho$ is optimal for stopping after $\tau$ \\
+This proves the theorem and that $\rho$ is optimal for stopping after $\tau$. \\
 \QED \\
     \end{hlt}
 \end{thm}
@@ -1148,19 +1146,19 @@ We are given the stopping problem with value function as follows,
 \[
     V_*(x, t) = \sup_{\tau \in S^x} \E^x \Big (
         |X_\tau| - c \sqrt{t + \tau}
-    \Big )
+    \Big ),
 \]
 where $(X_t)_{t \geq 0}$ is a Brownian motion plus a constant $x$ under the probability measure $\Prb^x$, and we take $\E^x$ to be integration w.r.t. $\Prb^x$, and $S^x$ is the set of stopping times $\tau$ w.r.t. $(\cF^X_t)_{t \geq 0}$ s.t. $\E^x [\sqrt{\tau}] < \infty$. \\
 \\
 We take $\sigma_t := e^{2t} - 1$; now we define $Z_t := X_{\sigma_t} / \sqrt{1 + \sigma_t}$, $t \geq 0$. \\
 Using Itô's lemma and quadratic variation arguments, one can find
 \[
-    \df{Z_t} = - Z_t \df{t} + \sqrt{2} \df{B_t}
+    \df{Z_t} = - Z_t \df{t} + \sqrt{2} \df{B_t},
 \]
-Where $B_t$ is a Brownian motion. \\
+where $B_t$ is a Brownian motion. \\
 Now apply lemma 9 to get,
 \[
-    \bL_Z = -z \frac{\partial}{\partial z} + \frac{\partial^2}{\partial z^2}
+    \bL_Z = -z \frac{\partial}{\partial z} + \frac{\partial^2}{\partial z^2}.
 \]
 \begin{remark}
     The stopping problem in this section is no longer of a time-homogeneous structure, note that $
@@ -1178,23 +1176,23 @@ And so,
     V_*(t, x) = \sup_{\tau \in S^x} \E \Big [ |B_\tau + x| - c \sqrt{t + \tau} \Big ] =
 \]
 \[
-    \sqrt{t} \sup_{\tau/t \in S^x} \E \bigg [ \Big | \frac{1}{\sqrt{t}} B_{t (\tau/t)} + \frac{x}{\sqrt{t}} \Big | - c \sqrt{1 + \tau/t} \bigg ]
+    \sqrt{t} \sup_{\tau/t \in S^x} \E \bigg [ \Big | \frac{1}{\sqrt{t}} B_{t (\tau/t)} + \frac{x}{\sqrt{t}} \Big | - c \sqrt{1 + \tau/t} \bigg ].
 \]
 In this manner we have reduced our value function to a single variable,
 \[
-    V_*(t, x) = \sqrt{t} V_*(1, x/\sqrt{t})
+    V_*(t, x) = \sqrt{t} V_*(1, x/\sqrt{t}).
 \]
 \subsection*{IV.II Conversion to Ornstein-Uhlenbeck magnitude stopping}
 Observe the following identity,
 \[
-    |X_{\sigma_\tau}| - c \sqrt{1 + \sigma_\tau} = \sqrt{1 + \sigma_\tau} (|Z_\tau| - c) = e^\tau (|Z_\tau| - c)
+    |X_{\sigma_\tau}| - c \sqrt{1 + \sigma_\tau} = \sqrt{1 + \sigma_\tau} (|Z_\tau| - c) = e^\tau (|Z_\tau| - c).
 \]
 Due to the manner in which $Z_t$ is constructed as a function of $X_{\sigma_t}$, we have that $\cF^Z_t = \cF^X_{\sigma_t}$, so $\tau$ is a stopping time w.r.t. the filtration generated by $Z$ iff $\sigma_\tau$ is a stopping time w.r.t. the filtration generated by $X$. \\
 Note that $\E^x[\sqrt{\sigma_\tau}] < \infty$ if and only if $\E^x[ e^\tau ] < \infty$ \\
 We take $T^x$ to be the set of stopping times $\tau$ s.t. $\E^x[e^\tau] < \infty$ \\
 This correspondence between stopping times gives us,
 \[
-    W_*(x) := V_*(1, x) = \sup_{\tau \in T^x} \E^x [e^\tau (|Z_\tau |- c) ]
+    W_*(x) := V_*(1, x) = \sup_{\tau \in T^x} \E^x [e^\tau (|Z_\tau |- c) ].
 \]
 For sake of clarity, we note that $Z_0 = X_0$ and so if we ever refer to $W_*(z)$ or write $\E^z$ these have the same meaning as we have defined already, and there should be no confusion from the semantics. \\
 
@@ -1205,25 +1203,25 @@ We assume that the optimal stopping time is of the form $\tau_{z_*} := \inf \{t 
 We can now set up the free boundary problem \\
 We seach for a candidate solution $W(z)$ that satisfies the following,
 \begin{enumerate}
-    \item[(i)] Since we expect $e^t W(Z_t)$ to be a martingale in $z \in (-z_*, z_*)$
+    \item[(i)] Since we expect $e^t W(Z_t)$ to be a martingale in $z \in (-z_*, z_*)$:
     \[
-        \bL_Z W(z) = - W(z)
+        \bL_Z W(z) = - W(z).
     \]
-    \item[(ii)] Due to optimality of stopping at $\tau_{z_*}$
+    \item[(ii)] Due to optimality of stopping at $\tau_{z_*}$:
     \[
-        W(\pm z_*) = z_* - c
+        W(\pm z_*) = z_* - c.
     \]
-    \item[(iii)] Due to option to stop immediately
+    \item[(iii)] Due to option to stop immediately:
     \[
-        W(z) \geq |z| - c \spc \spc \forall z 
+        W(z) \geq |z| - c \spc \spc \forall z.
     \]
-    \item[(iv)] To maintain $W \in C^1$ (so that we can hope to apply Itô's lemma or Itô-Tanaka-Meyer)
+    \item[(iv)] To maintain $W \in C^1$ (so that we can hope to apply Itô's lemma or Itô-Tanaka-Meyer):
     \[
-        W'(\pm z_*) = \pm 1
+        W'(\pm z_*) = \pm 1.
     \]
-    \item[(v)] Correct sign of slope, sign$: \R \to \{1, -1, 0\}$
+    \item[(v)] Correct sign of slope, sign$: \R \to \{1, -1, 0\}$:
     \[
-        \text{sign } W'(z) = \text{ sign } z \spc \spc \forall z
+        \text{sign } W'(z) = \text{ sign } z \spc \spc \forall z.
     \]
 \end{enumerate}
 
@@ -1232,9 +1230,9 @@ We introduce a function which will be helpful for characterizing the solution in
 \begin{defn}
     The \textbf{Kummer confluent hypergeometric} function is given by,
     \[
-        M(a, b, x) = \sum_{k=0}^\infty \frac{(a)_k \sspc x^k}{(b)_k \sspc k!} \spc \spc a,b,x \in \C
+        M(a, b, x) = \sum_{k=0}^\infty \frac{(a)_k \sspc x^k}{(b)_k \sspc k!}, \spc \spc a,b,x \in \C,
     \]
-    Where $(\rho)_k$ represents the product $\rho (\rho + 1) .. (\rho + k)$. Using standard analysis techniques this function can be seen to be well defined and in $C^2$
+    where $(\rho)_k$ represents the product $\rho (\rho + 1) .. (\rho + k)$. Using standard analysis techniques this function can be seen to be well defined and in $C^2$.
 \end{defn}
 
 Importantly note that $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $x M(0, \frac{3}{2}, \frac{z^2}{2})$ are linearly independent and solve $\bL_X W(z) = -W(z)$. \\
@@ -1245,22 +1243,22 @@ Since the first of our basis functions is even and the second is odd we expect o
     W(z) = \begin{cases}
         - A M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2}) & z \in (-z_*, z_*) \\
         |z| - c & z \not \in (-z_*, z_*)
-    \end{cases}
+    \end{cases},
 \]
-Where $A, z_* > 0$ are constants and the hypothesized optimal stopping time is $\tau_{z_*} := \inf \{t \quantifyspace |Z_t| \geq z_* \}$ \\
+where $A, z_* > 0$ are constants and the hypothesized optimal stopping time is $\tau_{z_*} := \inf \{t \quantifyspace |Z_t| \geq z_* \}$. \\
 \\
 Define $r$ to be the unique positive root of $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ \\
 From conditions (ii) and (v), we find $c \geq r$. This tells us that existence of a solution meeting the criteria of $W$ is incompatible with $c < r$; this may be a hint that it is never optimal to stop in the case that $c < r$, giving $W_*(z) = \infty$. \\
 We now assume that $c > r$ (we will handle $c = r$ later) \\
 \\
 In order to maintain continuity we must select $A = \frac{z_* - c}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}$ \\
-Also note that in order to maintain $W \in C^1$ we need to have that $W'(\pm z_*) = \pm 1$ and this gives us another relation for $A$ \\
+Also note that in order to maintain $W \in C^1$ we need to have that $W'(\pm z_*) = \pm 1$, and this gives us another relation for $A$:
 \[
-    A = \Big ( z_* M \big (\frac{1}{2}, \frac{3}{2}, \frac{z_*^2}{2} \big ) \Big )^{-1} = \frac{-(z_* - c)}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}
+    A = \Big ( z_* M \big (\frac{1}{2}, \frac{3}{2}, \frac{z_*^2}{2} \big ) \Big )^{-1} = \frac{-(z_* - c)}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}.
 \]
-Rearrange to get,
+Rearranging gives,
 \[
-    (c - z_*) z_* = \frac{M (-1/2, 1/2, z^2_*/2)}{M(1/2,3/2,z_*^2/2)}
+    (c - z_*) z_* = \frac{M (-1/2, 1/2, z^2_*/2)}{M(1/2,3/2,z_*^2/2)}.
 \]
 From the intermediate value theorem, we find that there must be some $z_* \in (0, r]$ satisfying the above, and from the derivative of the difference of these terms we find that in fact there is a unique positive root $z_*$ satisfying the above. \\
 In fact, when we have $c > r$ we get that $z_* \in (0, r)$. \\
@@ -1271,54 +1269,54 @@ We now define $f(z, t) := e^t W(z)$ \\
 We also define $F_t := f(Z_t, t)$ \\
 \begin{hlt}
 
-First we can apply Itô-Tanaka-Meyer to find $\df{(W(Z_t))}$ (Since $W$ is $C^1$ with absolutely continuous derivative) and calculus to find $\df{e^t}$ and then apply Itô's lemma to the product map $(a, b) \mapsto ab$ to find,
+First we can apply Itô-Tanaka-Meyer to find $\df{(W(Z_t))}$ (since $W$ is $C^1$ with absolutely continuous derivative) and calculus to find $\df{e^t}$, and then apply Itô's lemma to the product map $(a, b) \mapsto ab$ to find,
 \[
     F_t = F_0 + \int_0^t F_u \df{u} + \int_0^t e^u W'(Z_u) \df{Z_u} + \frac{1}{2} \int_0^t 2 e^u W''(Z_u) \df{u} \spc \forall t \sspc \als
 \]
-Recall the SDE that $Z_t$ satisfies and rearrange terms to find,
+Recalling the SDE that $Z_t$ satisfies and rearranging terms we find,
 \[
-    F_t = F_0 + \int_0^t (\bL_Z W + W)(Z_u) \df{u} + \sqrt{2} \int_0^t W'(Z_u) \df{B_u}
+    F_t = F_0 + \int_0^t (\bL_Z W + W)(Z_u) \df{u} + \sqrt{2} \int_0^t W'(Z_u) \df{B_u}.
 \]
 \end{hlt}
 We decompose as expected,
 \[
-    A_t := - \int_0^t (\bL_Z W + W)(Z_u) \df{u} \spc \text{ and } \spc M_t := \sqrt{2} \int_0^t W'(Z_u) \df{B_u}
+    A_t := - \int_0^t (\bL_Z W + W)(Z_u) \df{u} \spc \text{ and } \spc M_t := \sqrt{2} \int_0^t W'(Z_u) \df{B_u},
 \]
-And so we get,
+and so we get,
 \[
-    F_t = F_0 - A_t + M_t
+    F_t = F_0 - A_t + M_t.
 \]
 Note that $\bL_Z W + W \leq 0$ and so $A_t$ is non-decreasing.
 Also from Theorem 6 we get that $M_t$ is a local martingale starting at 0, let $\{\tau_n\}_{n=1}^\infty$ be a localization sequence of bounded stopping times. \\
 \\
-For sake of convenience we define $G_t := e^t (Z_t - c) \leq e^t W(Z_t) = F_t$ \\
-Fix some stopping time $\tau$ s.t. $\E^z[e^\tau] < \infty$ and some $n \in \N$,
+For sake of convenience we define $G_t := e^t (Z_t - c) \leq e^t W(Z_t) = F_t$. \\
+Fix some stopping time $\tau$ s.t. $\E^z[e^\tau] < \infty$ and some $n \in \N$:
 \[
-    G_{\tau \wedge \tau_n} \leq F_{\tau \wedge \tau_n} = F_0 - A_{\tau \wedge \tau_n} + M_{\tau \wedge \tau_n} \leq F_0 + M_{\tau \wedge \tau_n}
+    G_{\tau \wedge \tau_n} \leq F_{\tau \wedge \tau_n} = F_0 - A_{\tau \wedge \tau_n} + M_{\tau \wedge \tau_n} \leq F_0 + M_{\tau \wedge \tau_n}.
 \]
-Take expectation $\E^z$ of both sides,
+Take expectation $\E^z$ of both sides:
 \[
-    \E^z[G_{\tau \wedge \tau_n}] \leq \E^z[F_0] = W(z)
+    \E^z[G_{\tau \wedge \tau_n}] \leq \E^z[F_0] = W(z).
 \]
-By Fatou's lemma
+By Fatou's lemma,
 \[
-    \E^z [G_\tau] \leq W(z)
+    \E^z [G_\tau] \leq W(z).
 \]
-This shows that $W_*(z) \leq W(z)$ \\
+This shows that $W_*(z) \leq W(z)$. \\
 \\
-Now we want to show the reverse, \\
-Recall that for each $n$ we have that $F^{\tau_n \wedge \tau_{z_*}}$ is a martingale \\
-Also we know from our construction of $W$ that $F_{\tau_{z_*}} = G_{\tau_{z_*}}$ on $\{\tau_{z_*} < \infty\}$ which has probability 1 under each $\Prb^z$ \\
-And since $(z_* - c) \leq 0$, \\
+Now we want to show the reverse. \\
+Recall that for each $n$ we have that $F^{\tau_n \wedge \tau_{z_*}}$ is a martingale. \\
+Also we know from our construction of $W$ that $F_{\tau_{z_*}} = G_{\tau_{z_*}}$ on $\{\tau_{z_*} < \infty\}$, which has probability 1 under each $\Prb^z$. \\
+And since $(z_* - c) \leq 0$,
 \[
     W(z) = \E^z[F_0] = \E^z [F_{\tau_n \wedge \tau_{z_*}}] = \E^z [ \ind{\tau_n > \tau_{z_*}} G_{\tau_{z_*}} ] + \E^z[\ind{\tau_n \leq \tau_{z_*}} F_{\tau_n}] \leq
 \]
 \[
-    \E^z [ \ind{\tau_n > \tau_{z_*}} G_{\tau_{z_*}} ]
+    \E^z [ \ind{\tau_n > \tau_{z_*}} G_{\tau_{z_*}} ].
 \]
 And by Monotone convergence,
 \[
-    W(z) \leq \E^z [G_{\tau_{z_*}}]
+    W(z) \leq \E^z [G_{\tau_{z_*}}].
 \]
 \begin{hlt}
 If we can show that $\E[e^{\tau_{z_*}}] < \infty$ we will have shown $W(z) = W_*(z)$ \\
@@ -1328,39 +1326,39 @@ Define $f(z) := \frac{M(-1/2,1/2,z^2/2)}{M(-1/2,1/2,z_*^2/2)} \geq 0$ \\
 Because $\bL_Z f = f$, using Itô's lemma we find that $Y_t := e^t f(Z_t)$ is a local martingale. \\
 Also note,
 \[
-    |Y_t^{\tau_{z_*} \wedge n}| \leq e^n \max f([-z_*, z_*]) =: C_n < \infty
+    |Y_t^{\tau_{z_*} \wedge n}| \leq e^n \max f([-z_*, z_*]) =: C_n < \infty.
 \]
-And so by lemma 2 we have that $(Y^{\tau_{z_*} \wedge n}_t)_{t \geq 0}$ is a true martingale \\
+And so by lemma 2 we have that $(Y^{\tau_{z_*} \wedge n}_t)_{t \geq 0}$ is a true martingale. \\
 Now,
 \[
-    \E^z[Y_{n \wedge \tau_{z_*}}] = \E^z[Y_0] = f(z)
+    \E^z[Y_{n \wedge \tau_{z_*}}] = \E^z[Y_0] = f(z).
 \]
 From Fatou's lemma,
 \[
-    \E^z[e^{\tau_{z_*}}] = f(z_*) \E^z[ e^{\tau_{z_*}}] = \E^z[Y_{\tau_{z_*}}] \leq f(z)
+    \E^z[e^{\tau_{z_*}}] = f(z_*) \E^z[ e^{\tau_{z_*}}] = \E^z[Y_{\tau_{z_*}}] \leq f(z).
 \]
 And so we have shown that in the case $c > r$, $W(z) = W_*(z)$. \\
 \end{hlt}
 
 \begin{hlt}
 From the $c > r$ case, we can also get the $c = r$ case. \\
-We let $W_c$ and $W_{c, *}$ represent $W$ and $W_*$ as before except now with $c$ specified explicitly \\
-We take $\{c_n\}_{n=1}^\infty$ a decreasing sequence converging to $r$ and fix some $z$ \\
+We let $W_c$ and $W_{c, *}$ represent $W$ and $W_*$ as before except now with $c$ specified explicitly. \\
+We take $\{c_n\}_{n=1}^\infty$ a decreasing sequence converging to $r$ and fix some $z$. \\
 Using monotone convergence and continuity of $c \mapsto W_{c}(z)$ for $c \geq r$ we find,
 \[
-    W_{r, *}(z) = \sup_{\tau \in T^z} \E^z[e^\tau (|Z_\tau| - r)] = 
+    W_{r, *}(z) = \sup_{\tau \in T^z} \E^z[e^\tau (|Z_\tau| - r)] =
     \sup_{\tau \in T^z} \bigg ( \sup_{n \in \N} \E^z[e^\tau (|Z_\tau| - c_n)]  \bigg ) =
 \]
 \[
     \sup_{n \in \N} \bigg ( \sup_{\tau \in T^z} \E^z[e^\tau (|Z_\tau| - c_n)]  \bigg ) =
     \sup_{n \in \N} W_{c_n, *}(z) =
-    \sup_{n \in \N} W_{c_n}(z) = W_{r}(z)
+    \sup_{n \in \N} W_{c_n}(z) = W_{r}(z).
 \]
 \end{hlt}
 \cheekynewline
 Putting it all together, we have now shown,
 \begin{thm}
-    Given $c \geq r$
+    Given $c \geq r$,
     \[
         V(x, t) = \sup_\tau \E^x  \Big ( |X_\tau| - c \sqrt{t + \tau} \Big ) =
     \]
@@ -1368,11 +1366,11 @@ Putting it all together, we have now shown,
         \begin{cases}
             - \sqrt{t} z_*^{-1} M \Big (-\frac{1}{2}, \frac{1}{2}, \frac{x^2}{2t} \Big) \Big [ M \Big (-\frac{1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \Big) \Big ]^{-1} & \frac{|x|}{\sqrt{t}} < z_* \\
             |x| - c \sqrt{t} & \frac{|x|}{\sqrt{t}} \geq z_*
-        \end{cases}
+        \end{cases}.
     \]
     The optimal stopping time for the original problem is given by:
     \[
-        \tau_* = \inf \{s > 0 \quantifyspace |X_s| \geq z_* \sqrt{t + s}\}
+        \tau_* = \inf \{s > 0 \quantifyspace |X_s| \geq z_* \sqrt{t + s}\}.
     \]
     For $c = r$, the stopping times $\tau_*$ from Theorem 12 are approximately optimal if we let $c \downarrow r$. \\
 \end{thm}
@@ -1387,20 +1385,20 @@ We also have the following theorem for the $c < r$ case. \\
  
     Take $\alpha := \frac{c + r}{2} \in (c, r)$. \\
     We have already seen, en route to the proof of the previous theorem, that $\tau := \inf \{t \quantifyspace |Z_t| \geq \alpha\} \in T^z$ for all $z$. \\
-    Similarly, $\rho_t := \inf \{s \geq t \quantifyspace |Z_s| \geq \alpha \} \in T^z$ for all $z$ \\
+    Similarly, $\rho_t := \inf \{s \geq t \quantifyspace |Z_s| \geq \alpha \} \in T^z$ for all $z$. \\
     And so for any fixed $t$,
     \[
-        \Prb^z[\{\rho_t = \infty\}] = 0 \spc \spc \forall z
+        \Prb^z[\{\rho_t = \infty\}] = 0 \spc \spc \forall z.
     \]
     This implies,
     \[
-        (\alpha - c) e^t \leq (\alpha - c) e^{\rho_t} = (|Z_{\rho_t}| - c)e^{\rho_t} \spc \spc \Prb^z-\als
+        (\alpha - c) e^t \leq (\alpha - c) e^{\rho_t} = (|Z_{\rho_t}| - c)e^{\rho_t} \spc \spc \Prb^z\text{-}\als.
     \]
     And so,
     \[
-        W_{c, *}(z) \geq (\alpha - c) e^t
+        W_{c, *}(z) \geq (\alpha - c) e^t.
     \]
-    Since this holds for all $t$ we have that $W_{c,*}(z) = \infty$ for all $z$ \\
+    Since this holds for all $t$ we have that $W_{c,*}(z) = \infty$ for all $z$. \\
     \QED
 \end{thm}
 \end{hlt}
