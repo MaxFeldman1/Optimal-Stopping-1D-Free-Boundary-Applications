@@ -97,8 +97,8 @@
 
 % Abstract 
 \qquad
-This thesis will be centered around building the general theory of optimal stopping, building intuition about certain classes of problems, and finally some applications.
-The applications we address in this paper will serve as examples of how an optimal stopping problem may be solved using free boundary techniques. \\
+This thesis will be centered around introducing the general theory of optimal stopping, building intuition about certain classes of problems, and finally some applications.
+The applications we address in this paper are interesting in their own right and are relevant in financial mathematics, they will also serve as examples of how an optimal stopping problem may be solved using free boundary techniques. \\
 
 
 \newpage
@@ -129,7 +129,7 @@ The applications we address in this paper will serve as examples of how an optim
 }
 \newpage
 
-\section*{Introduction}\label{sec:intro}
+\phantomsection\section*{Introduction}\label{sec:intro}
 
 \qquad
 In this expository thesis we will start Part I by introducing some foundational concepts from continuous time martingale theory.
@@ -143,16 +143,17 @@ In Part IV we use the machinery and intuition we have built up to address an Orn
 
 
 
-\section*{Part I: Preliminaries}\label{sec:part1}
+\phantomsection\section*{Part I: Preliminaries}\label{sec:part1}
 
-\subsection*{\quad I.I Martingale Theory}\label{sec:I.I}
+\phantomsection\subsection*{\quad I.I Martingale Theory}\label{sec:I.I}
 The definitions and theorems in this section are motivated by the first three chapters of [KS] and the first four chapters of [RY].
 
-\begin{defn} Given a continuous time filtered probability space $\cFPS$ and a $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$ 
-We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if \\
+\begin{defn} Given a continuous time filtered probability space $\cFPS$ and a $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$, 
+we say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if \\
 \[
-    \forall t < s \spc \spc X_t \leq \E[ X_s \quantifyspace \cF_t] \spc  \als.
+    \forall t < s \spc \spc X_t \leq \E[ X_s \quantifyspace \cF_t] \spc  \als
 \]
+and $X_t$ is integrable w.r.t. $\Prb$ for all $t \geq 0$ \\
 If the reverse inequality holds we say that $(X_t)_{t \geq 0}$ is a \textbf{supermartingale} with respect to $\cFi$. \\
 If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t)_{t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$. \\
 \end{defn}
@@ -172,9 +173,9 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 
 \begin{defn}
     Given $(X_t)_{t \geq 0}$ a stochastic process on $\PS$, for a finite set of times $F \subset [s,t] \subset [0,\infty)$ and real-valued constants $a < b$,
-    We define $T_1 := \min \{u \in F \quantifyspace X_u < a \}$ and $T_2 := \min \{u \in F \quantifyspace u > T_1, X_u > b\}$ \\
-    Now we define inductively $T_{2k - 1} := \min \{u \in F \quantifyspace u > T_{2k - 2}, X_u < a\}$ and $T_{2k} := \min \{u \in F \quantifyspace  u > T_{2k-1}, X_u > b\}$ \\
-    We then define $U_F (X, [a,b]) := \max \{k \quantifyspace T_{2k} \leq t\}$ \\
+    we define $T_1 := \min \{u \in F \quantifyspace X_u < a \}$ and $T_2 := \min \{u \in F \quantifyspace u > T_1, X_u > b\}$. \\
+    Now we define inductively $T_{2k - 1} := \min \{u \in F \quantifyspace u > T_{2k - 2}, X_u < a\}$ and $T_{2k} := \min \{u \in F \quantifyspace  u > T_{2k-1}, X_u > b\}$. \\
+    We then define $U_F (X, [a,b]) := \max \{k \quantifyspace T_{2k} \leq t\}$. \\
     And for any infinite set of times $I$ we define,
     \[
         U_I(X, [a,b]) := \sup_{F \subset I, F \text{ finite}} U_F(X, [a,b]).
@@ -186,7 +187,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \[
         \E[U_{[s,t]}(X, [a,b])] \leq \Big ( \E[X_t^+] + |a| \Big ) (b - a)^{-1}.
     \]
-    This implies that $\Prb [U_{[s,t]}(X, [a,b]) = \infty] = 0$ \\
+    This implies that $\Prb [U_{[s,t]}(X, [a,b]) = \infty] = 0$. \\
 
     \proof
     \begin{hlt}
@@ -233,8 +234,6 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 
 \end{lemma}
 
-% (MAYBE) include submartingale convergence  \\
-
 \begin{defn}
     We are given a filtered probability space $\cFPS$. 
     An $\cF$-measurable random variable $T: \Omega \to [0,\infty]$ is called a random time. \\
@@ -246,15 +245,6 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     Given a process $(X_t)_{t \geq 0}$ and a stopping time $\tau$, we introduce the notation of the stopped process $(X^\tau_t)_{t \geq 0}$; we define $X^\tau_t := X_{t \wedge \tau}$.
 \end{defn}
 
-\iffalse
-\begin{thm}
-    \textbf{Martingale Convergence}
-    Given a martingale $(M_t)_{t \geq 0}$ on the filtered probability space $\cFPS$ if $sup_t \E[M_t^+] < \infty$ we have that there is a random variable $X$ measurable w.r.t $\cF_\infty = \sigma(\cup \cF_t)$ w
-\end{thm}
-\fi
-
-% (MAYBE) DEF Uniform Integrability \\
-
 \begin{defn}
     A collection of random variables $(V_\alpha)_{\alpha \in A}$ we say that $(V_\alpha)$ is
     \textbf{Uniformly Integrable (U.I.)} if,
@@ -263,7 +253,6 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \]
 \end{defn}
 
-% THM Optional Sampling \\
 \begin{thm}
     \textbf{Optional Sampling} \\
     Let us say that $(M_t)_{t \geq 0}$ and is a right continuous submartingale on $\cFPS$ and we are given optional times $S, T$ s.t. $0 \leq S \leq T$. \\
@@ -302,22 +291,58 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     then $(M_t)_{t \geq 0}$ is a true martingale.
 \end{lemma}
 
-\begin{defn} (KS)
-    A stochastic process $(X_t)_{t \geq 0}$ is said to be a \textbf{semimartingale} if there exist a local martingale $(M_t)_{t \geq 0}$ starting at 0 and a finite variation adapted process $(A_t)_{t \geq 0}$ starting at 0 s.t.
+\begin{defn}
+    A stochastic process $(X_t)_{t \geq 0}$ is said to be a \textbf{semimartingale} if there exists a local martingale $(M_t)_{t \geq 0}$ starting at 0 and a finite variation adapted process $(A_t)_{t \geq 0}$ starting at 0 s.t.
     \[
         X_t = X_0 + M_t + A_t.
     \]
 \end{defn}
 
+\begin{lemma}
+    A continuous local martingale $(M_t)_{t \geq 0}$ that is of finite variation is indistinguishable from 0. \\
+\end{lemma}
+
+\begin{cor}
+    Given a continuous semimartingale $X_t$, the decomposition
+    \[
+        X_t = X_0 + M_t + A_t
+    \]
+    where $M_t$ is a continuous local martingale starting at 0 and $A_t$ is a continuos finite variation adapted process starting at zero, is unique up to indistinguishablility.
+
+    \proof 
+    Say $X_t$ is a semimartingale and
+    \[
+        X_t = X_0 + M_t + A_t = X_0 + M_t' + A_t'
+    \]
+    with $M_t, M_t'$ being continuous local martingales starting at zero and $A_t, A_t'$ are continuous finite variation process starting at zero.
+    We find,
+    \[
+        M_t - M_t' = A_t' - A_t
+    \]
+    And so $M_t - M_t'$ is a continuous local martingale of finite variation and so must be indistinguishable from 0.
+    This shows that $M_t$ and $M_t'$ are indistinguishable and in turn that $A_t$ and $A_t'$ are indistinguishable. \\
+    \QED 
+\end{cor}
+
 \begin{thm}
     Let $M,N$ be continuous path local martingales then there exists a unique process $\la M, N \ra_t$ that starts at 0 and s.t. $(M_t N_t - \la M, N \ra_t)_{t \geq 0}$ is a local martingale.
     Also $\la M, N \ra$ is continuous and has bounded variation paths.
-    We refer to $\la M, N \ra$ as the \textbf{quadratic variation} of $M$ against $N$ \\
+    We refer to $\la M, N \ra$ as the \textbf{cross variation} of $M$ against $N$. \\
+    We refer to $\la M, M \ra$ as the \textbf{quadratic variation} of $M$. \\
     In the case of $\la M, M \ra$ we have that the map $t \mapsto \la M, M \ra_t$ is non-decreasing \\
 \end{thm}
 
 \begin{defn}
-    A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional brownian motion (brownian motion)} if
+    Given continuous semimartingales with decompositions $X_t = X_0 + M_t + A_t$ and $Y_t = Y_0 + M_t' + A_t'$ 
+    where $M_t, M_t'$ are continuous local martingales starting at zero and $A_t, A_t'$ are finite variation adapted processes starting at zero
+    we define the \textbf{cross variation} of $X$ against $Y$, $\la X, Y \ra$ as follows,
+    \[
+        \la X, Y \ra := \la M, M' \ra
+    \]
+\end{defn}
+
+\begin{defn}
+    A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional Brownian motion (Brownian motion)} if
     \begin{enumerate}
         \item{(i)} for all $s < t$ we have that $(B_t - B_s)$ has a normal distribution with mean $0$ and $\sigma^2 = t-s$ \\
         \item{(ii)} for all finite collections of deterministic times $0 \leq t_0 < t_1 < t_2 < t_3 < .. < t_n$ we have that the collection of increments as random variables $\{B_{t_k} - B_{t_{k-1}}\}_{k=1}^n$ is independent
@@ -325,7 +350,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{defn}
 
 \begin{lemma}
-    There exists a probability space $\PS$ s.t. there exists a brownian motion on this space.
+    There exists a probability space $\PS$ s.t. there exists a Brownian motion on this space.
 \end{lemma}
 
 \begin{thm}
@@ -430,7 +455,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{lemma}
 
 
-\subsection*{\quad I.II essential supremum}\label{sec:I.II}
+\phantomsection\subsection*{\quad I.II essential supremum}\label{sec:I.II}
 
 In this section we present the main definitions and results of Appendix A from [MMF]. \\
 
@@ -476,10 +501,10 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     Since $X \leq A$ a.s. and $X \leq B$ a.s. for all $X \in \mathcal{Q}$, we then have that $B \leq A$ a.s. and $A \leq B$ a.s., thus $A = B$ a.s. \\
     \\
     Now we show existence ... \\
-    Recall that $\mu^\infty << \Prb$ and now define $X^* := \frac{\df{\mu^\infty}}{\df{\Prb}}$ i.e. $X^*$ is the Radon-Nikodym derivative of $\mu^\infty$ w.r.t. $\Prb$ \\
-    We claim that $X^*$ satisfies the criterion of essential supremum of $\mathcal{Q}$ \\
+    Recall that $\mu^\infty << \Prb$ and now define $X^* := \frac{\df{\mu^\infty}}{\df{\Prb}}$ i.e. $X^*$ is the Radon-Nikodym derivative of $\mu^\infty$ w.r.t. $\Prb$. \\
+    We claim that $X^*$ satisfies the criterion of essential supremum of $\mathcal{Q}$. \\
     \\
-    Fix some $X \in \mathcal{Q}$ \\
+    Fix some $X \in \mathcal{Q}$. \\
     Now fix a test event $A \in \cF$ and consider the $\mathcal{Q}$-partition of $A$, $\pi^* := (1, A, X)$ and observe,
     \[
         \E \big [X 1_A \big ] = \mu_{\pi^*}^\infty(A) \leq \sup_{\pi} \mu_\pi^\infty(A) = \mu^\infty(A) = \E \Big [\frac{\df{\mu^\infty}}{\df{\Prb}} 1_A \Big ] = \E \big [X^* 1_A \big ].
@@ -545,7 +570,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
 \end{lemma}
 \end{hlt}
 
-\subsection*{ \quad I.III Markov Property, Strong Markov Property \& Ornstein-Uhlenbeck Processes}\label{sec:I.III}
+\phantomsection\subsection*{ \quad I.III Markov Property, Strong Markov Property \& Ornstein-Uhlenbeck Processes}\label{sec:I.III}
 \cheekynewline
 We introduce the idea of the Markov Property, which is motivated by the idea that for some processes the increments are dependent only on the state at the start of the time interval of the increment and not on the entire trajectory. \\
 \begin{defn}
@@ -604,8 +629,8 @@ We now introduce a specific instance of a class of Markov Processes,
     where $W_t$ is a Wiener process and $\theta, \sigma > 0$ and $\mu \in \R$ are constants. \\
 \end{defn}
 
-\section*{Part II: Optimal Stopping}\label{sec:part2}
-\subsection*{\quad II.I Formulation of general problem}\label{sec:II.I}
+\phantomsection\section*{Part II: Optimal Stopping}\label{sec:part2}
+\phantomsection\subsection*{\quad II.I Formulation of general problem}\label{sec:II.I}
 We are given a filtered probability space $\cFPS$ s.t. the filtration satisfies the usual conditions and we specifically impose $\cF_0 = \mathcal{W}$. \\
 We are also given a time horizon $T \in (0, \infty]$. \\
 We are given $(Y_t)_{t \geq 0}$ a non-negative valued and right continuous stochastic process on our probability space. \\
@@ -631,7 +656,7 @@ It is useful for intuition to conceive of $Y_t$ as representing the value that e
     \end{enumerate}
 \end{obj}
 
-\subsection*{\quad II.II The Snell Envelope}\label{sec:II.II}
+\phantomsection\subsection*{\quad II.II The Snell Envelope}\label{sec:II.II}
 The essential piece of intuition we need to start to build the right machinery
 is that, given two stopping times $\tau, \theta \in \cS$, we can construct another stopping time $\gamma$ which takes values of $\tau$ when preferable and values of $\theta$ when preferable. \\
 Specifically, we define $A := \{\E[Y_\tau - Y_\theta \quantifyspace \cF_{\tau \wedge \theta}] \geq 0\}$ and then define $\gamma := \tau 1_A + \theta 1_{A^c}$ \\
@@ -674,7 +699,7 @@ and so we will assume this going forward. \\
         \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] = \lim_{n\to \infty} \E[Y_{\rho_n} \quantifyspace \cF_v].
     \]
     \proof
-    The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 5 in the Essential Supremum section. \QED \\
+    The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section and the second statement is a direct result of the first statement and Lemma 9 in the Essential Supremum section. \QED \\
 \end{lemma}
 
 The reader may note that $Z_v$ is a random variable that has been defined as a function of a stopping time $v \in \cS$. It is not clear that this definition of $Z$ is consistent; that is, if we consider the process given by $Z$ at deterministic times, we do not know that stopping this process at $v$ is the same as what we defined as $Z_v$. We address this issue now and build some understanding of the relation between $Z$ and $Y$.
@@ -697,7 +722,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     \begin{hlt}
     
     We start by showing the first statement, \\
-    Apply lemma 9,
+    Apply Lemma 10,
     \[
         Z_v \ind{\sigma = v} = \esssup_{\rho \in \cS_v} \E[Y_\rho \ind{v = \sigma} \quantifyspace \cF_v] \spc \als.
     \]
@@ -753,7 +778,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     Taking the essential supremum over all $\rho$, the left hand side becomes $Z_v \ind{v = \sigma}$, and we have $Z_v \ind{v = \sigma} \leq Z_\sigma \ind{v = \sigma}$
     Swapping $v$ and $\sigma$ yields the reverse inequality and so $Z_v = Z_\sigma$ a.s. on $\{v = \sigma\}$ \\
     \\
-    Now for the second statement we invoke lemma 8 to get $\{\rho_n\}_{n=1}^\infty \subset \cS_\tau$ s.t. $\{\E[Y_{\rho_n} \quantifyspace \cF_\tau]\}_{n=1}^\infty$ is non-decreasing and $Z_\tau = \lim_{n \to \infty} \E[Y_{\rho_n} \quantifyspace \cF_\tau]$ \\
+    Now for the second statement we invoke Lemma 9 to get $\{\rho_n\}_{n=1}^\infty \subset \cS_\tau$ s.t. $\{\E[Y_{\rho_n} \quantifyspace \cF_\tau]\}_{n=1}^\infty$ is non-decreasing and $Z_\tau = \lim_{n \to \infty} \E[Y_{\rho_n} \quantifyspace \cF_\tau]$ \\
     By monotone convergence theorem for conditional expectation,
     \[
         \E[Z_\tau \quantifyspace \cF_v] = \lim_{n \to \infty} \E[ \E[Y_{\rho_n} \quantifyspace \cF_\tau] \quantifyspace \cF_v] = 
@@ -771,7 +796,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     This yields the second statement. \\
     \\
     The third statement is a direct consequence of the fact that $\cS_\tau \subset \cS_v$ \\
-    The fourth statement follows from lemma 8 and the third statement where $v$ is selected to be 0. \\
+    The fourth statement follows from Lemma 9 and the third statement where $v$ is selected to be 0. \\
     \QED
     \end{hlt}
 \end{claim}
@@ -857,7 +882,7 @@ We now want to show right continuity of $Z^*$,
     We claim that $\E[Y_{\theta_\tau^*}] = \sup_{\rho \in \cS_\tau} \E[Y_\rho] $ i.e. $\theta_\tau^*$ is the optimal stopping time beginning from time $\tau$.
 \end{thm}
 
-\subsection*{\quad II.III Markov Motivation}\label{sec:II.III}
+\phantomsection\subsection*{\quad II.III Markov Motivation}\label{sec:II.III}
 At a high level, we can think of the (strong) Markov property for a process $(X_t)_{t \geq 0}$ as the property that increments starting from a time $t$ are dependent only on the current state and not on the entire trajectory up to time $t$. \\
 We now consider $(X_t)_{t \geq 0}$ having the strong Markov property and with state space $(\R, \cB(\R))$.
 Given our high-level description of the (strong) Markov property, it may seem intuitive that the optimal stopping of $(X_t)_{t \geq 0}$ would depend only on the state at time of stoppage, i.e. that there must be a set of states $S \in \cB(\R)$ s.t. $\tau_* := \inf \{ t \geq 0 \quantifyspace X_t \in S \}$ is optimal;
@@ -868,9 +893,9 @@ we can use our Markov intuition to guide our search for explicit solutions for t
 which we then verify with the help of other tools, namely Itô's lemma.
 We will see examples of this in chapters III and IV. 
 
-\section*{Part III: Perpetual American Put Option}\label{sec:part3}
+\phantomsection\section*{Part III: Perpetual American Put Option}\label{sec:part3}
 
-\subsection*{\quad III.I Black-Scholes Model}\label{sec:III.I}
+\phantomsection\subsection*{\quad III.I Black-Scholes Model}\label{sec:III.I}
 The presentation of the Black-Scholes Model is inspired by that seen in [S1]. \\
 We consider the probability space $\PS$ and $(W_t)_{t \geq 0}$ a Brownian motion on this space. \\
 We take $\cFi$ to be the filtration generated by $W$. \\
@@ -895,7 +920,7 @@ We introduce $V(x)$, the value function of the perpetual (no expiry) put option,
 i.e. $V(x)$ is the value of the Snell envelope (see Section II.II The Snell Envelope) of $e^{-tr} (K - X_t)^+$ at time 0, given that $X$ starts at $x$. \\
 Our goal for this chapter is to characterize $V$ and also the optimal stopping time that achieves the value $V(x)$. \\
 
-\subsection*{\quad III.II Characterization of the Solution}\label{sec:III.II}
+\phantomsection\subsection*{\quad III.II Characterization of the Solution}\label{sec:III.II}
 Let us start with a lemma that will help us find $\bL_X$,
 \begin{lemma}
     Consider a process $C_t$ satisfying the SDE,
@@ -928,7 +953,7 @@ Let us start with a lemma that will help us find $\bL_X$,
 
 We now direct our attention back to the problem at hand. \\
 $\text{[PS s 25]}$ \\
-Applying lemma 11 to $X$, we find $\bL_X = rx \frac{\partial}{\partial x} + \frac{\sigma^2}{2} x^2 \frac{\partial^2}{\partial x^2}$. \\
+Applying Lemma 12 to $X$, we find $\bL_X = rx \frac{\partial}{\partial x} + \frac{\sigma^2}{2} x^2 \frac{\partial^2}{\partial x^2}$. \\
 \\
 Recall our discussion in the Markov Motivation section. \\
 We use the intuition from there along with the fact that intuitively as $x$ decreases it seems that we stand to gain less and less from waiting to exercise. \\
@@ -993,18 +1018,19 @@ Now that we have our candidate our task is to verify it. \\
 
     \proof
     \begin{hlt} 
-    We define $\df\daleth_t := e^{-rt}$ and $\beth_t := H(X_t)$
+    We define $\daleth_t := e^{-rt}$ and $\beth_t := H(X_t)$
     From simple calculus we know $\df{\daleth_t} = -r \daleth_t \df{t}$ \\
     Since $H'$ is absolutely continuous we can use Itô-Tanaka-Meyer to find,
     \[
         \df{\beth_t} = H'(X_t) \df{X_t} + \frac{1}{2} H''(X_t) \df{\la X, X \ra_t}.
     \]
     Recall from Itô-Tanaka-Meyer that this is well defined even though $H''$ is not defined everywhere.
-    Since $\daleth_t$ is finite variation we get that $\la \daleth, \beth \ra_t = 0$ \\
+    Since $\daleth_t$ is finite variation we get that $\la \daleth, \beth \ra_t = 0$. \\
     Now using 2-dimensional Itô's lemma on $(a,b) \mapsto ab $ we find,
     \[
         \df{(\daleth_t \beth_t)} = \daleth_t \df{\beth_t} + \beth_t \df{\daleth_t}.
     \]
+\iffalse
     We define $f(x, t) := e^{-tr} H(x)$ and so $f(X_t, t) = e^{-tr} H(X_t) = \daleth_t \beth_t$. \\
     For sake of brevity we let $f(u)$ denote $f(X_u, u) = \daleth_u \beth_u$ and we let $f_x = \frac{\partial f}{\partial x}$ and similarly define $f_{xx}$; note that $f_t = -r f$. \\
     Putting everything together we find,
@@ -1016,9 +1042,15 @@ Now that we have our candidate our task is to verify it. \\
     \[f(0) + \int_0^t -r f(u) \df{u} + \int_0^t f_x(u) \big (r X_u \df{u} + \sigma X_u \df{W_u} \big ) +
         \frac{1}{2} \int_0^t f_{xx}(u) \sigma^2 X_u^2 \df{u}.
     \]
-    By grouping $\df{u}$ terms together we find $f(t)$ to be equal to the following at all times a.s.,
+\fi
+    Now,
     \[
-        f(t) = H(X_0) + \int_0^t e^{-ru } (\bL_X H - r H)(X_u) \df{u} + \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}.
+        \df{(\daleth_t \beth_t)} = \daleth_t (H'(X_t) \df{X_t} + \frac{1}{2} H''(X_t) \df{\la X, X \ra_t}) + \beth_t (-r \daleth_t \df{t})
+    \]
+    Recall $\df{X_t}$ and the definitions of $\daleth_t$ and $\beth_t$. \\
+    By grouping $\df{u}$ terms together and integrating we find $\daleth_t \beth_t$ to be equal to the following at all times a.s.,
+    \[
+        H(X_0) + \int_0^t e^{-ru } (\bL_X H - r H)(X_u) \df{u} + \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}.
     \]
     \end{hlt}
     First note that in domain $(b, \infty)$ we have $(\bL_X H - r H)(x) = 0$ from our construction of  $V$. \\
@@ -1140,7 +1172,7 @@ We also saw that the optimal stopping time for stopping after some stopping time
 This matches nicely with our intuition coming from the fact that $e^{-rt} (K - X_t)$ is strong Markov, and that taking the positive portion of this is a deterministic function of a strong Markov process. 
 
 
-\section*{Part IV: Ornstein-Uhlenbeck Optimal Stopping Example}\label{sec:part4}
+\phantomsection\section*{Part IV: Ornstein-Uhlenbeck Optimal Stopping Example}\label{sec:part4}
 In this chapter we examine example 10.1 from chapter 10.2 of [PS], which is another example of the conversion of an optimal stopping problem to a free boundary problem. \\
 We are given the stopping problem with value function as follows,
 \[
@@ -1156,7 +1188,7 @@ Using Itô's lemma and quadratic variation arguments, one can find
     \df{Z_t} = - Z_t \df{t} + \sqrt{2} \df{B_t},
 \]
 where $B_t$ is a Brownian motion. \\
-Now apply lemma 11 to get,
+Now apply Lemma 12 to get,
 \[
     \bL_Z = -z \frac{\partial}{\partial z} + \frac{\partial^2}{\partial z^2}.
 \]
@@ -1168,7 +1200,7 @@ Now apply lemma 11 to get,
     This should give us intuition that the optimal stopping time for such problems is a function only of state in the sense of $(E, \cE)$ and of time. \\
 \end{remark}
 
-\subsection*{IV.I Reduction of Value Function to 1 variable}\label{sec:IV.I}
+\phantomsection\subsection*{IV.I Reduction of Value Function to 1 variable}\label{sec:IV.I}
 From the Paul Lévy characterization of Brownian motion, note that for a fixed $t > 0$, $W_s := \frac{1}{\sqrt{t}} B_{ts}$ is a Brownian motion. \\
 Consider $\tau$ a stopping time w.r.t. the filtration generated by $B_t$; note that $\tau/t$ is a stopping time w.r.t. the filtration generated by $W_t$, and vice versa, by multiplying stopping times by $t$. \\
 And so,
@@ -1182,7 +1214,7 @@ In this manner we have reduced our value function to a single variable,
 \[
     V_*(t, x) = \sqrt{t} V_*(1, x/\sqrt{t}).
 \]
-\subsection*{IV.II Conversion to Ornstein-Uhlenbeck magnitude stopping}\label{sec:IV.II}
+\phantomsection\subsection*{IV.II Conversion to Ornstein-Uhlenbeck magnitude stopping}\label{sec:IV.II}
 Observe the following identity,
 \[
     |X_{\sigma_\tau}| - c \sqrt{1 + \sigma_\tau} = \sqrt{1 + \sigma_\tau} (|Z_\tau| - c) = e^\tau (|Z_\tau| - c).
@@ -1196,7 +1228,7 @@ This correspondence between stopping times gives us,
 \]
 For sake of clarity, we note that $Z_0 = X_0$ and so if we ever refer to $W_*(z)$ or write $\E^z$ these have the same meaning as we have defined already, and there should be no confusion from the semantics. \\
 
-\subsection*{IV.III Conversion to Free Boundary Problem}\label{sec:IV.III}
+\phantomsection\subsection*{IV.III Conversion to Free Boundary Problem}\label{sec:IV.III}
 With $Z$ being an Ornstien-Uhlenbeck process we note that $e^t (|Z_t| - c)$ does not seem to be a deterministic function of a strong markov process but $(|Z_t| - c)$ is strong markov and the $e^t$ term maintains a scale invariance. Heuristically, if state-time is $(z, t)$ and this is in the continuation region because we can stop in a manner that improves expected reward by say $k$\% over stopping immediately, then at $(z, t+h)$ we expect that we can again stop in a manner that improves expected reward by $k$\% over stopping immediately, i.e. our intuition suggest that the time induced change in transition dynamics due to time should not impact the optimal stopping policy. \\
 \\
 We assume that the optimal stopping time is of the form $\tau_{z_*} := \inf \{t \geq 0 \quantifyspace |Z_t| \geq z_*\}$, where $z_* > 0$ is a constant. \\
@@ -1237,7 +1269,7 @@ We introduce a function which will be helpful for characterizing the solution in
 
 Importantly note that $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $x M(0, \frac{3}{2}, \frac{z^2}{2})$ are linearly independent and solve $\bL_X W(z) = -W(z)$. \\
 By Corollary 4.35 from [TA], the solution space for a second order ODE is 2-dimensional, and so the two aforementioned functions form a basis of the solution space to $\bL_X W(z) = -W$. \\
-In fact, since $-Z_t$ follows the same SDE as $Z_t$ (with the corresponding negative brownian motion) we expect $W$ to be an even function. \\
+In fact, since $-Z_t$ follows the same SDE as $Z_t$ (with the corresponding negative Brownian motion) we expect $W$ to be an even function. \\
 Since the first of our basis functions is even and the second is odd we expect our solution to be of the form,
 \[
     W(z) = \begin{cases}
@@ -1406,29 +1438,47 @@ We also have the following theorem for the $c < r$ case. \\
 In this most recent example, we have again used our Markov intuition to find suitable conditions that a reasonable candidate value function must satisfy.
 Using these conditions we then found an explicit characterization for the candidate value function and used other tools to verify it is indeed correct. \\
 
-\section*{References}\label{sec:refs}
+\phantomsection\section*{Acknowledgements}
+The author would like to thank Dr.\ Mihai S\^{i}rbu for his guidance and supervision throughout this thesis.
+Spelling, punctuation, and grammar editing was assisted by Claude Sonnet (Anthropic, 2025), a large language model.
 
-// TODO put references in proper format
+\phantomsection\section*{References}\label{sec:refs}
 
-% ISBN-13: 978-0387976556 
-[KS] KS BMSC
+\begin{description}
+    \item[{[KS]}] Karatzas, Ioannis and Shreve, Steven E.
+        \textit{Brownian Motion and Stochastic Calculus}, 2nd ed.
+        Graduate Texts in Mathematics, Vol.\ 113.
+        Springer, 1991.
 
-% ISBN-13: 978-3-540-52167-9
-[RY] Reveuz and Yor
+    \item[{[RY]}] Revuz, Daniel and Yor, Marc.
+        \textit{Continuous Martingales and Brownian Motion}.
+        Grundlehren der mathematischen Wissenschaften, Vol.\ 293.
+        Springer, 1990.
 
-% ISBN-13: 978-3-7643-2419-3
-[PS] Peskir \& Shiriaev optimal stopping and free boundary problems
+    \item[{[PS]}] Peskir, Goran and Shiryaev, Albert N.
+        \textit{Optimal Stopping and Free-Boundary Problems}.
+        Lectures in Mathematics. ETH Z\"{u}rich.
+        Birkh\"{a}user Basel, 2006.
 
-% ISBN-13: 978-0-387-94839-3
-[MMF] Methods of Mathematical Finance KS
+    \item[{[MMF]}] Karatzas, Ioannis and Shreve, Steven E.
+        \textit{Methods of Mathematical Finance}.
+        Stochastic Modelling and Applied Probability.
+        Springer, 1998.
 
-% ISBN-13: 978-3-540-74010-0
-[OSR] Optimal stopping rules by Albert Sjirjajev
+    \item[{[OSR]}] Shiryaev, Albert N.
+        \textit{Optimal Stopping Rules}.
+        Stochastic Modelling and Applied Probability, Vol.\ 8.
+        Springer, 2007.
 
-% Carmona, R. and Touzi, N. (2008), OPTIMAL MULTIPLE STOPPING AND VALUATION OF SWING OPTIONS. Mathematical Finance, 18: 239-268. https://doi.org/10.1111/j.1467-9965.2007.00331.x
-[S1] Swing1
+    \item[{[S1]}] Carmona, Ren\'{e} and Touzi, Nizar.
+        ``Optimal Multiple Stopping and Valuation of Swing Options.''
+        \textit{Mathematical Finance}, Vol.\ 18, No.\ 2, pp.\ 239--268, 2008.
+        \href{https://doi.org/10.1111/j.1467-9965.2007.00331.x}{doi:10.1111/j.1467-9965.2007.00331.x}
 
-% ISBN-13: 978-1032791562
-[TA] FUNCTIONAL ANALYSIS FOR THE APPLIED MATHEMATICIAN BY TODD ARBOGAST
+    \item[{[TA]}] Arbogast, Todd and Bona, Jerry L.
+        \textit{Functional Analysis for the Applied Mathematician}.
+        Textbooks in Mathematics.
+        Routledge, 2025.
+\end{description}
 
 \end{document}
