@@ -1002,8 +1002,8 @@ And so we introduce the candidate,
 \[
     H (x) := \begin{cases}
         C x^{-\gamma} & x > b \\
-        K - x                & x \leq b < K.
-    \end{cases}
+        K - x                & x \leq b < K
+    \end{cases}.
 \]
 Now our task becomes finding suitable values of $b$ and $C$. \\
 We need the candidate and its derivatives to be continuous at $b$, so we get the following system:
@@ -1034,19 +1034,6 @@ Now that we have our candidate our task is to verify it. \\
     \[
         \df{(\daleth_t \beth_t)} = \daleth_t \df{\beth_t} + \beth_t \df{\daleth_t}.
     \]
-\iffalse
-    We define $f(x, t) := e^{-tr} H(x)$ and so $f(X_t, t) = e^{-tr} H(X_t) = \daleth_t \beth_t$. \\
-    For sake of brevity we let $f(u)$ denote $f(X_u, u) = \daleth_u \beth_u$ and we let $f_x = \frac{\partial f}{\partial x}$ and similarly define $f_{xx}$; note that $f_t = -r f$. \\
-    Putting everything together we find,
-    \[
-        f(t) = f(0) + \int_0^t f_x(u) \df{X_u} + \int_0^t -r f(u) \df{u} + \frac{1}{2} \int_0^t f_{xx}(u) \df{\la X, X \ra_u}
-    \]
-    at all times a.s.. \\
-    Rearranging terms we find,
-    \[f(0) + \int_0^t -r f(u) \df{u} + \int_0^t f_x(u) \big (r X_u \df{u} + \sigma X_u \df{W_u} \big ) +
-        \frac{1}{2} \int_0^t f_{xx}(u) \sigma^2 X_u^2 \df{u}.
-    \]
-\fi
     Now,
     \[
         \df{(\daleth_t \beth_t)} = \daleth_t (H'(X_t) \df{X_t} + \frac{1}{2} H''(X_t) \df{\la X, X \ra_t}) + \beth_t (-r \daleth_t \df{t})
@@ -1268,11 +1255,11 @@ We introduce a function which will be helpful for characterizing the solution in
     \[
         M(a, b, x) = \sum_{k=0}^\infty \frac{(a)_k \sspc x^k}{(b)_k \sspc k!}, \spc \spc a,b,x \in \C,
     \]
-    where $(\rho)_k$ represents the product $\rho (\rho + 1) .. (\rho + k)$. Using standard analysis techniques this function can be seen to be well defined and in $C^2$.
+    where $(\rho)_k$ represents the product $\rho (\rho + 1) .. (\rho + k - 1)$. Using standard analysis techniques this function can be seen to be well defined and in $C^2$.
 \end{defn}
 
-Importantly note that $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $x M(0, \frac{3}{2}, \frac{z^2}{2})$ are linearly independent and solve $\bL_X W(z) = -W(z)$. \\
-By Corollary 4.35 from [TA], the solution space for a second order ODE is 2-dimensional, and so the two aforementioned functions form a basis of the solution space to $\bL_X W(z) = -W$. \\
+Importantly note that $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $x M(\frac{1}{2}, \frac{3}{2}, \frac{z^2}{2})$ are linearly independent and solve $\bL_Z W(z) = -W(z)$. \\
+By Corollary 4.35 from [TA], the solution space for a second order ODE is 2-dimensional, and so the two aforementioned functions form a basis of the solution space to $\bL_Z W(z) = -W$. \\
 In fact, since $-Z_t$ follows the same SDE as $Z_t$ (with the corresponding negative Brownian motion) we expect $W$ to be an even function. \\
 Since the first of our basis functions is even and the second is odd we expect our solution to be of the form,
 \[
@@ -1283,12 +1270,14 @@ Since the first of our basis functions is even and the second is odd we expect o
 \]
 where $A, z_* > 0$ are constants and the hypothesized optimal stopping time is $\tau_{z_*} := \inf \{t \quantifyspace |Z_t| \geq z_* \}$. \\
 \\
+Note that $M(\frac{-1}{2}, \frac{1}{2}, 0) = 1$ and $\lim_{z \to \infty} M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2}) = - \infty$ and $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ is strictly decreasing in $z$ on $\R_+$, which is easily seen by looking at the summation, and so must have a unique positive root. \\
 Define $r$ to be the unique positive root of $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$. \\
 From conditions (ii) and (v), we find $c \geq r$. This tells us that existence of a solution meeting the criteria of $W$ is incompatible with $c < r$; this may be a hint that it is never optimal to stop in the case that $c < r$, giving $W_*(z) = \infty$. \\
 We now assume that $c > r$ (we will handle $c = r$ later). \\
 \\
 In order to maintain continuity we must select $A = \frac{z_* - c}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}$. \\
-Also note that in order to maintain $W \in C^1$ we need to have that $W'(\pm z_*) = \pm 1$, and this gives us another relation for $A$:
+Also note that in order to maintain $W \in C^1$ we need to have that $W'(\pm z_*) = \pm 1$, and this gives us another relation for $A$. \\
+Using $\frac{d}{\df{x}} M(a,b,x) = \frac{a}{b} M(a + 1, b+1, x)$ we find,
 \[
     A = \Big ( z_* M \big (\frac{1}{2}, \frac{3}{2}, \frac{z_*^2}{2} \big ) \Big )^{-1} = \frac{-(z_* - c)}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}.
 \]
