@@ -191,12 +191,12 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 
     \proof
     \begin{hlt}
-        We first prove that the result holds for $(M_n)_{n \geq 0}$ a discrete time sub-martingale over a finite time steps \\
+        We first prove that the result holds for $(M_n)_{n \geq 0}$ a discrete time sub-martingale over a finite time steps.  \\
         It will suffice to show that for fixed $N \in \N$, we have $\E [U_{\{0,1,..,N\}}(X, [a,b])] \leq \Big ( \E[M_N^+] + |a| \Big ) (b - a)^{-1}$. \\
         Now take $H_n := \sum_{j=0}^\infty \ind{T_{2j + 1} \leq n \leq T_{2j + 2}}$. \\
         And take $N_n := a \vee M_n = a + (M_n - a)^+$ since $a \vee \cdot$ is convex and non-decreasing we can apply conditional Jensen's and see that for $n \leq m$,
         \[
-            N_n = a \vee M_n \leq a \vee \E[M_m \quantifyspace \cF_n] \leq \E[N_m \quantifyspace \cF_m].
+            N_n = a \vee M_n \leq a \vee \E[M_m \quantifyspace \cF_n] \leq \E[N_m \quantifyspace \cF_n].
         \]
         And so $N_n$ is a submartingale and since $1 - H_n \geq 0$, we have that $((1 - H) \cdot N)_n$ is a submartingale. \\
         Also by construction, $(H \cdot N)_n \geq (b - a) U_{\{0, 1, .., n\}}([a,b])$.
@@ -337,15 +337,15 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     where $M_t, M_t'$ are continuous local martingales starting at zero and $A_t, A_t'$ are finite variation adapted processes starting at zero
     we define the \textbf{cross variation} of $X$ against $Y$, $\la X, Y \ra$ as follows,
     \[
-        \la X, Y \ra := \la M, M' \ra
+        \la X, Y \ra := \la M, M' \ra.
     \]
 \end{defn}
 
 \begin{defn}
-    A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional Brownian motion (Brownian motion)} if
+    A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional Brownian motion (Brownian motion)} if:
     \begin{enumerate}
-        \item{(i)} for all $s < t$ we have that $(B_t - B_s)$ has a normal distribution with mean $0$ and $\sigma^2 = t-s$ \\
-        \item{(ii)} for all finite collections of deterministic times $0 \leq t_0 < t_1 < t_2 < t_3 < .. < t_n$ we have that the collection of increments as random variables $\{B_{t_k} - B_{t_{k-1}}\}_{k=1}^n$ is independent
+        \item[(i)] For all $s < t$ we have that $(B_t - B_s)$ has a normal distribution with mean $0$ and $\sigma^2 = t-s$.
+        \item[(ii)] For all finite collections of deterministic times $0 \leq t_0 < t_1 < t_2 < t_3 < .. < t_n$ we have that the collection of increments as random variables $\{B_{t_k} - B_{t_{k-1}}\}_{k=1}^n$ is independent.
     \end{enumerate}
 \end{defn}
 
@@ -357,9 +357,9 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \textbf{Paul Levy Characterization of Brownian Motion} \\
     Given a local martingale $(X_t)_{t \geq 0}$ starting at 0 on the filtered probability space $\cFPS$ the following are equivalent:
     \begin{enumerate}
-        \item[(i)] $X_t$ is a Brownian motion on specified filtered probability space
-        \item[(ii)] $X$ is continuous and $X_t^2 - t$ is a local martingale
-        \item[(iii)] $\la X, X \ra_t = t$ for $t \in \R_+$ 
+        \item[(i)] $X_t$ is a Brownian motion on specified filtered probability space.
+        \item[(ii)] $X_t$ has continuous paths and $X_t^2 - t$ is a local martingale.
+        \item[(iii)] $\la X, X \ra_t = t$ for $t \in \R_+$.
     \end{enumerate}
 \end{thm}
 
@@ -461,11 +461,11 @@ In this section we present the main definitions and results of Appendix A from [
 
 \begin{defn}
 Consider a probability space $\PS$ and $\mathcal{Q}$ a nonempty collection of non-negative random variables defined on $\PS$.
-The \textbf{essential supremum} of $\mathcal{Q}$ (denoted ess sup $\mathcal{Q}$) is a random variable $X^*$ with the following two properties 
+The \textbf{essential supremum} of $\mathcal{Q}$ (denoted ess sup $\mathcal{Q}$) is a random variable $X^*$ with the following two properties:
 
 \begin{enumerate}
-    \item $\forall X \in \mathcal{Q}, \spc X \leq X^* \spc \als$,
-    \item $(X \leq Y \sspc \als \sspc \forall X \in \mathcal{Q}) \Rightarrow (X^* \leq Y \sspc \als)$.
+    \item[(i)] $\forall X \in \mathcal{Q}, \spc X \leq X^* \spc \als$,
+    \item[(ii)] $(X \leq Y \sspc \als \sspc \forall X \in \mathcal{Q}) \Rightarrow (X^* \leq Y \sspc \als)$.
 \end{enumerate}
 \end{defn}
 
@@ -498,7 +498,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     First we show that if the essential supremum of $\mathcal{Q}$ exists, then it is unique up to $\Prb$-a.s. equivalence. \\
     This follows trivially from the second property of the essential supremum. \\
     Say that $A$ and $B$ both satisfy the definition of essential supremum of $\mathcal{Q}$. \\
-    Since $X \leq A$ a.s. and $X \leq B$ a.s. for all $X \in \mathcal{Q}$, we then have that $B \leq A$ a.s. and $A \leq B$ a.s., thus $A = B$ a.s. \\
+    Since $X \leq A$ a.s. and $X \leq B$ a.s. for all $X \in \mathcal{Q}$, we then have that $B \leq A$ a.s. and $A \leq B$ a.s., thus $A = B$ a.s.. \\
     \\
     Now we show existence ... \\
     Recall that $\mu^\infty << \Prb$ and now define $X^* := \frac{\df{\mu^\infty}}{\df{\Prb}}$ i.e. $X^*$ is the Radon-Nikodym derivative of $\mu^\infty$ w.r.t. $\Prb$. \\
@@ -674,7 +674,7 @@ In the remainder of this section we present the main results of Appendix D from 
     \[
         Z_v := \esssup_{\tau \in \cS_v} \E[Y_\tau \quantifyspace \cF_v].
     \]
-    A modification of this will be the "Snell Envelope."
+    A modification of this will be the "Snell Envelope".
 \end{defn}
 
 \begin{assume}
@@ -760,7 +760,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     This shows that $S \cap \{a = b\}$ is in $\cF_a$. \\
     The other case is that $0 \in O$ and in this case $(\gamma \ind{a = b})^{-1}(O) = \gamma^{-1}(O) \cup \{a \neq b\} = \big (\gamma^{-1}(O^c) \cap \{a = b\} \big )^c$ but we know $\gamma^{-1}(O^c) \in \cF_b$ and so $\gamma^{-1}(O^c) \cap \{a = b\} \in \cF_a$ and hence its compliment is also in $\cF_a$. \\
     We now see that $\E[X \quantifyspace \cF_b] \ind{a=b} \in \cF_a$ and reversing these roles we see $\E[X \quantifyspace \cF_a] \ind{a = b} \in \cF_b$ thus seeing that both of these random variables are $\cF_{a \wedge b}$ measurable. \\
-    And for $A \in \cF_a$ using what we know about measurability $A \cap \{a = b\} \in \cF_b$
+    And for $A \in \cF_a$ using what we know about measurability $A \cap \{a = b\} \in \cF_b$,
     \[
         \E[X \ind{a = b} 1_A] =
         \E[\E[X 1_{A \cap \{a = b\}} \quantifyspace \cF_b]] =
@@ -861,8 +861,8 @@ We now want to show right continuity of $Z^*$,
     \[
         Z_{\tau_*}^0 = Y_{\tau_*} \spc \spc \als.
     \]
-    Now it remains to show that $(Z^0)^{\tau_*}$ is a martingale \\
-    Fix $\theta$ any stopping time less than or equal to $\tau_*$ \\
+    Now it remains to show that $(Z^0)^{\tau_*}$ is a martingale. \\
+    Fix $\theta$ any stopping time less than or equal to $\tau_*$. \\
     From Claim 2 and from the definition of $Z$ along with $Z_{\tau_*}^0 = Y_{\tau_*}$ a.s. we get,
     \[
         \E[Y_{\tau_*} \quantifyspace \cF_\theta] = \E[Z_{\tau_*}^0 \quantifyspace \cF_\theta] \leq Z^0_\theta \leq \E[Y_{\tau_*} \quantifyspace \cF_\theta] \spc \spc \als.
@@ -1036,7 +1036,7 @@ Now that we have our candidate our task is to verify it. \\
     \]
     Now,
     \[
-        \df{(\daleth_t \beth_t)} = \daleth_t (H'(X_t) \df{X_t} + \frac{1}{2} H''(X_t) \df{\la X, X \ra_t}) + \beth_t (-r \daleth_t \df{t})
+        \df{(\daleth_t \beth_t)} = \daleth_t (H'(X_t) \df{X_t} + \frac{1}{2} H''(X_t) \df{\la X, X \ra_t}) + \beth_t (-r \daleth_t \df{t}).
     \]
     Recall $\df{X_t}$ and the definitions of $\daleth_t$ and $\beth_t$. \\
     By grouping $\df{u}$ terms together and integrating we find $\daleth_t \beth_t$ to be equal to the following at all times a.s.,
@@ -1220,7 +1220,7 @@ This correspondence between stopping times gives us,
 For sake of clarity, we note that $Z_0 = X_0$ and so if we ever refer to $W_*(z)$ or write $\E^z$ these have the same meaning as we have defined already, and there should be no confusion from the semantics. \\
 
 \phantomsection\subsection*{IV.III Conversion to Free Boundary Problem}\label{sec:IV.III}
-With $Z$ being an Ornstien-Uhlenbeck process we note that $e^t (|Z_t| - c)$ does not seem to be a deterministic function of a strong Markov process but $(|Z_t| - c)$ is strong Markov and the $e^t$ term maintains a scale invariance. Heuristically, if state-time is $(z, t)$ and this is in the continuation region because we can stop in a manner that improves expected reward by say $k$\% over stopping immediately, then at $(z, t+h)$ we expect that we can again stop in a manner that improves expected reward by $k$\% over stopping immediately, i.e. our intuition suggest that the time induced change in transition dynamics should not impact the optimal stopping policy. \\
+With $Z$ being an Ornstien-Uhlenbeck process we note that $e^t (|Z_t| - c)$ does not seem to be a deterministic function of a strong Markov process but $(|Z_t| - c)$ is strong Markov and the $e^t$ term maintains a scale invariance. Heuristically, if state-time is $(z, t)$ and this is in the continuation region because we can stop in a manner that improves expected reward by say $k$\% over stopping immediately, then at $(z, t+h)$ we expect that we can again stop in a manner that improves expected reward by $k$\% over stopping immediately, i.e. our intuition suggest that the time induced change in transition dynamics should not introduce time dependence into the optimal stopping policy. \\
 \\
 We assume that the optimal stopping time is of the form $\tau_{z_*} := \inf \{t \geq 0 \quantifyspace |Z_t| \geq z_*\}$, where $z_* > 0$ is a constant. \\
 We can now set up the free boundary problem. \\
@@ -1270,7 +1270,7 @@ Since the first of our basis functions is even and the second is odd we expect o
 \]
 where $A, z_* > 0$ are constants and the hypothesized optimal stopping time is $\tau_{z_*} := \inf \{t \quantifyspace |Z_t| \geq z_* \}$. \\
 \\
-Note that $M(\frac{-1}{2}, \frac{1}{2}, 0) = 1$ and $\lim_{z \to \infty} M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2}) = - \infty$ and $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ is strictly decreasing in $z$ on $\R_+$, which is easily seen by looking at the summation, and so must have a unique positive root. \\
+Note that $M(\frac{-1}{2}, \frac{1}{2}, 0) = 1$ and $\lim_{z \to \infty} M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2}) = - \infty$ and $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ is strictly decreasing in $z$ on $\R_+$, which is easily seen from the non-constant terms in the summation having negative coefficients, and so must have a unique positive root. \\
 Define $r$ to be the unique positive root of $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$. \\
 From conditions (ii) and (v), we find $c \geq r$. This tells us that existence of a solution meeting the criteria of $W$ is incompatible with $c < r$; this may be a hint that it is never optimal to stop in the case that $c < r$, giving $W_*(z) = \infty$. \\
 We now assume that $c > r$ (we will handle $c = r$ later). \\
