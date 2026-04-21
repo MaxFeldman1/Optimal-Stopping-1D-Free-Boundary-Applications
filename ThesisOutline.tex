@@ -97,7 +97,7 @@
 
 % Abstract 
 \qquad
-This thesis will be centered around introducing the general theory of optimal stopping, building intuition about certain classes of problems, and finally some applications.
+This thesis starts by introducing the general theory of optimal stopping. Next we build intuition about certain classes of problems and look at some curated applications.
 The applications we address in this paper are interesting in their own right and are relevant in financial mathematics; they will also serve as examples of how an optimal stopping problem may be solved using free boundary techniques. \\
 
 
@@ -132,14 +132,14 @@ The applications we address in this paper are interesting in their own right and
 \phantomsection\section*{Introduction}\label{sec:intro}
 
 \qquad
-In this expository thesis we will start Part I by introducing some foundational concepts from continuous time martingale theory.
-We will then make use of some analysis tools to define a concept essential to the general theory of optimal stopping, namely the essential supremum.
+In this expository thesis we start Part I by introducing some foundational concepts from continuous time martingale theory.
+We then make use of some analysis tools to define a concept essential to the general theory of optimal stopping, namely the essential supremum.
 Part I will then finish with motivation and definition of the Markov property.
-In Part II we formulate and attack the general problem of optimal stopping and find its solution in terms of the Snell Envelope.
+In Part II we present the general theory of optimal stopping in non-Markovian models and find a solution in terms of the Snell Envelope.
 We finish Part II with motivation for what we hope the Markov property will give us.
-In Part III we look at a specific problem, namely that of valuing the perpetual American put option, and get a sense of what stands to be gained
-from the Markov property and additional structure in an application specific question of optimal stopping.
-In Part IV we use the machinery and intuition we have built up to address an Ornstein-Uhlenbeck optimal stopping problem.
+In Part III we look at a specific problem, namely that of valuing the perpetual American put option.
+The perpetual American put option also serves as a great example of the power of Markovian structure.
+In Part IV we use the machinery and intuition we have built up to address an Ornstein-Uhlenbeck optimal stopping problem from [PS].
 
 
 
@@ -148,13 +148,13 @@ In Part IV we use the machinery and intuition we have built up to address an Orn
 \phantomsection\subsection*{\quad I.I Martingale Theory}\label{sec:I.I}
 The definitions and theorems in this section are motivated by the first three chapters of [KS] and the first four chapters of [RY].
 
-\begin{defn} Let $\cFPS$ be a continuous time filtered probability space and consider a $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$, 
-we say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if \\
+\begin{defn} Let $\cFPS$ be a continuous time filtered probability space and consider an $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$.
+We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if \\
 \[
     \forall t < s \spc \spc X_t \leq \E[ X_s \quantifyspace \cF_t] \spc  \als
 \]
-and $X_t$ is integrable w.r.t. $\Prb$ for all $t \geq 0$. \\
-If the reverse inequality holds we say that $(X_t)_{t \geq 0}$ is a \textbf{supermartingale} with respect to $\cFi$. \\
+and $X_t$ is $\cF_t$-measurable and is integrable w.r.t. $\Prb$ for all $t \geq 0$. \\
+If $X_t \in \cF_t$ and $X_t$ is integrable for all $t \geq 0$ and the reverse inequality holds we say that $(X_t)_{t \geq 0}$ is a \textbf{supermartingale} with respect to $\cFi$. \\
 If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t)_{t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$. \\
 \end{defn}
 
@@ -182,7 +182,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     \]
 \end{defn}
 
-\begin{lemma} Upcrossing inequality \\
+\begin{lemma} \textbf{Upcrossing Inequality} \\
     Given $(X_t)_{t \geq 0}$ a RC-submartingale and times $s < t$, we have,
     \[
         \E[U_{[s,t]}(X, [a,b])] \leq \Big ( \E[X_t^+] + |a| \Big ) (b - a)^{-1}.
@@ -237,10 +237,14 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \begin{defn}
     We are given a filtered probability space $\cFPS$. 
     An $\cF$-measurable random variable $T: \Omega \to [0,\infty]$ is called a random time. \\
-    A random time $T$ is said to be a \textbf{stopping time} if $\{T \leq t\} \in \cF_t$ for all $t \geq 0$.  \\
-    We also define the sigma algebra
+    A random time $T$ is said to be an \textbf{optional time} if $\{T < t\} \in \cF_t$ for all $t \geq 0$.  \\
+    A random time $S$ is said to be a \textbf{stopping time} if $\{S \leq t\} \in \cF_t$ for all $t \geq 0$.  \\
+    For an optional time $T$ we define the sigma algebras
     \[
-        \cF_T := \{A \in \cF \quantifyspace A \cap \{T \leq t\} \in \cF_t \spc \forall t \}.
+        \cF_T := \{A \in \cF \quantifyspace A \cap \{T \leq t\} \in \cF_t \spc \forall t \},
+    \]
+    \[
+        \cF_{T^+} := \{A \in \cF \quantifyspace A \cap \{T < t\} \in \cF_t \spc \forall t \}.
     \]
     Given a process $(X_t)_{t \geq 0}$ and a stopping time $\tau$, we introduce the notation of the stopped process $(X^\tau_t)_{t \geq 0}$; we define $X^\tau_t := X_{t \wedge \tau}$.
 \end{defn}
@@ -255,10 +259,11 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 
 \begin{thm}
     \textbf{Optional Sampling} \\
-    Say $(M_t)_{t \geq 0}$ is a right continuous submartingale on $\cFPS$ and we are given optional times $S, T$ s.t. $0 \leq S \leq T$. \\
+    Assume that $(M_t)_{t \geq 0}$ is a right continuous submartingale on $\cFPS$ and that $S, T$ are optional times s.t. $0 \leq S \leq T$. \\
     If $(M_{t \wedge T}^+)_{t \geq 0}$ is U.I. then $M_S \leq \E[M_T \quantifyspace \cF_{S^+}]$.
 \end{thm}
 
+Next we present a foundational theorem that is most commonly proven with extensive use of the upcrossing inequality extensively.
 \begin{thm}
     A (super) submartingale $(X_t)_{t \geq 0}$ with the property that the map $t \mapsto \E[X_t]$ is right continuous has an RCLL modification. \\
 \end{thm}
@@ -325,7 +330,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{cor}
 
 \begin{thm}
-    Let $M,N$ be continuous path local martingales then there exists a unique process $\la M, N \ra_t$ that starts at 0 and s.t. $(M_t N_t - \la M, N \ra_t)_{t \geq 0}$ is a local martingale.
+    If $M,N$ are continuous path local martingales then there exists a unique process $\la M, N \ra_t$ that starts at 0 and s.t. $(M_t N_t - \la M, N \ra_t)_{t \geq 0}$ is a local martingale.
     Also $\la M, N \ra$ is continuous and has bounded variation paths.
     We refer to $\la M, N \ra$ as the \textbf{cross variation} of $M$ against $N$. \\
     We refer to $\la M, M \ra$ as the \textbf{quadratic variation} of $M$. \\
@@ -380,11 +385,11 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{lemma}
 
 \begin{defn}
-    In a given probability space we take $\bH^2$ to be the set of progressively measurable martingales $(M_t)_{t \geq 0}$ s.t.
+    In a given probability space we take $\bH^2$ to be the set of right continuous martingales $(M_t)_{t \geq 0}$ s.t.
     \[
         \sup_t \E[M_t^2] < \infty,
     \]
-    in other words the set of progressively measurable martingales that are bounded in $L^2$. \\
+    in other words the set of right continuous martingales that are bounded in $L^2$. \\
     We endow $\bH^2$ with $\norm{M}{\bH} := \big ( \lim_{t \to \infty} \E[M_t^2] \big )^{1/2}$. \\
     We define $H^2$ to be the subset of processes in $\bH^2$ with continuous paths. \\
     We take $H^2_0$ to be those elements of $H^2$ that deterministically assume the value 0 at time 0. \\
@@ -447,7 +452,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \begin{lemma}
     \textbf{Itô-Tanaka-Meyer}
     Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^1(\R)$
-    with absolutely continuous derivative, we have,
+    with an absolutely continuous derivative, we have,
     \[
         f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
         \forall t \in \R_+ \spc \spc \Prb\text{-}\als.
@@ -500,7 +505,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     Say that $A$ and $B$ both satisfy the definition of essential supremum of $\mathcal{Q}$. \\
     Since $X \leq A$ a.s. and $X \leq B$ a.s. for all $X \in \mathcal{Q}$, we then have that $B \leq A$ a.s. and $A \leq B$ a.s., thus $A = B$ a.s.. \\
     \\
-    Now we show existence ... \\
+    Now we show existence. \\
     Recall that $\mu^\infty << \Prb$ and now define $X^* := \frac{\df{\mu^\infty}}{\df{\Prb}}$ i.e. $X^*$ is the Radon-Nikodym derivative of $\mu^\infty$ w.r.t. $\Prb$. \\
     We claim that $X^*$ satisfies the criterion of essential supremum of $\mathcal{Q}$. \\
     \\
@@ -538,17 +543,17 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     \]
     \proof
     
-    We take $\chi := \esssup \mathcal{Q}$ and we now want to show that $J \chi$ satisfies the properties of being the essential supremum of $\{JQ \quantifyspace Q \in \mathcal{Q}\}$. \\
+    We take $X := \esssup \mathcal{Q}$ and we now want to show that $J X$ satisfies the properties of being the essential supremum of $\{JQ \quantifyspace Q \in \mathcal{Q}\}$. \\
     First take some element $Q \in \mathcal{Q}$. \\
-    From the first property of $\chi$ being essential supremum of $\mathcal{Q}$,
+    From the first property of $X$ being essential supremum of $\mathcal{Q}$,
     \[
-        Q \leq \chi \spc \als,
+        Q \leq X \spc \als,
     \]
     and so,
     \[
-        JQ \leq J \chi \spc \als.
+        JQ \leq J X \spc \als.
     \]
-    This shows that $J\chi$ satisfies the first property. \\
+    This shows that $JX$ satisfies the first property. \\
     Now fix some random variable $Z$ s.t. $Z \geq JQ$ a.s. for all $Q \in \mathcal{Q}$. \\
     We now fix a specific $Q \in \mathcal{Q}$ and see,
     \[
@@ -556,14 +561,14 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     \]
     and now,
     \[
-        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} \chi \geq Q \spc \als.
+        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} X \geq Q \spc \als.
     \]
-    Since this holds for all $Q$, from the second property of $\chi$ we get,
+    Since this holds for all $Q$, from the second property of $X$ we get,
     \[
-        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} \chi \geq \chi \spc \als,
+        \ind{J > 0} \frac{1}{J} Z + \ind{J = 0} X \geq X \spc \als,
     \]
     \[
-        Z \geq \ind{J > 0} Z \geq J \chi \spc \als.
+        Z \geq \ind{J > 0} Z \geq J X \spc \als.
     \]
     This shows the second property. \\
     \QED
@@ -576,6 +581,7 @@ We introduce the idea of the Markov Property, which is motivated by the idea tha
 \begin{defn}
     Given a state space $(E, \mathcal{E})$ a \textbf{transition function} is a function
     $P: [0,\infty) \times E \times [0,\infty) \times \mathcal{E} \to [0,1]$ s.t.
+    for all $s,t \in [0,\infty), A \in \mathcal{E}$ we have that $P(s, \cdot; t, A)$ is $\mathcal{E}$-measurable and
     for each $s,t \in [0,\infty), e \in E$ we have that $P(s, e; t, \cdot)$ is a probability measure, and for every $0 \leq s < r < t$ and $e \in E$ we have,
     \begin{equation}
         P(s, e; t, A) = \int_E P(s,e;r, dy) P(r, y; t, A).
@@ -590,7 +596,7 @@ We introduce the idea of the Markov Property, which is motivated by the idea tha
 \begin{defn}
     Given $(X_t)_{t \geq 0}$ as $(E, \mathcal{E})$-valued random elements on the filtered probability space $\cFPS$ s.t. $X_t \in \cF_t$ for all $t \geq 0$
     and given a transition function $P$
-    we say that $X_t$ is a \textbf{Markov Process} with respect to $\cFi$ with transition function $P$ if for all $s < t$ and measurable functions $f: E \to \R_+$ we have 
+    we say that $X_t$ is a \textbf{Markov Process} with respect to $\cFi$ with transition function $P$ if $X_t \in \cF_t$ for all $t$ and for all $s < t$ and measurable functions $f: E \to \R_+$ we have 
     \begin{equation*}
         \E[f(X_t) \quantifyspace \cF_s] = \int_E P(s, X_s; t, dy) f(y) \spc \spc \Prb-\als.
     \end{equation*}
@@ -608,7 +614,7 @@ We introduce the idea of the Markov Property, which is motivated by the idea tha
 
 We introduce a piece of machinery specific to strong Markov processes that will be useful later,
 \begin{defn}
-    Given a real-valued strong Markov process $(X_t)_{t \geq 0}$ we define $\bL_X$ acting on functions $f: \R \to \oR$. \\
+    Given a real-valued strong Markov process $(X_t)_{t \geq 0}$ we define the operator $\bL_X$ acting on functions $f: \R \to \oR$. \\
     We let $\Prb^x$ be a probability measure on giving $\Prb^x = 1$ to the event that $X_0 = x$ for some $x \in \R$. ($X_t$ is still a strong Markov process with the same transition function regardless of choice of $x$.) \\
     We let $\E^x$ represent integration w.r.t. the probability measure $\Prb^x$. \\
     We now introduce the \textbf{infinitesimal generator} $\bL_X$.
