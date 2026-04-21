@@ -589,7 +589,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
 We introduce the idea of the Markov Property, which is motivated by the idea that for some processes the increments are dependent only on the state at the start of the time interval of the increment and not on the entire trajectory. \\
 \begin{defn}
     Given a state space $(E, \mathcal{E})$ a \textbf{transition function} is a function
-    $P: [0,\infty) \times E \times [0,\infty) \times \mathcal{E} \to [0,1]$ s.t.
+    $P$ defined on the subset of $[0,\infty) \times E \times [0,\infty) \times \mathcal{E}$ with the first argument less than or equal to the third argument and assuming values in $[0,1]$ s.t.
     for all $s,t \in [0,\infty), A \in \mathcal{E}$ we have that $P(s, \cdot; t, A)$ is $\mathcal{E}$-measurable and
     for each $s,t \in [0,\infty), e \in E$ we have that $P(s, e; t, \cdot)$ is a probability measure, and for every $0 \leq s < r < t$ and $e \in E$ we have,
     \begin{equation}
@@ -711,7 +711,7 @@ In the remainder of this subsection we present the main results of Appendix D fr
 \end{assume}
 \cheekynewline
 
-\begin{lemma}
+\begin{lemma} [MMF]
     For all $v \in \cS$ and $\tau \in \cS_v$ the family $\{\E[Y_\rho \quantifyspace \cF_v]\}_{\rho \in \cS_v}$ is closed
     under pairwise maximization. Furthermore, there is a sequence $\{\rho_n\}_{n=1}^\infty$ of stopping times in $\cS_\tau$ s.t.
     the sequence $\{\E [Y_{\rho_n} \quantifyspace \cF_v] \}_{n=1}^\infty$ is non-decreasing and
@@ -725,7 +725,7 @@ In the remainder of this subsection we present the main results of Appendix D fr
 \end{lemma}
 
 The reader may note that $Z_v$ is a random variable that has been defined as a function of a stopping time $v \in \cS$. It is not clear that this definition of $Z$ is consistent; that is, if we consider the process given by $Z$ at deterministic times, we do not know that stopping this process at $v$ is the same as what we defined as $Z_v$. We address this issue now and build some understanding of the relation between $Z$ and $Y$.
-\begin{claim}
+\begin{claim} [MMF]
     For all $v, \sigma \in \cS$ and $\tau \in \cS_v$ we have
     \[
         Z_v = Z_\sigma \spc \als \text{ on } \{\sigma = v\},
@@ -831,7 +831,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
 \end{defn}
 Observe that our proof of Claim 1 also holds if we replace $Z$ with $Z^*$, so $Z^*$ has all the outlined properties. \\
 We now want to show right continuity of a modification of $Z^*$,
-\begin{claim}
+\begin{claim} [MMF]
     For any $v \in \cS$ and a sequence $v_n \subset \cS_v^*$ s.t. $\lim_{n \to \infty} v_n = v$ a.s., we have,
     \[
         Z_v = Z_v^* \vee Y_v \spc \als,
@@ -841,7 +841,7 @@ We now want to show right continuity of a modification of $Z^*$,
     \]
 \end{claim}
 
-\begin{cor}
+\begin{cor} [MMF]
     For any $v \in \cS$, we have $Z_v^* = Z_v$ a.s..
 \end{cor}
 
@@ -851,7 +851,7 @@ We now want to show right continuity of a modification of $Z^*$,
     We call $Z^0$ the \textbf{Snell Envelope} of $Y$.
 \end{defn}
 
-\begin{thm}
+\begin{thm} [MMF]
     Any stopping time $\tau_*$  is optimal starting from time 0 (meaning $\E[Y_{\tau_*}] = Z^0_0 = \sup_{\rho \in \cS} \E[Y_\rho]$) if and only if
     \[
         Z^0_{\tau_*} = Y_{\tau_*} \spc \als,
@@ -896,7 +896,7 @@ We now want to show right continuity of a modification of $Z^*$,
     \QED
 \end{thm}
 
-\begin{thm}
+\begin{thm} [MMF]
     Given a stopping time $\tau \in \cS$ we define the following,
     \[
         \theta_\tau^* := \inf \{t \geq \tau \quantifyspace Z^0_t = Y_t \} \wedge T.
