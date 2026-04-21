@@ -435,7 +435,7 @@ Next we present a foundational theorem that is most commonly proven with extensi
 
 \begin{lemma}
     \textbf{Itô's Lemma} \\
-    Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^2(\R)$, we have,
+    Given $(X_t)_{t \geq 0}$, a continuous semi martingale and $f \in C^2(\R)$, we have,
     \[
         f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
         \forall t \in \R_+ \spc \spc \Prb\text{-}\als.
@@ -450,8 +450,8 @@ Next we present a foundational theorem that is most commonly proven with extensi
 \end{lemma}
 
 \begin{lemma}
-    \textbf{Itô-Tanaka-Meyer}
-    Given $(X_t)_{t \geq 0}$ a continuous semi martingale and $f \in C^1(\R)$
+    \textbf{Itô-Tanaka-Meyer} \\
+    Given $(X_t)_{t \geq 0}$, a continuous semi martingale and $f \in C^1(\R)$
     with an absolutely continuous derivative, we have,
     \[
         f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
@@ -475,7 +475,8 @@ The \textbf{essential supremum} of $\mathcal{Q}$ (denoted ess sup $\mathcal{Q}$)
 \end{defn}
 
 \begin{defn}
-    Let $A \in \cF$ and say $k \in \N$ where $A_1, A_2, .., A_k \in \cF$ comprise a partition of $A$. And say $X_1, X_2, .., X_k \in \mathcal{Q}$
+    Consider $\mathcal{Q}$ a nonempty collection of non-negative random variables defined on $\PS$.
+    Let $A \in \cF$ and $k \in \N$ where $A_1, A_2, .., A_k \in \cF$ comprise a partition of $A$. And let $X_1, X_2, .., X_k \in \mathcal{Q}$.
     We then say that $\pi = (k, A_1, A_2, .., A_k, X_1, X_2, .., X_k)$ is a \textbf{$\mathcal{Q}$-partition of $A$}. \\
     We then let $P_A$ denote the set of all $\mathcal{Q}$-partitions of $A$. \\
 \end{defn}
