@@ -431,11 +431,15 @@ Next we present a foundational theorem that is most commonly proven with extensi
     \[
         \int_0^t K_u \df{M_u} := (K \cdot M)_t.
     \]
+    Also, given a semimartingale $X = X_0 + M + A$, where $M$ is a continuous local martingale and $A$ is a continuous finite variation adapted process and $K \in L^2_{loc}(M)$, we define the \textbf{stochastic integral} of $K$ with respect to $X$. We again use the notation,
+    \[
+        \int_0^t K_u \df{X_u} := (K \cdot X)_t := (K \cdot M)_t + (K \cdot A)_t.
+    \]
 \end{defn}
 
 \begin{lemma}
     \textbf{Itô's Lemma} \\
-    Given $(X_t)_{t \geq 0}$, a continuous semi martingale and $f \in C^2(\R)$, we have,
+    Given $(X_t)_{t \geq 0}$, a continuous semimartingale and $f \in C^2(\R)$, we have,
     \[
         f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
         \forall t \in \R_+ \spc \spc \Prb\text{-}\als.
@@ -451,7 +455,7 @@ Next we present a foundational theorem that is most commonly proven with extensi
 
 \begin{lemma}
     \textbf{Itô-Tanaka-Meyer} \\
-    Given $(X_t)_{t \geq 0}$, a continuous semi martingale and $f \in C^1(\R)$
+    Given $(X_t)_{t \geq 0}$, a continuous semimartingale and $f \in C^1(\R)$
     with an absolutely continuous derivative, we have,
     \[
         f(X_t) = f(X_0) + \int_0^t f'(X_u) \df{X_u} + \frac{1}{2} \int_0^t f''(X_u) \df{\la X, X \ra_u} \spc
