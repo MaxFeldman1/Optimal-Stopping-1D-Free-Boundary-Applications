@@ -146,7 +146,7 @@ In Part IV we use the machinery and intuition we have built up to address an Orn
 \phantomsection\section*{Part I: Preliminaries}\label{sec:part1}
 
 \phantomsection\subsection*{\quad I.I Martingale Theory}\label{sec:I.I}
-The definitions and theorems in this section are motivated by the first three chapters of [KS] and the first four chapters of [RY].
+The definitions and theorems in this section are primarily motivated by the first three chapters of [KS] and the first four chapters of [RY].
 
 \begin{defn} Let $\cFPS$ be a continuous time filtered probability space and consider an $\cFi$-adapted stochastic process $(X_t)_{t \geq 0}$.
 We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if \\
@@ -291,7 +291,7 @@ Next we present a foundational theorem that is most commonly proven with extensi
     In this case we refer to such a sequence of stopping times as a \textbf{localizing sequence}.
 \end{defn}
 
-\begin{lemma}
+\begin{lemma} $\text{[PR]}$ % Theorem 51 in 1. Preliminaries
     Say that a local martingale $(M_t)_{t \geq 0}$ is uniformly bounded, i.e. $|M_t| \leq A$ a.s. for all $t$ and $\E[|A|] < \infty$,
     then $(M_t)_{t \geq 0}$ is a true martingale.
 \end{lemma}
@@ -303,10 +303,11 @@ Next we present a foundational theorem that is most commonly proven with extensi
     \]
 \end{defn}
 
-\begin{lemma}
+\begin{lemma} $\text{[RY]}$ % Prop 1.2 of ch IV
     A continuous local martingale $(M_t)_{t \geq 0}$ that is of finite variation is indistinguishable from 0. \\
 \end{lemma}
 
+\begin{hlt}
 \begin{cor}
     Given a continuous semimartingale $X_t$, the decomposition
     \[
@@ -328,8 +329,9 @@ Next we present a foundational theorem that is most commonly proven with extensi
     This shows that $M_t$ and $M_t'$ are indistinguishable and in turn that $A_t$ and $A_t'$ are indistinguishable. \\
     \QED 
 \end{cor}
+\end{hlt}
 
-\begin{thm}
+\begin{thm} $\text{[RY]}$
     If $M,N$ are continuous path local martingales then there exists a unique process $\la M, N \ra_t$ that starts at 0 and s.t. $(M_t N_t - \la M, N \ra_t)_{t \geq 0}$ is a local martingale.
     Also $\la M, N \ra$ is continuous and has bounded variation paths.
     We refer to $\la M, N \ra$ as the \textbf{cross variation} of $M$ against $N$. \\
@@ -416,7 +418,7 @@ Next we present a foundational theorem that is most commonly proven with extensi
     \]
 \end{defn}
 
-\begin{thm}
+\begin{thm} $\text{[RY]}$ % 2.2, 2.7 of Ch 4.2 Stochastic Integration : Stochastic Integrals
     Let $M$ in $H^2$; for each $K \in L^2(M)$ there is a unique element of $H_0^2$ denoted by $K \cdot M$ s.t. 
     \[
         \la K \cdot M, N \ra = K \cdot \la M, N \ra,
@@ -494,13 +496,13 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     A \xmapsto{\mu^\infty} \sup_{\pi \in P_A} \mu_\pi^\infty(A).
 \]
 
-\begin{lemma}
+\begin{lemma} $\text{[MMF]}$
     The map $\mu^\infty: \cF \to \R_+$ is a measure on $\Omega$ and $\mu^\infty$ is absolutely continuous with respect to $\Prb$.
 \end{lemma}
 
 \vspc
 
-\begin{thm}
+\begin{thm} $\text{[MMF]}$
     Consider $\mathcal{Q}$ a collection of random variables defined on the probability space $\PS$.
     Then ess sup $\mathcal{Q}$ exists and is unique up to $\Prb$-a.s. equivalence.
 
@@ -535,7 +537,7 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     \QED
 \end{thm}
 
-\begin{lemma}
+\begin{lemma} $\text{[MMF]}$
     Consider $\mathcal{Q}$ a collection of random variables defined on the probability space $\PS$ s.t. $\mathcal{Q}$ is closed under pairwise maximum, i.e.
     $A,B \in \mathcal{Q}$ implies $A \vee B \in \mathcal{Q}$, then there is a non-decreasing sequence $\{C_n\}_{n=1}^\infty \subset \mathcal{Q}$ s.t. $X^* = \lim_{n \to \infty} C_n$ a.s..
 \end{lemma}
@@ -642,6 +644,8 @@ We now introduce a specific instance of a class of Markov Processes.
 
 \phantomsection\section*{Part II: Optimal Stopping}\label{sec:part2}
 \phantomsection\subsection*{\quad II.I Formulation of general problem}\label{sec:II.I}
+The formulation and presentation used here draws on aspects from both the presentation in section 2 of [S1] and the presentation in appendix D of [MMF]. \\
+\\
 We are given a filtered probability space $\cFPS$ s.t. the filtration satisfies the usual conditions and we specifically impose $\cF_0 = \mathcal{W}$ i.e. $\cF_0$ is the null sets. \\
 We are also given a time horizon $T \in (0, \infty]$. \\
 We are given $(Y_t)_{t \geq 0}$ a non-negative valued and right continuous stochastic process on our probability space. \\
@@ -655,15 +659,15 @@ Now we take
 
 It is useful for intuition to conceive of $Y_t$ as representing the value that the exercise of a particular derivatives contract (for now just a single exercise derivative) at time $t$ yields.
 
-\begin{obj}
-    We want to achieve the following
+\begin{obj} $\text{[MMF]}$
+    We want to achieve the following:
     \begin{enumerate}
         \item[(i)] Compute the maximal expected value of stopping $Y$
             \[
                 Z_0 := \sup_{\tau \in \cS} \E[Y_\tau].
             \]
         \item[(ii)] Find conditions that yield existence of a stopping time $\tau_*$ that achieves the value in the prior sub-objective.
-        \item[(iii)] Build understanding of $\tau_*$.
+        \item[(iii)] Build understanding of $\tau_*$ and characterize $\tau_*$.
     \end{enumerate}
 \end{obj}
 
@@ -677,7 +681,7 @@ At a glance one might hope that this family would have a maximal element in an $
 This should be enough to tell you that the essential supremum is the right tool. We can now get to the main definition. 
 \\
 \\
-In the remainder of this section we present the main results of Appendix D from [MMF] about the Snell envelope. \\
+In the remainder of this subsection we present the main results of Appendix D from [MMF] about the Snell envelope. \\
 
 
 \begin{defn}
@@ -938,25 +942,27 @@ Our goal for this chapter is to characterize $V$ and also the optimal stopping t
 
 \phantomsection\subsection*{\quad III.II Characterization of the Solution}\label{sec:III.II}
 Let us start with a lemma that will help us find $\bL_X$,
-\begin{lemma}
+\begin{lemma} $\text{[PR]}$
     Consider a process $C_t$ satisfying the SDE,
     \[
         \df{C_t} = \mu(C_t) \df{t} + \sigma(C_t) \df{B_t},
     \]
-    where $B_t$ is a Brownian motion and $\mu, \sigma \in C(\R)$. \\
-    We then have $\bL_C = \mu(x) \frac{\partial}{\partial x} + \frac{1}{2} \big ( \sigma(x) \big )^2 \frac{\partial^2}{\partial x^2}$ (where we restrict domain to $f \in C^2(\R)$). \\
+    where $B_t$ is a Brownian motion and $\mu, \sigma$ are both Lipschitz continuous. \\
+    We then have $\bL_C = \mu(x) \frac{\partial}{\partial x} + \frac{1}{2} \big ( \sigma(x) \big )^2 \frac{\partial^2}{\partial x^2}$ (where we restrict domain to $f \in C^2(\R)$ with $f'$ and $f''$ bounded).
+\iffalse
     \proof
     Using Itô's lemma and the SDE for $f \in C^2$ we find,
     \[
         f(C_t) = f(C_0) + \int_0^t f'(C_u) \df{C_u} + \frac{1}{2} \int_0^t f''(C_u) \df{\la C, C \ra_u} =
     \]
     \[
-        f(C_0) + \int_0^t f'(C_u) \mu(C_t) \df{t} + \int_0^t f'(C_u) \sigma(C_t) \df{B_t} + \frac{1}{2} \int_0^t f''(C_u) \big ( \sigma(C_u) \big )^2 \df{t}.
+        f(C_0) + \int_0^t f'(C_u) \mu(C_u) \df{t} + \int_0^t f'(C_u) \sigma(C_u) \df{B_u} + \frac{1}{2} \int_0^t f''(C_u) \big ( \sigma(C_u) \big )^2 \df{u}.
     \]
+    % The following line is not correct, it is only a local martingale and so does not necessarily disappear in expectation
     Note that when we take the expectation of the above, the third term becomes 0. \\
     \[
         (\bL_C f)(x) = \lim_{t \to 0^+} \frac{\E^x \Big [
-            \int_0^t f'(C_u) \mu(C_t) \df{t} +
+            \int_0^t f'(C_u) \mu(C_u) \df{u} +
             \frac{1}{2} \int_0^t f''(C_u) \big ( \sigma(C_u) \big )^2 \df{t}
         \Big ]}{t} =
     \]
@@ -965,6 +971,7 @@ Let us start with a lemma that will help us find $\bL_X$,
     \]
     This proves the desired result. \\
     \QED
+\fi
 \end{lemma}
 
 We now direct our attention back to the problem at hand. \\
@@ -1446,7 +1453,10 @@ In this most recent example, we have again used our Markov intuition to find sui
 Using these conditions we then found an explicit characterization for the candidate value function and used other tools to verify it is indeed correct. \\
 
 \phantomsection\section*{Acknowledgements}
-The author would like to thank Dr.\ Mihai S\^{i}rbu for his guidance and supervision throughout this thesis.
+The author would like to thank Dr.\ Mihai S\^{i}rbu for his guidance and supervision throughout this thesis. \\
+The author would also like to thank the University of Texas at Austin for offering the academic flexibility that made this thesis possible.
+
+\phantomsection\section*{Editing Assistance}
 Spelling, punctuation, and grammar editing was assisted by Claude Sonnet (Anthropic, 2025), a large language model.
 
 \phantomsection\section*{References}\label{sec:refs}
@@ -1486,6 +1496,11 @@ Spelling, punctuation, and grammar editing was assisted by Claude Sonnet (Anthro
         \textit{Functional Analysis for the Applied Mathematician}.
         Textbooks in Mathematics.
         Routledge, 2025.
+
+    \item[{[PR]}] Protter, Philip E.
+        \textit{Stochastic Integration and Differential Equations}, 2nd ed.
+        Stochastic Modelling and Applied Probability, Vol.\ 21.
+        Springer, 2005.
 \end{description}
 
 \end{document}
