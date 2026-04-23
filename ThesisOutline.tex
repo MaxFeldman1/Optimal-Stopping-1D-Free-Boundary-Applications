@@ -350,7 +350,7 @@ Next we present a foundational theorem that is most commonly proved with extensi
 \end{defn}
 
 \begin{defn}
-    A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional Brownian motion (Brownian motion)} if:
+    A stochastic process $(B_t)_{t \geq 0}$ starting at 0 and with continuous paths on an event of probability 1 is said to be a \textbf{1-dimensional Brownian motion (Brownian motion/Wiener process)} if:
     \begin{enumerate}
         \item[(i)] For all $s < t$ we have that $(B_t - B_s)$ has a normal distribution with mean $0$ and $\sigma^2 = t-s$.
         \item[(ii)] For all finite collections of deterministic times $0 \leq t_0 < t_1 < t_2 < t_3 < .. < t_n$ we have that the collection of increments as random variables $\{B_{t_k} - B_{t_{k-1}}\}_{k=1}^n$ is independent.
@@ -362,13 +362,16 @@ Next we present a foundational theorem that is most commonly proved with extensi
 \end{lemma}
 
 \begin{thm}
-    \textbf{Paul Levy Characterization of Brownian Motion} \\
-    Given a local martingale $(X_t)_{t \geq 0}$ starting at 0 on the filtered probability space $\cFPS$ the following are equivalent:
+    \textbf{Paul Levy Characterization of Brownian Motion} $\text{[RY]}$ \\
+    Given a continuous local martingale $(X_t)_{t \geq 0}$ starting at 0 on the filtered probability space $\cFPS$ we have that % the following are equivalent:
+    $X_t$ is a Brownian motion on the specified filtered probability space if and only if  $\la X, X \ra_t = t$ for all $t \in \R_+$.
+    \iffalse
     \begin{enumerate}
         \item[(i)] $X_t$ is a Brownian motion on the specified filtered probability space.
-        \item[(ii)] $X_t$ has continuous paths and $X_t^2 - t$ is a local martingale.
-        \item[(iii)] $\la X, X \ra_t = t$ for $t \in \R_+$.
+        % \item[(ii)] $X_t$ has continuous paths and $X_t^2 - t$ is a local martingale.
+        \item[(ii)] $\la X, X \ra_t = t$ for $t \in \R_+$.
     \end{enumerate}
+    \fi
 \end{thm}
 
 \begin{defn}
@@ -623,7 +626,7 @@ We introduce the idea of the Markov Property, which is motivated by the idea tha
 We introduce a piece of machinery specific to strong Markov processes that will be useful later:
 \begin{defn}
     Given a real-valued strong Markov process $(X_t)_{t \geq 0}$ we define the operator $\bL_X$ acting on functions $f: \R \to \oR$. \\
-    We let $\Prb^x$ be a probability measure giving $\Prb^x = 1$ to the event that $X_0 = x$ for some $x \in \R$. ($X_t$ is still a strong Markov process with the same transition function regardless of choice of $x$.) \\
+    We let $\Prb^x$ be a probability measure giving probability of 1 to the event that $X_0 = x$ for some $x \in \R$. ($X_t$ is still a strong Markov process with the same transition function regardless of choice of $x$.) \\
     We let $\E^x$ represent integration w.r.t. the probability measure $\Prb^x$. \\
     We now introduce the \textbf{infinitesimal generator} $\bL_X$.
     The intuition behind the infinitesimal generator is that we want to capture the infinitesimal change in expectation of a function of $X_t$ from a given starting state $x$. It is defined as follows,
@@ -710,7 +713,7 @@ In the remainder of this subsection we present the main results of Appendix D fr
 \end{assume}
 \cheekynewline
 
-\begin{lemma} [MMF]
+\begin{lemma} $\text{[MMF]}$
     For all $v \in \cS$ and $\tau \in \cS_v$ the family $\{\E[Y_\rho \quantifyspace \cF_v]\}_{\rho \in \cS_v}$ is closed
     under pairwise maximization. Furthermore, there is a sequence $\{\rho_n\}_{n=1}^\infty$ of stopping times in $\cS_\tau$ s.t.
     the sequence $\{\E [Y_{\rho_n} \quantifyspace \cF_v] \}_{n=1}^\infty$ is non-decreasing and
@@ -724,7 +727,7 @@ In the remainder of this subsection we present the main results of Appendix D fr
 \end{lemma}
 
 The reader may note that $Z_v$ is a random variable that has been defined as a function of a stopping time $v \in \cS$. It is not clear that this definition of $Z$ is consistent; that is, if we consider the process given by $Z$ at deterministic times, we do not know that stopping this process at $v$ is the same as what we defined as $Z_v$. We address this issue now and build some understanding of the relation between $Z$ and $Y$.
-\begin{claim} [MMF]
+\begin{claim} $\text{[MMF]}$
     For all $v, \sigma \in \cS$ and $\tau \in \cS_v$ we have
     \[
         Z_v = Z_\sigma \spc \als \text{ on } \{\sigma = v\},
@@ -830,7 +833,7 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
 \end{defn}
 Observe that our proof of Claim 1 also holds if we replace $Z$ with $Z^*$, so $Z^*$ has all the outlined properties. \\
 We now want to show right continuity of a modification of $Z^*$:
-\begin{claim} [MMF]
+\begin{claim} $\text{[MMF]}$
     For any $v \in \cS$ and a sequence $v_n \subset \cS_v^*$ s.t. $\lim_{n \to \infty} v_n = v$ a.s., we have,
     \[
         Z_v = Z_v^* \vee Y_v \spc \als,
@@ -840,7 +843,7 @@ We now want to show right continuity of a modification of $Z^*$:
     \]
 \end{claim}
 
-\begin{cor} [MMF]
+\begin{cor} $\text{[MMF]}$
     For any $v \in \cS$, we have $Z_v^* = Z_v$ a.s..
 \end{cor}
 
@@ -850,7 +853,7 @@ We now want to show right continuity of a modification of $Z^*$:
     We call $Z^0$ the \textbf{Snell Envelope} of $Y$.
 \end{defn}
 
-\begin{thm} [MMF]
+\begin{thm} $\text{[MMF]}$
     Any stopping time $\tau_*$ is optimal starting from time 0 (meaning $\E[Y_{\tau_*}] = Z^0_0 = \sup_{\rho \in \cS} \E[Y_\rho]$) if and only if
     \[
         Z^0_{\tau_*} = Y_{\tau_*} \spc \als,
@@ -895,7 +898,7 @@ We now want to show right continuity of a modification of $Z^*$:
     \QED
 \end{thm}
 
-\begin{thm} [MMF]
+\begin{thm}
     Given a stopping time $\tau \in \cS$ we define the following,
     \[
         \theta_\tau^* := \inf \{t \geq \tau \quantifyspace Z^0_t = Y_t \} \wedge T.
@@ -1418,7 +1421,7 @@ Due to continuity of $c \mapsto W_{c}(z)$ and the fact that all $e^\tau(|Z_\tau|
 \end{hlt}
 \cheekynewline
 Putting it all together, we have now shown,
-\begin{thm}
+\begin{thm} $\text{[PS]}$
     Given $c \geq r$,
     \[
         V(t, x) = \sup_\tau \E^x  \Big ( |X_\tau| - c \sqrt{t + \tau} \Big ) =
