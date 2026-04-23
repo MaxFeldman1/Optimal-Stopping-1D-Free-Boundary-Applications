@@ -281,8 +281,9 @@ Next we present a foundational theorem that is most commonly proved with extensi
     We say that a filtration $\cFi$ for a probability space $\PS$ satisfies the \textbf{usual conditions} if $\mathcal{W} := \{A \in \cF \quantifyspace \Prb[A] = 0\}$ is contained in $\cF_0$
     and $(\cF_t)_{t \geq 0}$ is right continuous, i.e.
     \[
-        \forall t \geq 0 \spc \spc \cF_t = \cF_t^+ = \bigcap_{s > t} \cF_s.
+        \forall t \geq 0 \spc \spc \cF_t = \cF_{t^+} = \bigcap_{s > t} \cF_s.
     \]
+    Note that under the usual conditions all optional times are stopping times and for a stopping time $\tau$ we have $\cF_\tau = \cF_{\tau^+}$.
 \end{defn}
 
 \begin{defn}
@@ -627,7 +628,7 @@ We introduce a piece of machinery specific to strong Markov processes that will 
 \begin{defn}
     Given a real-valued strong Markov process $(X_t)_{t \geq 0}$ with transition function $P$, we define the operator $\bL_X$ acting on functions $f: \R \to \oR$ for which the quantity we are about to introduce is well defined. \\
     %We let $\Prb^x$ be a probability measure giving probability of 1 to the event that $X_0 = x$ for some $x \in \R$. ($X_t$ is still a strong Markov process with the same transition function regardless of choice of $x$.) \\
-    We take $\Prb^x$ to be a probability measure that makes $X$ strong Markov with transition function $P$ and s.t. $Prb^x[X_0 = x] = 1$. \\
+    We take $\Prb^x$ to be a probability measure that makes $X$ strong Markov with transition function $P$ and s.t. $\Prb^x[X_0 = x] = 1$. \\
     We let $\E^x$ represent integration w.r.t. the probability measure $\Prb^x$. \\
     We now introduce the \textbf{infinitesimal generator} $\bL_X$.
     The intuition behind the infinitesimal generator is that we want to capture the infinitesimal change in expectation of a function of $X_t$ from a given starting state $x$. It is defined as follows,
@@ -1430,9 +1431,15 @@ We also have the following theorem for the $c < r$ case. \\
     \proof
  
     Take $\alpha := \frac{c + r}{2} \in (c, r)$. \\
-    We have already seen, en route to the proof of the previous theorem, that $\tau := \inf \{t \quantifyspace |Z_t| \geq \alpha\} \in T^z$ for all $z$. \\
-    Similarly, $\rho_t := \inf \{s \geq t \quantifyspace |Z_s| \geq \alpha \} \in T^z$ for all $z$. \\
-    And so for any fixed $t$,
+    We have already seen, en route to the proof of the previous theorem, that
+    \[
+        \E^z[e^\tau] < \infty \spc \forall z.
+    \]
+    Where $\tau := \inf \{t \geq 0 \quantifyspace |Z_t| \geq \alpha\}$. \\
+    Similarly, for $\rho_t := \inf \{s \geq t \quantifyspace |Z_s| \geq \alpha \}$ we have $\E^z [e^{\rho_t}] < \infty $ for all $z$. \\
+    % In the proof of Theorem 12 we saw that $\E^z[e^{\rho_0}] < \infty$.
+    % In a similar manner to $\rho_0$ we see that $\E^z[e^{\rho_t}] < \infty$.
+    Now for any fixed $t$,
     \[
         \Prb^z[\{\rho_t = \infty\}] = 0 \spc \spc \forall z.
     \]
