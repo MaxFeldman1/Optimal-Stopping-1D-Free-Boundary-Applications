@@ -953,29 +953,6 @@ Let us start with a lemma that will help us find $\bL_X$.
     \]
     where $B_t$ is a Brownian motion and $\mu, \sigma$ are both Lipschitz continuous. \\
     We then have $\bL_C = \mu(x) \frac{\partial}{\partial x} + \frac{1}{2} \big ( \sigma(x) \big )^2 \frac{\partial^2}{\partial x^2}$ (where we restrict the domain to $f \in C^2(\R)$ with $f'$ and $f''$ bounded).
-\iffalse
-    \proof
-    Using Itô's lemma and the SDE for $f \in C^2$ we find,
-    \[
-        f(C_t) = f(C_0) + \int_0^t f'(C_u) \df{C_u} + \frac{1}{2} \int_0^t f''(C_u) \df{\la C, C \ra_u} =
-    \]
-    \[
-        f(C_0) + \int_0^t f'(C_u) \mu(C_u) \df{t} + \int_0^t f'(C_u) \sigma(C_u) \df{B_u} + \frac{1}{2} \int_0^t f''(C_u) \big ( \sigma(C_u) \big )^2 \df{u}.
-    \]
-    % The following line is not correct, it is only a local martingale and so does not necessarily disappear in expectation
-    Note that when we take the expectation of the above, the third term becomes 0. \\
-    \[
-        (\bL_C f)(x) = \lim_{t \to 0^+} \frac{\E^x \Big [
-            \int_0^t f'(C_u) \mu(C_u) \df{u} +
-            \frac{1}{2} \int_0^t f''(C_u) \big ( \sigma(C_u) \big )^2 \df{t}
-        \Big ]}{t} =
-    \]
-    \[
-        f'(x) \mu(x) + f''(x) (\sigma(x))^2.
-    \]
-    This proves the desired result. \\
-    \QED
-\fi
 \end{lemma}
 
 We now direct our attention back to the problem at hand. \\
@@ -1308,21 +1285,21 @@ In order to maintain continuity, we must select $- A = \frac{z_* - c}{M \big (\f
 Also note that in order to maintain $W \in C^1$, we need to have that $W'(\pm z_*) = \pm 1$, and this gives us another relation for $A$. \\
 Using $\frac{d}{\df{x}} M(a,b,x) = \frac{a}{b} M(a + 1, b+1, x)$, we find,
 \[
-    A = \Big ( z_* M \big (\frac{1}{2}, \frac{3}{2}, \frac{z_*^2}{2} \big ) \Big )^{-1} = \frac{-(z_* - c)}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}.
+    A = \Big ( z_* M \Big (\frac{1}{2}, \frac{3}{2}, \frac{z_*^2}{2} \Big ) \Big )^{-1} = \frac{-(z_* - c)}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}.
 \]
 Rearranging gives,
 \[
-    (c - z_*) z_* = \frac{M (-1/2, 1/2, z^2_*/2)}{M(1/2,3/2,z_*^2/2)}.
+    (c - z_*) z_* = \frac{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z^2_*}{2} \big )}{M \big (\frac{1}{2},\frac{3}{2},\frac{z_*^2}{2} \big )}.
 \]
 \begin{hlt}
 From the intermediate value theorem, we find that there must be some $z_* \in (0, r)$ satisfying the above.
 Rearranging again, we find that such a $z_*$ is a zero of,
 \[
-    q(z) = (c - z)z M(1/2,3/2,z^2/2) - M(-1/2,1/2,z^2/2).
+    q(z) = (c - z)z M \Big ( \frac{1}{2},\frac{3}{2},\frac{z^2}{2} \Big ) - M \Big (\frac{-1}{2},\frac{1}{2},\frac{z^2}{2} \Big ).
 \]
 Taking the derivative of the above, we find,
 \[
-    q'(z) = \Big ( \frac{(c - z)z^2}{3} \Big ) M(3/2,5/2,z^2/2) + (c - z) M(1/2,3/2,z^2/2).
+    q'(z) = \Big ( \frac{(c - z)z^2}{3} \Big ) M \Big (\frac{3}{2},\frac{5}{2},\frac{z^2}{2} \Big ) + (c - z) M \Big ( \frac{1}{2},\frac{3}{2},\frac{z^2}{2} \Big ).
 \]
 Note that $q'$ is strictly positive on $z \in (0, c) \supset (0, r)$, and so a positive root $z_* \in (0, r)$ exists and is unique. We will now let $z_*$ denote this root. \\
 \end{hlt}
@@ -1385,7 +1362,7 @@ Since the random variable $G_{\tau_{z_*}}$ is non-positive, we can use monotone 
 \begin{hlt}
 If we can show that $\E[e^{\tau_{z_*}}] < \infty$, we will have shown $W(z) = W_*(z)$. \\
 \\
-Define $f(z) := \frac{M(-1/2,1/2,z^2/2)}{M(-1/2,1/2,z_*^2/2)} \geq 0$. \\
+Define $f(z) := \frac{M \big (\frac{-1}{2},\frac{1}{2},\frac{z^2}{2} \big )}{M \big (\frac{-1}{2},\frac{1}{2},\frac{z_*^2}{2} \big )} \geq 0$. \\
 Note that because $z_* \in (0, r)$, we have that the numerator and denominator of the above have the same sign for $z \in [0, z_*]$ and so $f(z)$ is non-negative for $z \in [0, z_*]$. \\
 \\
 Because $\bL_Z f = f$, using Itô's lemma, we find that $Y_t := e^t f(Z_t)$ is a local martingale. \\
