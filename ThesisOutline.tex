@@ -625,8 +625,9 @@ We introduce the idea of the Markov Property, which is motivated by the idea tha
 
 We introduce a piece of machinery specific to strong Markov processes that will be useful later:
 \begin{defn}
-    Given a real-valued strong Markov process $(X_t)_{t \geq 0}$ we define the operator $\bL_X$ acting on functions $f: \R \to \oR$. \\
-    We let $\Prb^x$ be a probability measure giving probability of 1 to the event that $X_0 = x$ for some $x \in \R$. ($X_t$ is still a strong Markov process with the same transition function regardless of choice of $x$.) \\
+    Given a real-valued strong Markov process $(X_t)_{t \geq 0}$ with transition function $P$, we define the operator $\bL_X$ acting on functions $f: \R \to \oR$ for which the quantity we are about to introduce is well defined. \\
+    %We let $\Prb^x$ be a probability measure giving probability of 1 to the event that $X_0 = x$ for some $x \in \R$. ($X_t$ is still a strong Markov process with the same transition function regardless of choice of $x$.) \\
+    We take $\Prb^x$ to be a probability measure that makes $X$ strong Markov with transition function $P$ and s.t. $Prb^x[X_0 = x] = 1$. \\
     We let $\E^x$ represent integration w.r.t. the probability measure $\Prb^x$. \\
     We now introduce the \textbf{infinitesimal generator} $\bL_X$.
     The intuition behind the infinitesimal generator is that we want to capture the infinitesimal change in expectation of a function of $X_t$ from a given starting state $x$. It is defined as follows,
@@ -979,7 +980,7 @@ Due to sub-optimality of exercise above $b$,
     V(x) > (K - x)^+, \spc x > b.
 \]
     \item[(iv)]
-Necessitated for $V$ to be $C^1$ (we want $C^1$ so that we can apply Itô's lemma or Itô-Tanaka-Meyer), and given we expect (ii) to hold,
+Necessitated for $V$ to be $C^1$ (we want $C^1$ so that we can apply Itô's lemma or Itô-Tanaka-Meyer, this is often called the \textbf{smooth fit principle}), and given we expect (ii) to hold,
 \[
     V'(x) = -1, \spc x \leq b.
 \]
@@ -1005,7 +1006,9 @@ And so we introduce the candidate,
     \end{cases}.
 \]
 Now our task becomes finding suitable values of $b$ and $C$. \\
-We need the candidate and its derivatives to be continuous at $b$, so we get the following system:
+We need the candidate to be continuous at $b$. Also we want to be able to apply Itô's lemma or Itô-Tanaka-Meyer, and so the smooth fit principle tells us that we want $H'$ to be continuous at $b$. \\
+%We need the candidate and its derivative to be continuous at $b$, 
+Now we get the following system:
 \[
     H(b) = K - b = C b^{-\gamma},
 \]
@@ -1243,7 +1246,7 @@ We search for a candidate solution $W(z)$ that satisfies the following,
     \[
         W(z) \geq |z| - c \spc \spc \forall z.
     \]
-    \item[(iv)] To maintain $W \in C^1$ (so that we can hope to apply Itô's lemma or Itô-Tanaka-Meyer):
+    \item[(iv)] To maintain $W \in C^1$ so that we can hope to apply Itô's lemma or Itô-Tanaka-Meyer (smooth fit principle) we expect:
     \[
         W'(\pm z_*) = \pm 1.
     \]
@@ -1254,7 +1257,7 @@ We search for a candidate solution $W(z)$ that satisfies the following,
 \end{enumerate}
 
 \phantomsection\subsection*{IV.IV Deriving the Candidate}\label{sec:IV.IV}
-We introduce a function which will be helpful for characterizing the solution in the continuation region.
+Along the lines of chapter 10 of [PS], we now introduce a function which will be helpful for characterizing the solution in the continuation region.
 
 \begin{defn}
     The \textbf{Kummer confluent hypergeometric} function is given by,
@@ -1282,7 +1285,7 @@ From conditions (ii) and (v), we find $c \geq r$. This tells us that existence o
 We now assume that $c > r$ (we will handle $c = r$ later). \\
 \\
 In order to maintain continuity, we must select $- A = \frac{z_* - c}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}$. \\
-Also note that in order to maintain $W \in C^1$, we need to have that $W'(\pm z_*) = \pm 1$, and this gives us another relation for $A$. \\
+Also note due to the smooth fit principle we expect $W \in C^1$; we expect to have that $W'(\pm z_*) = \pm 1$, and this gives us another relation for $A$. \\
 Using $\frac{d}{\df{x}} M(a,b,x) = \frac{a}{b} M(a + 1, b+1, x)$, we find,
 \[
     A = \Big ( z_* M \Big (\frac{1}{2}, \frac{3}{2}, \frac{z_*^2}{2} \Big ) \Big )^{-1} = \frac{-(z_* - c)}{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \big )}.
