@@ -1338,7 +1338,7 @@ This shows that $W_*(z) \leq W(z)$. \\
 Now we want to show the reverse. \\
 Recall that for each $n$, we have that $(F^{\tau_n \wedge \tau_{z_*}}_t)_{t \geq 0}$ is a martingale. \\
 Also, we know from our construction of $W$ that $F_{\tau_{z_*}} = G_{\tau_{z_*}}$ on $\{\tau_{z_*} < \infty\}$, which has probability 1 under each $\Prb^z$. \\
-And since $(z_* - c) \leq 0$, for the non-trivial case of $|z| < z_*$,
+Because $(z_* - c) \leq 0$ and $W(z) < 0$ for $|z| \leq z_* < r$, for the non-trivial case of $|z| < z_*$,
 \[
     W(z) = \E^z[F_0] = \E^z [F_{\tau_n \wedge \tau_{z_*}}] = \E^z [ \ind{\tau_n > \tau_{z_*}} G_{\tau_{z_*}} ] + \E^z[\ind{\tau_n \leq \tau_{z_*}} F_{\tau_n}] \leq
 \]
