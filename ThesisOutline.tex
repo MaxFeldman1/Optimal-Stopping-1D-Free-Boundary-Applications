@@ -267,11 +267,8 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     If $S$ is a stopping time then $\cF_S$ can replace $\cF_{S^+}$ above.
 \end{thm}
 \cheekynewline
-Next we present a foundational theorem that is most commonly proved with extensive use of the upcrossing inequality.
-\begin{thm}
-    A (super) submartingale $(X_t)_{t \geq 0}$ with the property that the map $t \mapsto \E[X_t]$ is right-continuous has an RCLL modification. \\
-\end{thm}
 
+\iffalse
 \begin{thm}
     \textbf{Doob's Maximal Inequality} \\
     Given $(M_t)_{t \geq 0}$ a submartingale, we define $M_t^* := \sup_{0 \leq s \leq t} M_s^+$ and then for $p \in (1,\infty)$ we have,
@@ -279,6 +276,7 @@ Next we present a foundational theorem that is most commonly proved with extensi
         \E[(M_t^*)^p] \leq \Big ( \frac{p}{p-1} \Big )^p  \sspc \E[(M_t^+)^p].
     \]
 \end{thm}
+\fi
 
 \begin{defn}
     We say that a filtration $\cFi$ for a probability space $\PS$ satisfies the \textbf{usual conditions} if $\mathcal{W} := \{A \in \cF \quantifyspace \Prb[A] \in \{0,1\}\}$ is contained in $\cF_0$
@@ -288,6 +286,15 @@ Next we present a foundational theorem that is most commonly proved with extensi
     \]
     Note that under the usual conditions all optional times are stopping times and for a stopping time $\tau$ we have $\cF_\tau = \cF_{\tau^+}$.
 \end{defn}
+
+
+Next we present a foundational theorem that is most commonly proved with extensive use of the upcrossing inequality.
+\begin{thm} $\text{[KS]}$ Theorem 1.3.13.
+    Given a (super) submartingale $(X_t)_{t \geq 0}$ on a filtered probability space where the filtration satisfies the usual conditions.
+    $X_t$ has a right-continuous with left limits (RCLL) modification if and only if the map $t \mapsto \E[X_t]$ is right-continuous.
+    Further, when the RCLL modification exists, it may be chosen to be adapted to the filtration.
+\end{thm}
+
 
 \begin{defn}
     Given $(M_t)_{t \geq 0}$ RC and adapted on $\cFPS$, we say that $(M_t)_{t \geq 0}$ is a \textbf{local martingale}
@@ -454,7 +461,7 @@ Next we present a foundational theorem that is most commonly proved with extensi
     \]
     This extends to $f$ having a multidimensional input. \\
     Say that $(X_t)_{t \geq 0}$ is a $d$-dimensional semimartingale, meaning $X^k$ is a semimartingale for every dimension $k=1, .., d$. \\
-    In the case that we have $f: \R^d \to \R$ in $C^2$ then,
+    In the case that we have $f: \R^d \to \R$ in $C^2$ then, for all $t \geq 0$ $\Prb$-a.s.
     \[
     f(X_t) = f(X_0) + \sum_{i=1}^d \int_0^t f_{e_i}(X_u) \df{X_u^i} + \frac{1}{2} \sum_{1 \leq j, k \leq d} \int_0^t f_{e_j, e_k}(X_u) \df{\la X^j, X^k \ra_u},
     \]
@@ -683,7 +690,7 @@ Specifically, we define $A := \{\E[Y_\tau - Y_\theta \quantifyspace \cF_{\tau \w
 This observation tells us that
 given a fixed $\tau \in \cS$, we have that $\{\E[Y_\theta \quantifyspace \cF_\tau] \}_{\theta \in \cS_\tau}$ is closed under pairwise maximization.
 At a glance, one might hope that this family would have a maximal element in an $\omega$ by $\omega$ sense, but we must recall that each of these elements is only defined up to a.s. equality, so if we tried to make sense of such an $\omega$ by $\omega$ supremum we could get the random variable $\omega \mapsto \infty$. 
-This should be enough to tell you that the essential supremum is the right tool. We can now get to the main definition. 
+This should be enough to suggest that the essential supremum is the right tool. We can now get to the main definition. 
 \\
 \\
 In the remainder of this subsection we present the main results of Appendix D from [MMF] about the Snell envelope. \\
@@ -850,7 +857,7 @@ We now want to show right continuity of a modification of $Z^*$:
     We call $Z^0$ the \textbf{Snell Envelope} of $Y$.
 \end{defn}
 
-\begin{thm} $\text{[MMF]}$
+\begin{thm} $\text{[MMF] Theorem 9 in Appendix D.}$
     Any stopping time $\tau_*$ is optimal starting from time 0 (meaning $\E[Y_{\tau_*}] = Z^0_0 = \sup_{\rho \in \cS} \E[Y_\rho]$) if and only if
     \[
         Z^0_{\tau_*} = Y_{\tau_*} \spc \als,
@@ -859,6 +866,7 @@ We now want to show right continuity of a modification of $Z^*$:
     \[
         \big ( Z^0_{t \wedge \tau_*} \big )_{t \geq 0} \text{ is a martingale.}
     \]
+\iffalse
     \proof
     First we assume that $\tau_*$ is optimal. \\
     From the definition of $Z$ we have,
@@ -873,15 +881,20 @@ We now want to show right continuity of a modification of $Z^*$:
     \[
         \E[ Z_{\tau_*}^0 - Y_{\tau_*}] = 0.
     \]
-    And since the integrand above is $\geq 0$ a.s., we must have that the integrand is equal to 0 a.s. Thus,
+    And since the integrand above is non-negative a.s., we must have that the integrand is equal to 0 a.s. Thus,
     \[
         Z_{\tau_*}^0 = Y_{\tau_*} \spc \spc \als.
     \]
     Now it remains to show that $(Z^0)^{\tau_*}$ is a martingale. \\
     Fix $\theta$ any stopping time less than or equal to $\tau_*$. \\
-    From Claim 2 and from the definition of $Z$ along with $Z_{\tau_*}^0 = Y_{\tau_*}$ a.s., we get,
+    From the definition of $Z_\theta$, we get,
     \[
-        \E[Y_{\tau_*} \quantifyspace \cF_\theta] = \E[Z_{\tau_*}^0 \quantifyspace \cF_\theta] \leq Z^0_\theta \leq \E[Y_{\tau_*} \quantifyspace \cF_\theta] \spc \spc \als.
+        \E[Y_{\tau_*} \quantifyspace \cF_\theta] \leq Z_\theta = Z^0_\theta \spc \spc \als.
+    \]
+    Define $A := \{Z_\theta > \E[Y_{\tau_*} \quantifyspace \cF_\theta]\}$. \\
+    In the case that $\Prb[A] > 0$, the stopping time $\rho := \theta 1_A + \tau_* 1_{A^c}$ would break optimality of $\tau_*$, so we must have,
+    \[
+        Z^0_\theta = Z_\theta \leq \E[Y_{\tau_*} \quantifyspace \cF_\theta] \spc \spc \als.
     \]
     And so we find $Z_\theta^0 = \E[Y_{\tau_*} \quantifyspace \cF_\theta]$. \\
     The fact that $(Z^0)^{\tau_*}$ is a martingale then follows directly from the tower property of conditional expectation. \\
@@ -893,6 +906,7 @@ We now want to show right continuity of a modification of $Z^*$:
         \sup_{\rho \in \cS} \E[Y_\rho] = Z_0^0 = \E[Z_{\tau_*}^0 \quantifyspace \cF_0] = \E[Z_{\tau_*}] = \E[Y_{\tau_*}] \spc \spc \als.
     \]
     \QED
+\fi
 \end{thm}
 
 \begin{thm} $\text{[MMF] Theorem 12 in Appendix D}$. 
@@ -961,12 +975,13 @@ For now, we assume that the optimal stopping time is a hitting time of the form 
 We now list some properties that we expect $V$ to have and some reasoning why we expect this (again, we do not prove them; they just help us arrive at a candidate). \\
 \begin{enumerate}
     \item[(i)]
-If $\tau_b$ is optimal, we expect that the Snell envelope of $(e^{-tr} (K - X_{t})^+)_{t \geq 0}$ stopped at $t \wedge \tau_b$ is a martingale and so,
+If $\tau_b$ is optimal, we expect that the Snell envelope of $(e^{-tr} (K - X_{t})^+)_{t \geq 0}$ stopped at $t \wedge \tau_b$ is a martingale.
+We expect the Snell envelope to be $(e^{-tr} V(X_t))_{t \geq 0}$. To have the change in expectation of $V(X_t)$ cancel with change in the time component we expect,
 \[
     \bL_X V = r V, \spc  x > b.
 \]
     \item [(ii)]
-Due to optimality of $\tau_b$
+Due to optimality of $\tau_b$,
 \[
     V(x) = (K - x)^+, \spc x \leq b.
 \]
@@ -1041,13 +1056,13 @@ Now that we have our candidate, our task is to verify it. \\
         e^{-rt} H(X_t) = H(X_0) + \int_0^t e^{-ru } (\bL_X H - r H)(X_u) \df{u} +
     \]
     \[
-        \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u} \spc \spc \forall t \geq 0 \spc \als
+        \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u} \spc \spc \forall t \geq 0 \spc \als.
     \]
     First, note that in the domain $(b, \infty)$, we have $(\bL_X H - r H)(x) = 0$ from our construction of $V$. \\
     In the $(0,b)$ domain, we have $(\bL_X H - rH)(x) = -rx - r(K - x) = -rK < 0$ and so we have $(\bL_X H - rH)(x) \leq 0$ where it is defined. \\
     \\
     Now we define $M_t := \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u}$. \\
-    Since $W$ is a martingale and the integrand is adapted and continuous, it is progressively measurable and in $L^2_{loc}(W)$. Thus, from Theorem 6, we have that $M_t$ is a local martingale starting at 0. \\
+    Since $W$ is a martingale and the integrand is adapted and continuous, it is progressively measurable and in $L^2_{loc}(W)$. Thus, from Theorem 5, we have that $M_t$ is a local martingale starting at 0. \\
     We select a localizing sequence of $M_t$, say $\{\tau_n\}_{n=1}^\infty$. \\
     \\
     Due to the integrand in the $du$ integral being negative we have,
@@ -1064,13 +1079,13 @@ Now that we have our candidate, our task is to verify it. \\
     \]
     Now fix a stopping time $\tau$ and consider
     \[
-        e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n}) \leq H(X_0) + M_{\tau \wedge \tau_n}.
+        e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n})^+ \leq H(X_0) + M_{\tau \wedge \tau_n}.
     \]
     Fix some $x > 0$ to be the starting point of our process. \\
     Take expectation $\E^x$ of both sides to see,
     \[
         \E^x \big [
-            e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n})
+            e^{-r \tau \wedge \tau_n} (K - X_{\tau \wedge \tau_n})^+
         \big ] \leq H(x).
     \]
     Note that the above holds for all $n$. Now apply Fatou's lemma:
@@ -1128,17 +1143,18 @@ Now take conditional expectation w.r.t. $\cF_\tau$ and, because $M^{\tau_n}$ is 
 \]
 Now, due to the fact that the inside of the conditional expectation above is dominated by $2K$, we can use dominated convergence for conditional expectation to get,
 \[
-    \E[e^{-r \theta}(K - X_\theta) \quantifyspace \cF_\tau] \leq e^{-r \tau}V(X_\tau) \spc \als.
+    \E[e^{-r \theta}(K - X_\theta)^+ \quantifyspace \cF_\tau] \leq e^{-r \tau}V(X_\tau) \spc \als.
 \]
-This demonstrates that $\esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)] \leq e^{-r \tau} V(X_\tau)$ a.s.. \\
+This demonstrates that $\esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)^+] \leq e^{-r \tau} V(X_\tau)$ a.s.. \\
 \\
 Now we want to show the reverse. \\
 We can decompose $F_t := e^{-rt} V(X_{t}) = V(x) + M_t - A_t$. \\
+Now we fix some $\tau \in \cS$. \\
 We define $\rho := \inf \{t \quantifyspace t \geq \tau, \sspc X_t \leq b \}$. \\
-We note that $A_t = \int_0^t e^{-ru} (\bL_X H - r H)(X_u) \df{u}$ is constant on the interval $[\tau, \rho]$. \\
+We note that $A_t = \int_0^t e^{-ru} (\bL_X H - r H)(X_u) \df{u}$ is constant on the time interval $[\tau, \rho]$. \\
 \\
 We consider $\{\tau_n\}_{n=1}^\infty$ to be a localizing sequence of $(M^{\rho}_t)_{t \geq 0}$. \\
-Now we fix some $\tau \in \cS$ and some $n \in \N$. \\
+Select some $n \in \N$. \\
 From properties of conditional expectation we find,
 \[
     F_{\tau \wedge \tau_n} = \E[F_{\rho \wedge \tau_n} \quantifyspace \cF_{\tau \wedge \tau_n}] =
@@ -1183,8 +1199,8 @@ Now apply Lemma 12 to get,
 \begin{remark}
     The stopping problem in this section is no longer of a time-homogeneous structure;
     % note that $|X_\tau| - c \sqrt{t + \tau}$ is not strong Markov due to the structure of the time term; 
-    in fact, it does not seem that this is a deterministic function of a time homogenous strong Markov process.
-    This said, when we have some extra time dependence we can introduce time into a new state space, i.e., if we had state space $(E, \cE)$ and a time homogeneous strong Markov process $X_t$ on this space we can construct state space $(E \times \R_+, \cE \otimes \cB(\R_+))$ and in this new state space we can reasonably expect to have the time homogeneous strong Markov property for $(X_t, t)$.
+    in fact, it does not seem that this is a deterministic function of a time-homogenous strong Markov process.
+    This said, when we have some extra time dependence we can introduce time into a new state space, i.e., if we had state space $(E, \cE)$ and a time-homogeneous strong Markov process $X_t$ on this space we can construct state space $(E \times \R_+, \cE \otimes \cB(\R_+))$ and in this new state space we can reasonably expect to have the time-homogeneous strong Markov property for $(X_t, t)$.
     This should give us intuition that the optimal stopping time for such problems is a function only of state in the sense of $(E, \cE)$ and of time. \\
 \end{remark}
 
@@ -1319,7 +1335,7 @@ and so we get,
     F_t = F_0 - A_t + M_t.
 \]
 Note that $\bL_Z W + W \leq 0$ and so $A_t$ is non-decreasing.
-Also, from Theorem 6, we get that $M_t$ is a local martingale starting at 0; let $\{\tau_n\}_{n=1}^\infty$ be a localizing sequence of bounded stopping times. \\
+Also, from Theorem 5, we get that $M_t$ is a local martingale starting at 0; let $\{\tau_n\}_{n=1}^\infty$ be a localizing sequence of bounded stopping times. \\
 \\
 For the sake of convenience we define $G_t := e^t (|Z_t| - c) \leq e^t W(Z_t) = F_t$. \\
 Fix some stopping time $\tau$ s.t. $\E^z[e^\tau] < \infty$ and some $n \in \N$:
@@ -1402,7 +1418,7 @@ Putting it all together, we have now shown,
     \[
         \tau_* = \inf \{s > 0 \quantifyspace |X_s| \geq z_* \sqrt{t + s}\}.
     \]
-    For $c = r$, the stopping times $\tau_*$ from Theorem 12 are approximately optimal if we let $c \downarrow r$. \\
+    For $c = r$, the stopping times $\tau_*$ from the $c > r$ case are approximately optimal if we let $c \downarrow r$. \\
 \end{thm}
 \cheekynewline
 We also have the following theorem for the $c < r$ case. \\
