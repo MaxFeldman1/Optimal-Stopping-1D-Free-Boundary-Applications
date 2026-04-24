@@ -156,7 +156,7 @@ We say that $X_t$ is a \textbf{submartingale} with respect to $\cFi$ if \\
     \forall t < s \spc \spc X_t \leq \E[ X_s \quantifyspace \cF_t] \spc  \als
 \]
 and $X_t$ is $\cF_t$-measurable and is integrable w.r.t. $\Prb$ for all $t \geq 0$. \\
-If $X_t \in \cF_t$ and $X_t$ is integrable for all $t \geq 0$, and the reverse inequality holds, we say that $(X_t)_{t \geq 0}$ is a \textbf{supermartingale} with respect to $\cFi$. \\
+If $X_t $ is $\cF_t$-measurable and $X_t$ is integrable for all $t \geq 0$, and the reverse inequality holds, we say that $(X_t)_{t \geq 0}$ is a \textbf{supermartingale} with respect to $\cFi$. \\
 If $(X_t)_{t \geq 0}$ is both a submartingale and a supermartingale with respect to $\cFi$ then we say that $(X_t)_{t \geq 0}$ is a \textbf{martingale} with respect to $\cFi$. \\
 \end{defn}
 
@@ -185,7 +185,7 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{defn}
 
 \begin{lemma} \textbf{Upcrossing Inequality} \\
-    Given $(X_t)_{t \geq 0}$ an RC-submartingale and times $s < t$, we have,
+    Given $(X_t)_{t \geq 0}$ a right-continuous submartingale and times $s < t$, we have,
     \[
         \E[U_{[s,t]}(X, [a,b])] \leq \Big ( \E[X_t^+] + |a| \Big ) (b - a)^{-1}.
     \]
@@ -257,11 +257,15 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
 \end{defn}
 
 \begin{thm}
-    \textbf{Optional Sampling} \\
+    \textbf{Optional Sampling} $\text{[KS]}$
     Assume that $(M_t)_{t \geq 0}$ is a right-continuous submartingale on $\cFPS$ and that $S, T$ are optional times s.t. $0 \leq S \leq T$. \\
-    If $(M_{t \wedge T}^+)_{t \geq 0}$ is U.I. then $M_S \leq \E[M_T \quantifyspace \cF_{S^+}]$.
+    If $(M_{t \wedge T})_{t \geq 0}$ is U.I. then
+    \[
+        M_S \leq \E[M_T \quantifyspace \cF_{S^+}].
+    \]
+    If $S$ is a stopping time then $\cF_S$ can replace $\cF_{S^+}$ above.
 \end{thm}
-
+\cheekynewline
 Next we present a foundational theorem that is most commonly proved with extensive use of the upcrossing inequality.
 \begin{thm}
     A (super) submartingale $(X_t)_{t \geq 0}$ with the property that the map $t \mapsto \E[X_t]$ is right-continuous has an RCLL modification. \\
@@ -276,7 +280,7 @@ Next we present a foundational theorem that is most commonly proved with extensi
 \end{thm}
 
 \begin{defn}
-    We say that a filtration $\cFi$ for a probability space $\PS$ satisfies the \textbf{usual conditions} if $\mathcal{W} := \{A \in \cF \quantifyspace \Prb[A] = 0\}$ is contained in $\cF_0$
+    We say that a filtration $\cFi$ for a probability space $\PS$ satisfies the \textbf{usual conditions} if $\mathcal{W} := \{A \in \cF \quantifyspace \Prb[A] \in \{0,1\}\}$ is contained in $\cF_0$
     and $(\cF_t)_{t \geq 0}$ is right continuous, i.e.
     \[
         \forall t \geq 0 \spc \spc \cF_t = \cF_{t^+} = \bigcap_{s > t} \cF_s.
@@ -646,7 +650,7 @@ We now introduce a specific instance of a class of Markov Processes.
 \phantomsection\subsection*{\quad II.I Formulation of General Problem}\label{sec:II.I}
 The formulation and presentation used here draws on aspects from both the presentation in Section 2 of [S1] and the presentation in Appendix D of [MMF]. \\
 \\
-We are given a filtered probability space $\cFPS$ s.t. the filtration satisfies the usual conditions and we specifically impose $\cF_0 = \mathcal{W}$, i.e., $\cF_0$ is the null sets. \\
+We are given a filtered probability space $\cFPS$ s.t. the filtration satisfies the usual conditions and we specifically impose $\cF_0 = \mathcal{W}$, i.e., $\cF_0$ is sigma algebra of null sets and probability 1 sets. \\
 We are also given a time horizon $T \in (0, \infty]$. \\
 We are given $(Y_t)_{t \geq 0}$ a non-negative valued and right continuous stochastic process on our probability space. \\
 In the case that $T = \infty$ we consider $\cF_\infty := \sigma ( \cup_{t \geq 0} \cF_t)$ and $Y_\infty := \limsup_{t \to \infty} Y_t$. \\
@@ -890,7 +894,7 @@ We now want to show right continuity of a modification of $Z^*$:
     \QED
 \end{thm}
 
-\begin{thm}
+\begin{thm} $\text{[MMF]}$
     Given a stopping time $\tau \in \cS$ we define the following,
     \[
         \theta_\tau^* := \inf \{t \geq \tau \quantifyspace Z^0_t = Y_t \} \wedge T.
@@ -985,7 +989,7 @@ Specifically we expect $V$ to satisfy,
 Seeing that we have a sum of a $V$ term, an $x V'$ term, and an $x^2 V''$ term, it makes sense to look for a polynomial solution where all elements of the same power cancel. \\
 We consider a solution of the form $x^p$; substituting this candidate, we need $p$ to satisfy,
 \[
-    x^2 \Big ( rp + \frac{\sigma^2}{2} p [p-1] - r \Big ) = 0 \spc \spc \forall x > b.
+    x^p \Big ( rp + \frac{\sigma^2}{2} p [p-1] - r \Big ) = 0 \spc \spc \forall x > b.
 \]
 Specifically, either $p = 1$ or $p = \frac{- 2 r}{\sigma^2}$. \\
 Intuitively, we expect $\lim_{x \to \infty} V(x) = 0$, so having a $p > 0$ term does not make much sense; this leaves us with $p = -\gamma := \frac{-2 r}{\sigma^2}$. \\
@@ -1325,7 +1329,7 @@ Take expectation $\E^z$ of both sides:
 \[
     \E^z[G_{\tau \wedge \tau_n}] \leq \E^z[F_0] = W(z).
 \]
-Because $-c e^\tau$ is an integrable lower bound of all $G_{\tau \wedge \tau_n}$, by Fatou's lemma,
+Because $\tau$ is chosen s.t. $\E^z[e^\tau] < \infty$, $-c e^\tau$ is an integrable lower bound of $G_{\tau \wedge \tau_n}$, by Fatou's lemma,
 \[
     \E^z [G_\tau] \leq W(z).
 \]
@@ -1350,7 +1354,7 @@ If we can show that $\E[e^{\tau_{z_*}}] < \infty$, we will have shown $W(z) = W_
 Define $f(z) := \frac{M \big (\frac{-1}{2},\frac{1}{2},\frac{z^2}{2} \big )}{M \big (\frac{-1}{2},\frac{1}{2},\frac{z_*^2}{2} \big )} \geq 0$. \\
 Note that because $z_* \in (0, r)$, we have that the numerator and denominator of the above have the same sign for $z \in [0, z_*]$ and so $f(z)$ is non-negative for $z \in [0, z_*]$. \\
 \\
-Because $\bL_Z f = f$, using Itô's lemma, we find that $Y_t := e^t f(Z_t)$ is a local martingale. \\
+Because $\bL_Z f = -f$, using Itô's lemma, we find that $Y_t := e^t f(Z_t)$ is a local martingale. \\
 Also note,
 \[
     |Y_t^{\tau_{z_*} \wedge n}| \leq e^n \max f([-z_*, z_*]) =: C_n < \infty.
