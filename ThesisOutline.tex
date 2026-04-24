@@ -12,7 +12,7 @@
 \usepackage{xcolor}
 \usepackage{mdframed}
 \usepackage[hidelinks]{hyperref}
-\newmdenv[backgroundcolor=yellow, linewidth=0pt, innerleftmargin=4pt, innerrightmargin=4pt]{hlt}
+% \newmdenv[backgroundcolor=yellow, linewidth=0pt, innerleftmargin=4pt, innerrightmargin=4pt]{hlt}
 
 \newcommand{\cB}{\mathcal{B}}
 \newcommand{\cF}{\mathcal{F}}
@@ -81,7 +81,7 @@
 
 \graphicspath{ {./media/} }
 
-\title{Optimal Stopping, 1-Dimensional Free Boundary Applications}
+\title{Optimal Stopping: 1-Dimensional Free Boundary Applications}
 
 \author{Max David Feldman, B.S. \\ Supervisor:  Dr. Mihai Sîrbu}
 
@@ -192,7 +192,6 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
     This implies that $\Prb [U_{[s,t]}(X, [a,b]) = \infty] = 0$. \\
 
     \proof
-    \begin{hlt}
         We first prove that the result holds for $(M_n)_{n \geq 0}$ a discrete time submartingale over finitely many time steps.  \\
         It will suffice to show that for fixed $N \in \N$, we have $\E [U_{\{0,1,..,N\}}(X, [a,b])] \leq \Big ( \E[M_N^+] + |a| \Big ) (b - a)^{-1}$. \\
         Now take $H_n := \sum_{j=0}^\infty \ind{T_{2j + 1} \leq n \leq T_{2j + 2}}$. \\
@@ -232,7 +231,6 @@ We now build some machinery that will be needed to prove the Upcrossing Inequali
             \liminf_{n \to \infty} \E \big [ U_{F_n}(X, [a,b]) \big ] \leq \frac{\E[X_t^+] + |a|}{(b-a)}.
         \]
         \QED
-    \end{hlt}
 
 \end{lemma}
 
@@ -271,7 +269,7 @@ Next we present a foundational theorem that is most commonly proved with extensi
 
 \begin{thm}
     \textbf{Doob's Maximal Inequality} \\
-    Given $(M_t)_{t \geq 0}$ a submartingale, we define $M_t^* := \sup_{0 \leq s \leq t} M_t^+$ and then for $p \in (1,\infty)$ we have,
+    Given $(M_t)_{t \geq 0}$ a submartingale, we define $M_t^* := \sup_{0 \leq s \leq t} M_s^+$ and then for $p \in (1,\infty)$ we have,
     \[
         \E[(M_t^*)^p] \leq \Big ( \frac{p}{p-1} \Big )^p  \sspc \E[(M_t^+)^p].
     \]
@@ -309,7 +307,6 @@ Next we present a foundational theorem that is most commonly proved with extensi
     A continuous local martingale $(M_t)_{t \geq 0}$ that is of finite variation is indistinguishable from 0. \\
 \end{lemma}
 
-\begin{hlt}
 \begin{cor}
     Given a continuous semimartingale $X_t$, the decomposition
     \[
@@ -331,7 +328,6 @@ Next we present a foundational theorem that is most commonly proved with extensi
     This shows that $M_t$ and $M_t'$ are indistinguishable and in turn that $A_t$ and $A_t'$ are indistinguishable. \\
     \QED 
 \end{cor}
-\end{hlt}
 
 \begin{thm} $\text{[RY]}$
     If $M,N$ are continuous path local martingales then there exists a unique process $\la M, N \ra_t$ that starts at 0 and s.t. $(M_t N_t - \la M, N \ra_t)_{t \geq 0}$ is a local martingale.
@@ -418,7 +414,7 @@ Next we present a foundational theorem that is most commonly proved with extensi
     there exists a sequence of stopping times $\{\tau_n\}_{n=1}^\infty$ s.t. $\tau_n \nearrow \infty$ a.s. and
     \[
         \E \Big [
-            \int_0^{\tau_n} K_u \df{\la M, M \ra}
+            \int_0^{\tau_n} K_u \df{\la M, M \ra_u}
         \Big ] < \infty \spc \spc \forall n \in \N.
     \]
 \end{defn}
@@ -455,7 +451,7 @@ Next we present a foundational theorem that is most commonly proved with extensi
     Say that $(X_t)_{t \geq 0}$ is a $d$-dimensional semimartingale, meaning $X^k$ is a semimartingale for every dimension $k=1, .., d$. \\
     In the case that we have $f: \R^d \to \R$ in $C^2$ then,
     \[
-        f(X_t) = f(X_0) + \sum_{i=1}^d f_{e_i}(X_t) \df{X_t^i} + \frac{1}{2} \sum_{1 \leq j, k \leq d} f_{e_j, e_k}(X_t) \df{\la X^j, X^k \ra_t},
+    f(X_t) = f(X_0) + \sum_{i=1}^d \int_0^t f_{e_i}(X_u) \df{X_u^i} + \frac{1}{2} \sum_{1 \leq j, k \leq d} \int_0^t f_{e_j, e_k}(X_u) \df{\la X^j, X^k \ra_u},
     \]
     where $f_{e_k}$ represents the partial derivative of $f$ in the $e_k$ direction, with $e_k$ being the $k^{th}$ standard basis vector for $\R^d$.
 \end{lemma}
@@ -547,7 +543,6 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     $A,B \in \mathcal{Q}$ implies $A \vee B \in \mathcal{Q}$, then there is a non-decreasing sequence $\{C_n\}_{n=1}^\infty \subset \mathcal{Q}$ s.t. $X^* = \lim_{n \to \infty} C_n$ a.s..
 \end{lemma}
 
-    \begin{hlt}
 \begin{lemma}
     Given a nonempty family of non-negative random variables $\mathcal{Q}$ and a non-negative random variable $J$, we have,
     \[
@@ -585,7 +580,6 @@ We then define $\mu^\infty: \cF \to \R_+$ as,
     This shows the second property. \\
     \QED
 \end{lemma}
-\end{hlt}
 
 \phantomsection\subsection*{ \quad I.III Markov Property, Strong Markov Property \& Ornstein-Uhlenbeck Processes}\label{sec:I.III}
 \cheekynewline
@@ -722,10 +716,8 @@ In the remainder of this subsection we present the main results of Appendix D fr
     \[
         \esssup_{\rho \in \cS_\tau} \E[Y_\rho \quantifyspace \cF_v] = \lim_{n\to \infty} \E[Y_{\rho_n} \quantifyspace \cF_v].
     \]
-    \begin{hlt}
     \proof
     The first statement of this lemma is exactly our observation at the beginning of this Snell Envelope section, and the second statement is a direct result of the first statement and Lemma 9 in the Essential Supremum section. \QED \\
-    \end{hlt}
 \end{lemma}
 
 The reader may note that $Z_v$ is a random variable that has been defined as a function of a stopping time $v \in \cS$. It is not clear that this definition of $Z$ is consistent; that is, if we consider the process given by $Z$ at deterministic times, we do not know that stopping this process at $v$ is the same as what we defined as $Z_v$. We address this issue now and build some understanding of the relation between $Z$ and $Y$.
@@ -745,7 +737,6 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     \]
 
     \proof 
-    \begin{hlt}
     
     We start by showing the first statement. \\
     Apply Lemma 10,
@@ -824,7 +815,6 @@ The reader may note that $Z_v$ is a random variable that has been defined as a f
     The third statement is a direct consequence of the fact that $\cS_\tau \subset \cS_v$. \\
     The fourth statement follows from Lemma 9 and the third statement where $v$ is selected to be 0. \\
     \QED
-    \end{hlt}
 \end{claim}
 
 \begin{defn}
@@ -1024,7 +1014,6 @@ Now that we have our candidate, our task is to verify it. \\
     $V(x) = H(x)$ for all $x \in (0,\infty)$.
 
     \proof
-    \begin{hlt} 
     We define $\daleth_t := e^{-rt}$ and $\beth_t := H(X_t)$.
     From simple calculus, we know $\df{\daleth_t} = -r \daleth_t \df{t}$. \\
     Since $H'$ is absolutely continuous, we can use Itô-Tanaka-Meyer to find,
@@ -1049,7 +1038,6 @@ Now that we have our candidate, our task is to verify it. \\
     \[
         \int_0^t e^{-ru} \sigma X_u H'(X_u) \df{W_u} \spc \spc \forall t \geq 0 \spc \als
     \]
-    \end{hlt}
     First, note that in the domain $(b, \infty)$, we have $(\bL_X H - r H)(x) = 0$ from our construction of $V$. \\
     In the $(0,b)$ domain, we have $(\bL_X H - rH)(x) = -rx - r(K - x) = -rK < 0$ and so we have $(\bL_X H - rH)(x) \leq 0$ where it is defined. \\
     \\
@@ -1116,7 +1104,6 @@ Now we want to see that the Snell envelope is exactly that which our Markov intu
 \begin{thm}
     The Snell envelope of $e^{-rt} (K - X_t)^+$ is $e^{-rt} V(X_t)$.
     \proof
-    \begin{hlt}
 We recall that in the proof of the previous theorem we found a decomposition of $e^{-rt} V(X_t) = V(X_0) + M_t - A_t$, where $M_t$ is a local martingale and $A_t$ is a non-decreasing process. \\
 Fix some $\tau \in \cS$ and some $\theta \in \cS_\tau$. \\
 Now we have the following,
@@ -1159,7 +1146,6 @@ Again we can apply conditional dominated convergence to get,
 This shows that $e^{-r \tau} V(X_\tau) \leq \esssup_{\theta \in \cS_\tau} \E[e^{-r \theta} (K - X_\theta)^+ \quantifyspace \cF_\tau]$ a.s.. \\
 This proves the theorem and that $\rho$ is optimal for stopping after $\tau$. \\
 \QED \\
-    \end{hlt}
 \end{thm}
 
 With the proof of this theorem, we have now achieved what our intuition in the Markov Motivation section informed us might be possible. 
@@ -1268,7 +1254,7 @@ Along the lines of chapter 10 of [PS], we now introduce a function which will be
     where $(\rho)_k$ represents the product $\rho (\rho + 1) .. (\rho + k - 1)$. Using standard analysis techniques, this function can be seen to be well-defined and in $C^2$.
 \end{defn}
 
-Importantly, note that $M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $z M(\frac{1}{2}, \frac{3}{2}, \frac{z^2}{2})$ are linearly independent and solve $\bL_Z W(z) = -W(z)$. \\
+Importantly, note that $z \mapsto M(\frac{-1}{2}, \frac{1}{2}, \frac{z^2}{2})$ and $z \mapsto z$ are linearly independent and solve $\bL_Z W(z) = -W(z)$. \\
 By Corollary 4.35 from [TA], the solution space for a second-order ODE is 2-dimensional, and so the two aforementioned functions form a basis of the solution space to $\bL_Z W(z) = -W$. \\
 In fact, since $-Z_t$ follows the same SDE as $Z_t$ (with the corresponding negative Brownian motion), we expect $W$ to be an even function. \\
 Since the first of our basis functions is even and the second is odd, we expect our solution to be of the form,
@@ -1295,7 +1281,6 @@ Rearranging gives,
 \[
     (c - z_*) z_* = \frac{M \big (\frac{-1}{2}, \frac{1}{2}, \frac{z^2_*}{2} \big )}{M \big (\frac{1}{2},\frac{3}{2},\frac{z_*^2}{2} \big )}.
 \]
-\begin{hlt}
 From the intermediate value theorem, we find that there must be some $z_* \in (0, r)$ satisfying the above.
 Rearranging again, we find that such a $z_*$ is a zero of,
 \[
@@ -1306,13 +1291,11 @@ Taking the derivative of the above, we find,
     q'(z) = \Big ( \frac{(c - z)z^2}{3} \Big ) M \Big (\frac{3}{2},\frac{5}{2},\frac{z^2}{2} \Big ) + (c - z) M \Big ( \frac{1}{2},\frac{3}{2},\frac{z^2}{2} \Big ).
 \]
 Note that $q'$ is strictly positive on $z \in (0, c) \supset (0, r)$, and so a positive root $z_* \in (0, r)$ exists and is unique. We will now let $z_*$ denote this root. \\
-\end{hlt}
 
 \phantomsection\subsection*{IV.V Verify the Candidate}\label{sec:IV.V}
 We now have our candidate satisfying criteria (i)-(v) and our task is to prove that $W(z) = W_*(z)$. \\
 \\
 We now define $F_t := e^t W(Z_t)$. \\
-\begin{hlt}
 
 First, we can apply Itô-Tanaka-Meyer to find $\df{(W(Z_t))}$ (since $W$ is $C^1$ with absolutely continuous derivative) and calculus to find $\df{e^t}$, and then apply Itô's lemma to the product map $(a, b) \mapsto ab$ to find,
 \[
@@ -1322,7 +1305,6 @@ Recalling the SDE that $Z_t$ satisfies and rearranging terms, we find,
 \[
     F_t = F_0 + \int_0^t e^u (\bL_Z W + W)(Z_u) \df{u} + \sqrt{2} \int_0^t e^u W'(Z_u) \df{B_u}.
 \]
-\end{hlt}
 We decompose as expected,
 \[
     A_t := - \int_0^t e^u (\bL_Z W + W)(Z_u) \df{u} \spc \text{ and } \spc M_t := \sqrt{2} \int_0^t e^u W'(Z_u) \df{B_u},
@@ -1363,7 +1345,6 @@ Since the random variable $G_{\tau_{z_*}}$ is non-positive, we can use monotone 
 \[
     W(z) \leq \E^z [G_{\tau_{z_*}}].
 \]
-\begin{hlt}
 If we can show that $\E[e^{\tau_{z_*}}] < \infty$, we will have shown $W(z) = W_*(z)$. \\
 \\
 Define $f(z) := \frac{M \big (\frac{-1}{2},\frac{1}{2},\frac{z^2}{2} \big )}{M \big (\frac{-1}{2},\frac{1}{2},\frac{z_*^2}{2} \big )} \geq 0$. \\
@@ -1385,9 +1366,7 @@ We use that $Y_t$ is non-negative to apply Fatou's lemma and find,
     \E^z[e^{\tau_{z_*}}] = f(z_*) \E^z[ e^{\tau_{z_*}}] = \E^z[Y_{\tau_{z_*}}] \leq f(z).
 \]
 And so we have shown that in the case $c > r$, $W(z) = W_*(z)$. \\
-\end{hlt}
 
-\begin{hlt}
 From the $c > r$ case, we can also get the $c = r$ case. \\
 We let $W_c$ and $W_{c, *}$ represent $W$ and $W_*$ as before except now with $c$ specified explicitly. \\
 We take $\{c_n\}_{n=1}^\infty$ a decreasing sequence converging to $r$ and fix some $z$. \\
@@ -1401,7 +1380,6 @@ Due to continuity of $c \mapsto W_{c}(z)$ and the fact that all $e^\tau(|Z_\tau|
     \sup_{n \in \N} W_{c_n, *}(z) =
     \sup_{n \in \N} W_{c_n}(z) = W_{r}(z).
 \]
-\end{hlt}
 \cheekynewline
 Putting it all together, we have now shown,
 \begin{thm} $\text{[PS]}$
@@ -1411,7 +1389,7 @@ Putting it all together, we have now shown,
     \]
     \[
         \begin{cases}
-            - \sqrt{t} z_*^{-1} M \Big (-\frac{1}{2}, \frac{1}{2}, \frac{x^2}{2t} \Big) \Big [ M \Big (-\frac{1}{2}, \frac{1}{2}, \frac{z_*^2}{2} \Big) \Big ]^{-1} & \frac{|x|}{\sqrt{t}} < z_* \\
+            - \sqrt{t} z_*^{-1} M \Big (-\frac{1}{2}, \frac{1}{2}, \frac{x^2}{2t} \Big) \Big [ M \Big (\frac{1}{2}, \frac{3}{2}, \frac{z_*^2}{2} \Big) \Big ]^{-1} & \frac{|x|}{\sqrt{t}} < z_* \\
             |x| - c \sqrt{t} & \frac{|x|}{\sqrt{t}} \geq z_*
         \end{cases}.
     \]
@@ -1424,7 +1402,6 @@ Putting it all together, we have now shown,
 \cheekynewline
 We also have the following theorem for the $c < r$ case. \\
 
-\begin{hlt}
 
 \begin{thm}
     For $c < r$ we have $V_*(t, x) = \infty$ and it is never optimal to stop.
@@ -1454,7 +1431,6 @@ We also have the following theorem for the $c < r$ case. \\
     Since this holds for all $t$, we have that $W_{c,*}(z) = \infty$ for all $z$. \\
     \QED
 \end{thm}
-\end{hlt}
 \cheekynewline
 In this most recent example, we have again used our Markov intuition to find suitable conditions that a reasonable candidate value function must satisfy.
 Using these conditions, we then found an explicit characterization for the candidate value function and used other tools to verify it is indeed correct. \\
