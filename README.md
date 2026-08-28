@@ -29,10 +29,12 @@ The source is a single LaTeX file, `ThesisOutline.tex`, with figures in `media/`
 
 ```sh
 latexmk -pdf ThesisOutline.tex
-./clean.sh                       # remove .aux, .log, and other build artifacts
+./clean.sh                       # remove .aux, .log, .out, and other build artifacts
 ```
 
-Build artifacts and PDFs are not tracked in this repository.
+The compiled thesis is tracked as
+[`MaxFeldman_Thesis.pdf`](MaxFeldman_Thesis.pdf); LaTeX build artifacts are
+not.
 
 ## References
 

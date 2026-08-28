@@ -1,12 +1,13 @@
 *.jpeg
-*.pdf
 *.aux
+*.out
 *.fdb_latexmk
 *.fls
 *.log
 *.gz
 
+*.pdf
+!MaxFeldman_Thesis.pdf
+
 notes.txt
 .vscode/
-
-.pdf
